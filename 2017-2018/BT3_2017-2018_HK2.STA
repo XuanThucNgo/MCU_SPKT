@@ -1,0 +1,50 @@
+
+ROM used:   356/8192 (4%)
+            356/8192 (4%) including unused fragments
+
+            0.4 Average locations per line
+            11.1 Average locations per statement
+
+RAM used:   15/368 (4%) at main() level
+            23/368 (6%) worst case
+
+Stack used: 2 worst case (2 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   60    32 100  BT3_2017-2018_HK2.c
+  768     0   0  C:\Program Files (x86)\PICC\Devices\16F887.H
+----- -----
+  828    32 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0    186  52    1   829  6.6  MAIN
+0     21   6    3   399  2.4  @DIV88
+0     56  16    2   415  3.7  @PRINTF_U_2400_62_63
+0     89  25    9   852  6.2  @PRINTF_LU_2400_62_63
+ Inline         0   354  4.7  @cinit1
+
+Program metrics:
+    Functions               5
+    Statements              32
+    Comments                135
+    Volume (V)              3949
+    Difficulty (D)          23.5
+    Effort to implement (E) 92808
+    Time to implement (T)   1 hours, 26 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   14
+    Maintainability (MI)    155
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   352  1692  
+00800-00FFF     0  2048  
+01000-017FF     0  2048  
+01800-01FFF     0  2048  
+
+
+

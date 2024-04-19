@@ -1,0 +1,284 @@
+CCS PCM C Compiler, Version 5.015, 5967               15-Dec-23 14:05
+
+               Filename:   E:\BAI TAP VXL\DETHI-GIAIDETHI\2017-2018\BT1_2017-2018_HK1_CLC.lst
+
+               ROM used:   187 words (2%)
+                           Largest free fragment is 2048
+               RAM used:   10 (3%) at main() level
+                           10 (3%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   026
+0003:  NOP
+.................... #INCLUDE<16F887.H> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+0004:  BCF    0A.0
+0005:  BCF    0A.1
+0006:  BCF    0A.2
+0007:  ADDWF  02,F
+0008:  RETLW  C0
+0009:  RETLW  F9
+000A:  RETLW  A4
+000B:  RETLW  B0
+000C:  RETLW  99
+000D:  RETLW  92
+000E:  RETLW  82
+000F:  RETLW  F8
+0010:  RETLW  80
+0011:  RETLW  90
+....................  
+.................... #list 
+....................  
+.................... #FUSES INTRC 
+.................... #USE DELAY(CLOCK=8M) 
+0012:  MOVLW  24
+0013:  MOVWF  04
+0014:  BCF    03.7
+0015:  MOVF   00,W
+0016:  BTFSC  03.2
+0017:  GOTO   025
+0018:  MOVLW  02
+0019:  MOVWF  78
+001A:  CLRF   77
+001B:  DECFSZ 77,F
+001C:  GOTO   01B
+001D:  DECFSZ 78,F
+001E:  GOTO   01A
+001F:  MOVLW  97
+0020:  MOVWF  77
+0021:  DECFSZ 77,F
+0022:  GOTO   021
+0023:  DECFSZ 00,F
+0024:  GOTO   018
+0025:  RETURN
+....................  
+.................... #USE RS232(BAUD=4800,XMIT=PIN_C6,RCV=PIN_C7) 
+....................  
+.................... #DEFINE GOOD PIN_E0 
+.................... #DEFINE BAD  PIN_E1 
+....................  
+.................... CONST UNSIGNED INT8 MA7DOAN[10] = {0XC0, 0XF9, 0XA4, 0XB0, 0X99, 0X92, 0X82, 0XF8, 0X80, 0X90}; 
+....................  
+.................... UNSIGNED CHAR DATA=0; 
+.................... UNSIGNED INT8 G_PRODUCT=0,B_PRODUCT=0; 
+....................  
+....................  
+.................... VOID MAIN() 
+0026:  MOVF   03,W
+0027:  ANDLW  1F
+0028:  MOVWF  03
+0029:  MOVLW  71
+002A:  BSF    03.5
+002B:  MOVWF  0F
+002C:  MOVF   0F,W
+002D:  BSF    03.6
+002E:  BSF    07.3
+002F:  MOVLW  A0
+0030:  BCF    03.6
+0031:  MOVWF  19
+0032:  MOVLW  01
+0033:  MOVWF  1A
+0034:  MOVLW  A6
+0035:  MOVWF  18
+0036:  MOVLW  90
+0037:  BCF    03.5
+0038:  MOVWF  18
+0039:  CLRF   20
+003A:  CLRF   21
+003B:  CLRF   22
+003C:  MOVLW  FF
+003D:  MOVWF  23
+003E:  BSF    03.5
+003F:  BSF    03.6
+0040:  MOVF   09,W
+0041:  ANDLW  C0
+0042:  MOVWF  09
+0043:  BCF    03.6
+0044:  BCF    1F.4
+0045:  BCF    1F.5
+0046:  MOVLW  00
+0047:  BSF    03.6
+0048:  MOVWF  08
+0049:  BCF    03.5
+004A:  CLRF   07
+004B:  CLRF   08
+004C:  CLRF   09
+004D:  BCF    03.7
+.................... { 
+....................    SET_TRIS_E(0X03); 
+004E:  BSF    03.5
+004F:  BCF    03.6
+0050:  BSF    09.0
+0051:  BSF    09.1
+0052:  BCF    09.2
+0053:  BCF    09.3
+....................    SET_TRIS_B(0X00); 
+0054:  MOVLW  00
+0055:  MOVWF  06
+....................    SET_TRIS_D(0X00); 
+0056:  MOVWF  08
+....................    SET_TRIS_C(0X80); 
+0057:  MOVLW  80
+0058:  MOVWF  07
+0059:  BCF    03.5
+005A:  MOVWF  23
+....................  
+....................    WHILE(TRUE) 
+....................    { 
+....................        
+....................       IF(KBHIT()==1) 
+005B:  MOVLW  00
+005C:  BTFSC  0C.5
+005D:  MOVLW  01
+005E:  SUBLW  01
+005F:  BTFSS  03.2
+0060:  GOTO   065
+....................       { 
+....................          DATA=GETC(); 
+0061:  BTFSS  0C.5
+0062:  GOTO   061
+0063:  MOVF   1A,W
+0064:  MOVWF  20
+....................       } 
+....................       IF(DATA=='S') 
+0065:  MOVF   20,W
+0066:  SUBLW  53
+0067:  BTFSC  03.2
+....................       { 
+....................           
+....................       } 
+0068:  GOTO   0A9
+....................       ELSE IF(DATA=='R') 
+0069:  MOVF   20,W
+006A:  SUBLW  52
+006B:  BTFSS  03.2
+006C:  GOTO   0A9
+....................       { 
+....................          IF(INPUT(GOOD)==0) 
+006D:  BSF    03.5
+006E:  BSF    09.0
+006F:  BCF    03.5
+0070:  BTFSC  09.0
+0071:  GOTO   08B
+....................          { 
+....................             DELAY_MS(20); 
+0072:  MOVLW  14
+0073:  MOVWF  24
+0074:  CALL   012
+....................             IF(INPUT(GOOD)==0) 
+0075:  BSF    03.5
+0076:  BSF    09.0
+0077:  BCF    03.5
+0078:  BTFSC  09.0
+0079:  GOTO   08B
+....................             { 
+....................                G_PRODUCT++;   
+007A:  INCF   21,F
+....................                WHILE(INPUT(GOOD)==0); 
+007B:  BSF    03.5
+007C:  BSF    09.0
+007D:  BCF    03.5
+007E:  BTFSS  09.0
+007F:  GOTO   07B
+....................                IF(G_PRODUCT>9)      G_PRODUCT=0; 
+0080:  MOVF   21,W
+0081:  SUBLW  09
+0082:  BTFSS  03.0
+0083:  CLRF   21
+....................                PUTC('G'); 
+0084:  MOVLW  47
+0085:  BTFSS  0C.4
+0086:  GOTO   085
+0087:  MOVWF  19
+....................                DELAY_MS(1); 
+0088:  MOVLW  01
+0089:  MOVWF  24
+008A:  CALL   012
+....................             } 
+....................          } 
+....................        
+....................          IF(INPUT(BAD)==0) 
+008B:  BSF    03.5
+008C:  BSF    09.1
+008D:  BCF    03.5
+008E:  BTFSC  09.1
+008F:  GOTO   0A9
+....................          { 
+....................             DELAY_MS(20); 
+0090:  MOVLW  14
+0091:  MOVWF  24
+0092:  CALL   012
+....................             IF(INPUT(BAD)==0) 
+0093:  BSF    03.5
+0094:  BSF    09.1
+0095:  BCF    03.5
+0096:  BTFSC  09.1
+0097:  GOTO   0A9
+....................             { 
+....................                B_PRODUCT++;   
+0098:  INCF   22,F
+....................                WHILE(INPUT(BAD)==0); 
+0099:  BSF    03.5
+009A:  BSF    09.1
+009B:  BCF    03.5
+009C:  BTFSS  09.1
+009D:  GOTO   099
+....................                IF(B_PRODUCT>9)      B_PRODUCT=0; 
+009E:  MOVF   22,W
+009F:  SUBLW  09
+00A0:  BTFSS  03.0
+00A1:  CLRF   22
+....................                PUTC('B'); 
+00A2:  MOVLW  42
+00A3:  BTFSS  0C.4
+00A4:  GOTO   0A3
+00A5:  MOVWF  19
+....................                DELAY_MS(1); 
+00A6:  MOVLW  01
+00A7:  MOVWF  24
+00A8:  CALL   012
+....................             } 
+....................          }     
+....................       } 
+....................       //HIEN THI LED 7 DOAN 
+....................       OUTPUT_B(MA7DOAN[G_PRODUCT]); 
+00A9:  MOVF   21,W
+00AA:  CALL   004
+00AB:  MOVWF  24
+00AC:  BSF    03.5
+00AD:  CLRF   06
+00AE:  BCF    03.5
+00AF:  MOVF   24,W
+00B0:  MOVWF  06
+....................       OUTPUT_D(MA7DOAN[B_PRODUCT]); 
+00B1:  MOVF   22,W
+00B2:  CALL   004
+00B3:  MOVWF  24
+00B4:  BSF    03.5
+00B5:  CLRF   08
+00B6:  BCF    03.5
+00B7:  MOVF   24,W
+00B8:  MOVWF  08
+00B9:  GOTO   05B
+....................    } 
+.................... } 
+....................  
+00BA:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE5   INTRC NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

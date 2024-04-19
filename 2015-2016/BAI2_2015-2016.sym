@@ -1,0 +1,123 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020.0   STATUS
+021-022 TEMP
+023     PRODUCT
+024     @TRIS_C
+025     @PRINTF_U_644.P1
+025-028 @SFTOI.P2
+025-026 @PRINTF_LU_644.P3
+025     lcd_init.i
+025     MAIN.@SCRATCH1
+025     @PSTRINGC7_644.@SCRATCH1
+026     @PRINTF_U_644.P1
+026-029 lcd_init.LCD_INIT_STRING
+026     MAIN.@SCRATCH2
+026     @PSTRINGC7_644.@SCRATCH2
+027     @DIV88.P1
+027-02A @DIVFF.P2
+027-028 @ITOF.P3
+027     @PRINTF_LU_644.@SCRATCH1
+027     @PSTRINGC7_644.@SCRATCH3
+028     @DIV88.P1
+028     @PRINTF_LU_644.@SCRATCH2
+028     @PSTRINGC7_644.@SCRATCH4
+029     @PRINTF_LU_644.@SCRATCH3
+029     @DIV88.@SCRATCH1
+02A     lcd_init.@SCRATCH1
+02A     @PRINTF_LU_644.@SCRATCH4
+02B-02E @DIVFF.P1
+02B     @PRINTF_LU_644.@SCRATCH5
+02C     @PRINTF_LU_644.@SCRATCH6
+02D     @PRINTF_LU_644.@SCRATCH7
+02E     lcd_putc.c
+02F     lcd_gotoxy.x
+02F     @delay_ms1.P1
+02F     @DIVFF.@SCRATCH1
+030     lcd_gotoxy.y
+030     @DIVFF.@SCRATCH2
+031     lcd_gotoxy.address
+031     @DIVFF.@SCRATCH3
+032     lcd_gotoxy.@SCRATCH1
+032     @DIVFF.@SCRATCH4
+033     lcd_send_byte.address
+033     @DIVFF.@SCRATCH5
+034     lcd_send_byte.n
+034     @DIVFF.@SCRATCH6
+035     lcd_read_byte.low
+035     lcd_send_byte.@SCRATCH1
+036     lcd_send_nibble.n
+036     lcd_read_byte.high
+037     lcd_read_nibble.n
+037     lcd_read_byte.@SCRATCH1
+038     lcd_read_nibble.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+107.6   C1OUT
+108.6   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  @const680.call
+00000A  @const682.call
+000010  @delay_ms1
+000024  lcd_send_nibble
+000050  lcd_read_nibble
+000081  lcd_send_byte
+000089  lcd_read_byte
+0000DD  lcd_init
+000123  @ITOF
+000142  @DIVFF
+00020E  @SFTOI
+00022F  lcd_gotoxy
+000241  lcd_putc
+00026D  @PRINTF_LU_644
+0002D2  @DIV88
+0002E7  @PRINTF_U_644
+00031E  @PSTRINGC7_644
+000374  MAIN
+000374  @cinit1
+00038F  @cinit2
+
+Project Directory:
+    E:\BAI TAP VXL\DETHI-GIAIDETHI\2015-2016\
+
+Project Files:
+    BAI2_2015-2016.c                                        [05-Dec-23 22:35  CRC=4EAEE7E8]
+    C:\Program Files (x86)\PICC\Devices\16F887.H            [12-Nov-13 14:35  CRC=6CB1A611]
+    C:\Program Files (x86)\PICC\Drivers\LCD.C               [19-Sep-13 15:38  CRC=D1A6378A]
+
+Source signature=5EACFD0D
+
+Units:
+    BAI2_2015-2016 (main)
+
+Compiler Settings:
+    Processor:      PIC16F887
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   BAI2_2015-2016.xsym
+    Errors:      BAI2_2015-2016.err
+    Ext Symbols: BAI2_2015-2016.esym
+    INHX8:       BAI2_2015-2016.hex
+    Symbols:     BAI2_2015-2016.sym
+    List:        BAI2_2015-2016.lst
+    Debug/COFF:  BAI2_2015-2016.cof
+    Project:     BAI2_2015-2016.ccspjt
+    Call Tree:   BAI2_2015-2016.tre
+    Statistics:  BAI2_2015-2016.STA

@@ -1,0 +1,214 @@
+CCS PCM C Compiler, Version 5.015, 5967               16-Dec-23 19:26
+
+               Filename:   E:\BAI TAP VXL\DETHI-GIAIDETHI\2018-2019\BT3_2018-2019.lst
+
+               ROM used:   147 words (2%)
+                           Largest free fragment is 2048
+               RAM used:   7 (2%) at main() level
+                           9 (2%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   03D
+0003:  NOP
+.................... #INCLUDE<16F887.H> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+0004:  BCF    0A.0
+0005:  BCF    0A.1
+0006:  BCF    0A.2
+0007:  ADDWF  02,F
+0008:  RETLW  C0
+0009:  RETLW  F9
+000A:  RETLW  A4
+000B:  RETLW  B0
+000C:  RETLW  99
+000D:  RETLW  92
+000E:  RETLW  82
+000F:  RETLW  F8
+0010:  RETLW  80
+0011:  RETLW  90
+*
+0028:  MOVF   22,W
+0029:  CLRF   78
+002A:  SUBWF  21,W
+002B:  BTFSC  03.0
+002C:  GOTO   030
+002D:  MOVF   21,W
+002E:  MOVWF  77
+002F:  GOTO   03C
+0030:  CLRF   77
+0031:  MOVLW  08
+0032:  MOVWF  23
+0033:  RLF    21,F
+0034:  RLF    77,F
+0035:  MOVF   22,W
+0036:  SUBWF  77,W
+0037:  BTFSC  03.0
+0038:  MOVWF  77
+0039:  RLF    78,F
+003A:  DECFSZ 23,F
+003B:  GOTO   033
+003C:  RETURN
+....................  
+.................... #list 
+....................  
+.................... #FUSES INTRC 
+.................... #USE DELAY(CLOCK=8M) 
+*
+0012:  MOVLW  21
+0013:  MOVWF  04
+0014:  BCF    03.7
+0015:  MOVF   00,W
+0016:  BTFSC  03.2
+0017:  GOTO   025
+0018:  MOVLW  02
+0019:  MOVWF  78
+001A:  CLRF   77
+001B:  DECFSZ 77,F
+001C:  GOTO   01B
+001D:  DECFSZ 78,F
+001E:  GOTO   01A
+001F:  MOVLW  97
+0020:  MOVWF  77
+0021:  DECFSZ 77,F
+0022:  GOTO   021
+0023:  DECFSZ 00,F
+0024:  GOTO   018
+0025:  BCF    0A.3
+0026:  BCF    0A.4
+0027:  GOTO   06A (RETURN)
+....................  
+.................... #DEFINE RANDOM PIN_E0 
+....................  
+.................... CONST UNSIGNED INT8 MA7DOAN[10] = {0XC0, 0XF9, 0XA4, 0XB0, 0X99, 0X92, 0X82, 0XF8, 0X80, 0X90}; 
+.................... UNSIGNED INT8 I; 
+....................  
+.................... VOID MAIN() 
+*
+003D:  MOVF   03,W
+003E:  ANDLW  1F
+003F:  MOVWF  03
+0040:  MOVLW  71
+0041:  BSF    03.5
+0042:  MOVWF  0F
+0043:  MOVF   0F,W
+0044:  BSF    03.6
+0045:  MOVF   09,W
+0046:  ANDLW  C0
+0047:  MOVWF  09
+0048:  BCF    03.6
+0049:  BCF    1F.4
+004A:  BCF    1F.5
+004B:  MOVLW  00
+004C:  BSF    03.6
+004D:  MOVWF  08
+004E:  BCF    03.5
+004F:  CLRF   07
+0050:  CLRF   08
+0051:  CLRF   09
+0052:  BCF    03.7
+.................... { 
+....................    SET_TRIS_E(0XFF); 
+0053:  BSF    03.5
+0054:  BCF    03.6
+0055:  BSF    09.0
+0056:  BSF    09.1
+0057:  BSF    09.2
+0058:  BSF    09.3
+....................    SET_TRIS_B(0X00); 
+0059:  MOVLW  00
+005A:  MOVWF  06
+....................    SET_TRIS_D(0X00); 
+005B:  MOVWF  08
+....................    WHILE(TRUE) 
+....................    { 
+....................       FOR(I=0;I<100;I++) 
+005C:  BCF    03.5
+005D:  CLRF   20
+005E:  MOVF   20,W
+005F:  SUBLW  63
+0060:  BTFSS  03.0
+0061:  GOTO   091
+....................       { 
+....................          //KIEM TRA CO NUT NHAN HAY KHONG 
+....................          // CO => LAY GIA TRI I TAI THOI DIEM NHAN 
+....................          IF(INPUT(RANDOM)==0) 
+0062:  BSF    03.5
+0063:  BSF    09.0
+0064:  BCF    03.5
+0065:  BTFSC  09.0
+0066:  GOTO   08F
+....................          { 
+....................             DELAY_MS(10); 
+0067:  MOVLW  0A
+0068:  MOVWF  21
+0069:  GOTO   012
+....................             IF(INPUT(RANDOM)==0) 
+006A:  BSF    03.5
+006B:  BSF    09.0
+006C:  BCF    03.5
+006D:  BTFSC  09.0
+006E:  GOTO   08F
+....................             { 
+....................                OUTPUT_D(MA7DOAN[I/10]); 
+006F:  MOVF   20,W
+0070:  MOVWF  21
+0071:  MOVLW  0A
+0072:  MOVWF  22
+0073:  CALL   028
+0074:  MOVF   78,W
+0075:  CALL   004
+0076:  MOVWF  21
+0077:  BSF    03.5
+0078:  CLRF   08
+0079:  BCF    03.5
+007A:  MOVF   21,W
+007B:  MOVWF  08
+....................                OUTPUT_B(MA7DOAN[I%10]); 
+007C:  MOVF   20,W
+007D:  MOVWF  21
+007E:  MOVLW  0A
+007F:  MOVWF  22
+0080:  CALL   028
+0081:  MOVF   77,W
+0082:  CALL   004
+0083:  MOVWF  21
+0084:  BSF    03.5
+0085:  CLRF   06
+0086:  BCF    03.5
+0087:  MOVF   21,W
+0088:  MOVWF  06
+....................                WHILE(INPUT(RANDOM)==0); 
+0089:  BSF    03.5
+008A:  BSF    09.0
+008B:  BCF    03.5
+008C:  BTFSS  09.0
+008D:  GOTO   089
+....................                BREAK; //THOAT KHOI VONG FOR 
+008E:  GOTO   091
+....................             } 
+....................          } 
+008F:  INCF   20,F
+0090:  GOTO   05E
+....................       } 
+0091:  GOTO   05D
+....................    } 
+.................... } 
+0092:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE5   INTRC NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

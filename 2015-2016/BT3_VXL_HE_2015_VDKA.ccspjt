@@ -1,0 +1,22 @@
+[PROJECT]
+Target=BT3_VXL_HE_2015_VDKA.hex
+Processor_Text=PIC16F887
+CCSVersion=5.015
+Compiler=PCM
+[Target Data]
+FileList=BT3_VXL_HE_2015_VDKA.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[BT3_VXL_HE_2015_VDKA.c]
+Type=4
+[mru-list]
+1=BT3_VXL_HE_2015_VDKA.c
+[Opened Files]
+1=BT3_VXL_HE_2015_VDKA.c
+2=BT3_VXL_HE_2015_VDKB.c
+3=..\2020-2021\BT2A_2020-2021_HK1_CLC.c
+4=BAI3_2015-2016.c
+5=
+[Units]
+Count=1
+1=BT3_VXL_HE_2015_VDKA (main)

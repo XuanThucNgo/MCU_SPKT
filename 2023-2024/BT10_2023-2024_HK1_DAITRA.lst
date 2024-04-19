@@ -1,0 +1,216 @@
+CCS PCM C Compiler, Version 5.015, 5967               02-Jan-24 23:33
+
+               Filename:   E:\BAI TAP VXL\DETHI-GIAIDETHI\2023-2024\BT10_2023-2024_HK1_DAITRA.lst
+
+               ROM used:   152 words (2%)
+                           Largest free fragment is 2048
+               RAM used:   8 (2%) at main() level
+                           10 (3%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   041
+0003:  NOP
+.................... #INCLUDE<16F887.H> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+0004:  BCF    0A.0
+0005:  BCF    0A.1
+0006:  BCF    0A.2
+0007:  ADDWF  02,F
+0008:  RETLW  61
+0009:  RETLW  62
+000A:  RETLW  63
+000B:  RETLW  64
+000C:  RETLW  65
+000D:  RETLW  66
+000E:  RETLW  67
+000F:  RETLW  68
+0010:  RETLW  69
+0011:  RETLW  6A
+*
+0028:  MOVF   00,F
+0029:  BTFSC  03.2
+002A:  GOTO   03E
+002B:  CLRF   24
+002C:  MOVF   04,W
+002D:  MOVWF  23
+002E:  BCF    24.0
+002F:  BTFSC  03.7
+0030:  BSF    24.0
+0031:  MOVF   00,W
+0032:  BTFSS  0C.4
+0033:  GOTO   032
+0034:  MOVWF  19
+0035:  MOVF   23,W
+0036:  MOVWF  04
+0037:  BCF    03.7
+0038:  BTFSC  24.0
+0039:  BSF    03.7
+003A:  INCF   04,F
+003B:  BTFSC  03.2
+003C:  INCF   05,F
+003D:  GOTO   028
+003E:  BCF    0A.3
+003F:  BCF    0A.4
+0040:  GOTO   089 (RETURN)
+....................  
+.................... #list 
+....................  
+.................... #FUSES HS 
+.................... #USE DELAY(CLOCK=20M) 
+*
+0012:  MOVLW  22
+0013:  MOVWF  04
+0014:  BCF    03.7
+0015:  MOVF   00,W
+0016:  BTFSC  03.2
+0017:  GOTO   025
+0018:  MOVLW  06
+0019:  MOVWF  78
+001A:  CLRF   77
+001B:  DECFSZ 77,F
+001C:  GOTO   01B
+001D:  DECFSZ 78,F
+001E:  GOTO   01A
+001F:  MOVLW  7B
+0020:  MOVWF  77
+0021:  DECFSZ 77,F
+0022:  GOTO   021
+0023:  DECFSZ 00,F
+0024:  GOTO   018
+0025:  BCF    0A.3
+0026:  BCF    0A.4
+0027:  GOTO   076 (RETURN)
+.................... #USE RS232(BAUD=2400,BITS=8,STOP=1,PARITY=N, XMIT=PIN_C6,RCV=PIN_C7) 
+....................  
+.................... #DEFINE SEND PIN_E0 
+....................  
+.................... CONST UNSIGNED CHAR KT[10] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'}; 
+.................... SIGNED INT8 I=-1; 
+....................  
+.................... VOID MAIN() 
+*
+0041:  MOVF   03,W
+0042:  ANDLW  1F
+0043:  MOVWF  03
+0044:  BSF    03.5
+0045:  BSF    03.6
+0046:  BSF    07.3
+0047:  MOVLW  22
+0048:  BCF    03.6
+0049:  MOVWF  19
+004A:  MOVLW  08
+004B:  MOVWF  1A
+004C:  MOVLW  A6
+004D:  MOVWF  18
+004E:  MOVLW  90
+004F:  BCF    03.5
+0050:  MOVWF  18
+0051:  MOVLW  FF
+0052:  MOVWF  20
+0053:  MOVWF  21
+0054:  BSF    03.5
+0055:  BSF    03.6
+0056:  MOVF   09,W
+0057:  ANDLW  C0
+0058:  MOVWF  09
+0059:  BCF    03.6
+005A:  BCF    1F.4
+005B:  BCF    1F.5
+005C:  MOVLW  00
+005D:  BSF    03.6
+005E:  MOVWF  08
+005F:  BCF    03.5
+0060:  CLRF   07
+0061:  CLRF   08
+0062:  CLRF   09
+0063:  BCF    03.7
+.................... { 
+....................    SET_TRIS_E(0XFF); 
+0064:  BSF    03.5
+0065:  BCF    03.6
+0066:  BSF    09.0
+0067:  BSF    09.1
+0068:  BSF    09.2
+0069:  BSF    09.3
+....................    SET_TRIS_C(0X80); 
+006A:  MOVLW  80
+006B:  MOVWF  07
+006C:  BCF    03.5
+006D:  MOVWF  21
+....................    WHILE(TRUE) 
+....................    { 
+....................       //KIEM TRA NUT NHAN SEND 
+....................       IF(INPUT(SEND)==0) 
+006E:  BSF    03.5
+006F:  BSF    09.0
+0070:  BCF    03.5
+0071:  BTFSC  09.0
+0072:  GOTO   08E
+....................       { 
+....................          DELAY_MS(20); 
+0073:  MOVLW  14
+0074:  MOVWF  22
+0075:  GOTO   012
+....................          IF(INPUT(SEND)==0) 
+0076:  BSF    03.5
+0077:  BSF    09.0
+0078:  BCF    03.5
+0079:  BTFSC  09.0
+007A:  GOTO   089
+....................          { 
+....................             I++;      
+007B:  INCF   20,F
+....................             PUTC(KT[I]); 
+007C:  MOVF   20,W
+007D:  CALL   004
+007E:  BTFSS  0C.4
+007F:  GOTO   07E
+0080:  MOVWF  19
+....................             PRINTF(KT[I]); 
+0081:  MOVF   20,W
+0082:  CALL   004
+0083:  MOVWF  22
+0084:  MOVWF  04
+0085:  BCF    03.7
+0086:  BTFSC  23.0
+0087:  BSF    03.7
+0088:  GOTO   028
+....................          } 
+....................          WHILE(INPUT(SEND)==0); 
+0089:  BSF    03.5
+008A:  BSF    09.0
+008B:  BCF    03.5
+008C:  BTFSS  09.0
+008D:  GOTO   089
+....................       } 
+....................       IF(I>8)    I=-1;       
+008E:  BTFSC  20.7
+008F:  GOTO   096
+0090:  MOVF   20,W
+0091:  SUBLW  08
+0092:  BTFSC  03.0
+0093:  GOTO   096
+0094:  MOVLW  FF
+0095:  MOVWF  20
+0096:  GOTO   06E
+....................    } 
+.................... } 
+0097:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE2   HS NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

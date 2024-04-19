@@ -1,0 +1,26 @@
+[PROJECT]
+Target=BT3#1_12-2015.hex
+Processor_Text=PIC16F887
+CCSVersion=5.015
+Compiler=PCM
+[Target Data]
+FileList=BT3#1_12-2015.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[BT3#1_12-2015.c]
+Type=4
+[mru-list]
+1=BT3#1_12-2015.c
+[Opened Files]
+1=..\2019-2020\BT1_2019-2020.c
+2=..\..\PWM\BAITAP_ANHPHUC.c
+3=BT1_12-2015.c
+4=BT2_12-2015.c
+5=BT3#1_12-2015.c
+6=..\2019-2020\BT3_2019-2020.c
+7=..\2018-2019\BT1_2018-2019.c
+8=BT3#2_12-2015.c
+9=
+[Units]
+Count=1
+1=BT3#1_12-2015 (main)

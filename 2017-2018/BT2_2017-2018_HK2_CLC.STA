@@ -1,0 +1,64 @@
+
+ROM used:   698/8192 (9%)
+            698/8192 (9%) including unused fragments
+
+            0.5 Average locations per line
+            4.4 Average locations per statement
+
+RAM used:   9/368 (2%) at main() level
+            22/368 (6%) worst case
+
+Stack used: 5 worst case (5 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  105    59  37  BT2_2017-2018_HK2_CLC.c
+  768     0   0  C:\Program Files (x86)\PICC\Devices\16F887.H
+  456   100  63  C:\Program Files (x86)\PICC\Drivers\LCD.C
+----- -----
+ 1329   159 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     20   3    1             @delay_ms1
+ Inline         3   760  4.5  lcd_read_byte
+0     49   7    2   262  3.7  lcd_read_nibble
+0     48   7    1   399  2.4  lcd_send_nibble
+0     94  13    3   415  3.7  lcd_send_byte
+0     70  10    6   852  6.2  lcd_init
+0     18   3    4   208  6.3  lcd_gotoxy
+0     44   6    1   354  4.7  lcd_putc
+0    240  34    1  1763  6.1  MAIN
+0      6   1    0             @const662
+0     86  12    4             @PSTRINGC7_644
+0      4   1    0             @const664
+0      3   0    0             @const665
+0      3   0    0             @const666
+0      3   0    0   187  2.5  @const667
+0      3   0    0   247  2.6  @const668
+0      3   0    0  1294  5.3  @const669
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               11
+    Statements              159
+    Comments                246
+    Volume (V)              10292
+    Difficulty (D)          46.8
+    Effort to implement (E) 481952
+    Time to implement (T)   7 hours, 26 minutes
+    Est Delivered Bugs (B)  2
+    Cyclomatic Complexity   24
+    Maintainability (MI)    135
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   694  1350  
+00800-00FFF     0  2048  
+01000-017FF     0  2048  
+01800-01FFF     0  2048  
+
+
+

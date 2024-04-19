@@ -1,0 +1,10 @@
+юдBT3_2018-2019#1
+   юдMAIN  0/183  Ram=1
+      цд@cinit1  (Inline)  Ram=0
+      цд@PRINTF_U_4800_62_63  0/56  Ram=2
+      Ё  цд@DIV88  0/21  Ram=3
+      Ё  юд@DIV88  0/21  Ram=3
+      цд@PRINTF_LU_4800_62_63  0/89  Ram=9
+      цд@PRINTF_U_4800_62_63  0/56  Ram=2
+      Ё  юд*
+      юд@PRINTF_LU_4800_62_63  0/89  Ram=9

@@ -1,0 +1,309 @@
+CCS PCM C Compiler, Version 5.015, 5967               11-Dec-23 19:20
+
+               Filename:   E:\BAI TAP VXL\DETHI-GIAIDETHI\2018-2019\BT1_2018-2019#2.lst
+
+               ROM used:   213 words (3%)
+                           Largest free fragment is 2048
+               RAM used:   10 (3%) at main() level
+                           14 (4%) worst case
+               Stack used: 2 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   056
+0003:  NOP
+.................... #INCLUDE<16F887.H> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+0004:  BCF    0A.0
+0005:  BCF    0A.1
+0006:  BCF    0A.2
+0007:  ADDWF  02,F
+0008:  RETLW  C0
+0009:  RETLW  F9
+000A:  RETLW  A4
+000B:  RETLW  B0
+000C:  RETLW  99
+000D:  RETLW  92
+000E:  RETLW  82
+000F:  RETLW  F8
+0010:  RETLW  80
+0011:  RETLW  90
+*
+0026:  MOVLW  10
+0027:  MOVWF  27
+0028:  CLRF   77
+0029:  CLRF   7A
+002A:  RRF    24,F
+002B:  RRF    23,F
+002C:  BTFSS  03.0
+002D:  GOTO   034
+002E:  MOVF   25,W
+002F:  ADDWF  77,F
+0030:  BTFSC  03.0
+0031:  INCF   7A,F
+0032:  MOVF   26,W
+0033:  ADDWF  7A,F
+0034:  RRF    7A,F
+0035:  RRF    77,F
+0036:  RRF    79,F
+0037:  RRF    78,F
+0038:  DECFSZ 27,F
+0039:  GOTO   02A
+003A:  BCF    0A.3
+003B:  BCF    0A.4
+003C:  GOTO   0C2 (RETURN)
+....................  
+.................... #list 
+....................  
+.................... #FUSES INTRC 
+.................... #USE DELAY(CLOCK=8M) 
+*
+0012:  MOVLW  28
+0013:  MOVWF  04
+0014:  BCF    03.7
+0015:  MOVF   00,W
+0016:  BTFSC  03.2
+0017:  GOTO   025
+0018:  MOVLW  02
+0019:  MOVWF  78
+001A:  CLRF   77
+001B:  DECFSZ 77,F
+001C:  GOTO   01B
+001D:  DECFSZ 78,F
+001E:  GOTO   01A
+001F:  MOVLW  97
+0020:  MOVWF  77
+0021:  DECFSZ 77,F
+0022:  GOTO   021
+0023:  DECFSZ 00,F
+0024:  GOTO   018
+0025:  RETURN
+....................  
+.................... #DEFINE RUN    PIN_C1 
+.................... #DEFINE STOP    PIN_C2 
+.................... #DEFINE PULSE  PIN_C0 
+.................... #DEFINE ADJ    PIN_A0 
+....................  
+.................... CONST UNSIGNED INT8 MA7DOAN[10] = {0XC0, 0XF9, 0XA4, 0XB0, 0X99, 0X92, 0X82, 0XF8, 0X80, 0X90}; 
+.................... UNSIGNED INT8 LEVEL=5; //MOI CAP DIEN 7 DOAN HIEN THI SO 5 
+.................... INT1 MODE=0; //1 RUN 
+....................              //0 STOP 
+....................  
+.................... VOID DELAY_MSX(UNSIGNED INT16 T) 
+.................... { 
+....................    FOR(INT8 I=0;I<T;I++) 
+*
+003D:  CLRF   27
+003E:  MOVF   26,F
+003F:  BTFSS  03.2
+0040:  GOTO   045
+0041:  MOVF   25,W
+0042:  SUBWF  27,W
+0043:  BTFSC  03.0
+0044:  GOTO   053
+....................    { 
+....................       DELAY_MS(1); 
+0045:  MOVLW  01
+0046:  MOVWF  28
+0047:  CALL   012
+....................       IF(INPUT(STOP)==0) 
+0048:  BSF    22.2
+0049:  MOVF   22,W
+004A:  BSF    03.5
+004B:  MOVWF  07
+004C:  BCF    03.5
+004D:  BTFSC  07.2
+004E:  GOTO   051
+....................       { 
+....................          MODE=0; 
+004F:  BCF    21.0
+....................          BREAK; 
+0050:  GOTO   053
+....................       } 
+0051:  INCF   27,F
+0052:  GOTO   03E
+....................    } 
+0053:  BCF    0A.3
+0054:  BCF    0A.4
+0055:  GOTO   0CB (RETURN)
+.................... } 
+....................  
+.................... VOID MAIN() 
+0056:  MOVF   03,W
+0057:  ANDLW  1F
+0058:  MOVWF  03
+0059:  MOVLW  71
+005A:  BSF    03.5
+005B:  MOVWF  0F
+005C:  MOVF   0F,W
+005D:  MOVLW  05
+005E:  BCF    03.5
+005F:  MOVWF  20
+0060:  BCF    21.0
+0061:  MOVLW  FF
+0062:  MOVWF  22
+0063:  BSF    03.5
+0064:  BSF    03.6
+0065:  MOVF   09,W
+0066:  ANDLW  C0
+0067:  MOVWF  09
+0068:  BCF    03.6
+0069:  BCF    1F.4
+006A:  BCF    1F.5
+006B:  MOVLW  00
+006C:  BSF    03.6
+006D:  MOVWF  08
+006E:  BCF    03.5
+006F:  CLRF   07
+0070:  CLRF   08
+0071:  CLRF   09
+0072:  BCF    03.7
+.................... { 
+....................    SET_TRIS_A(0XFF); 
+0073:  MOVLW  FF
+0074:  BSF    03.5
+0075:  BCF    03.6
+0076:  MOVWF  05
+....................    SET_TRIS_C(0B00000110); 
+0077:  MOVLW  06
+0078:  MOVWF  07
+0079:  BCF    03.5
+007A:  MOVWF  22
+....................    SET_TRIS_D(0X00); 
+007B:  MOVLW  00
+007C:  BSF    03.5
+007D:  MOVWF  08
+....................    OUTPUT_LOW(PULSE); 
+007E:  BCF    03.5
+007F:  BCF    22.0
+0080:  MOVF   22,W
+0081:  BSF    03.5
+0082:  MOVWF  07
+0083:  BCF    03.5
+0084:  BCF    07.0
+....................     
+....................    WHILE(TRUE) 
+....................    { 
+....................       IF(INPUT(RUN)==0)    MODE=1; 
+0085:  BSF    22.1
+0086:  MOVF   22,W
+0087:  BSF    03.5
+0088:  MOVWF  07
+0089:  BCF    03.5
+008A:  BTFSS  07.1
+008B:  BSF    21.0
+....................       IF(INPUT(STOP)==0)   MODE=0; 
+008C:  BSF    22.2
+008D:  MOVF   22,W
+008E:  BSF    03.5
+008F:  MOVWF  07
+0090:  BCF    03.5
+0091:  BTFSS  07.2
+0092:  BCF    21.0
+....................        
+....................       IF(MODE==0) 
+0093:  BTFSC  21.0
+0094:  GOTO   0B3
+....................       { 
+....................          //TAT XUNG 
+....................          IF(INPUT(ADJ)==0) 
+0095:  BSF    03.5
+0096:  BSF    05.0
+0097:  BCF    03.5
+0098:  BTFSC  05.0
+0099:  GOTO   0A8
+....................          { 
+....................             DELAY_MS(10); 
+009A:  MOVLW  0A
+009B:  MOVWF  28
+009C:  CALL   012
+....................             IF(INPUT(ADJ)==0) 
+009D:  BSF    03.5
+009E:  BSF    05.0
+009F:  BCF    03.5
+00A0:  BTFSC  05.0
+00A1:  GOTO   0A8
+....................             { 
+....................                LEVEL++; 
+00A2:  INCF   20,F
+....................                WHILE(INPUT(ADJ)==0); 
+00A3:  BSF    03.5
+00A4:  BSF    05.0
+00A5:  BCF    03.5
+00A6:  BTFSS  05.0
+00A7:  GOTO   0A3
+....................             } 
+....................          } 
+....................          IF(LEVEL>9)    LEVEL=0; 
+00A8:  MOVF   20,W
+00A9:  SUBLW  09
+00AA:  BTFSS  03.0
+00AB:  CLRF   20
+....................          OUTPUT_LOW(PULSE); 
+00AC:  BCF    22.0
+00AD:  MOVF   22,W
+00AE:  BSF    03.5
+00AF:  MOVWF  07
+00B0:  BCF    03.5
+00B1:  BCF    07.0
+....................       } 
+00B2:  GOTO   0CB
+....................       ELSE //PHAT XUNG CHU KY 50% 
+....................       { 
+....................          OUTPUT_TOGGLE(PULSE); 
+00B3:  BCF    22.0
+00B4:  MOVF   22,W
+00B5:  BSF    03.5
+00B6:  MOVWF  07
+00B7:  MOVLW  01
+00B8:  BCF    03.5
+00B9:  XORWF  07,F
+....................          DELAY_MSX(LEVEL*1000); 
+00BA:  CLRF   24
+00BB:  MOVF   20,W
+00BC:  MOVWF  23
+00BD:  MOVLW  03
+00BE:  MOVWF  26
+00BF:  MOVLW  E8
+00C0:  MOVWF  25
+00C1:  GOTO   026
+00C2:  MOVF   79,W
+00C3:  MOVWF  24
+00C4:  MOVF   78,W
+00C5:  MOVWF  23
+00C6:  MOVF   79,W
+00C7:  MOVWF  26
+00C8:  MOVF   78,W
+00C9:  MOVWF  25
+00CA:  GOTO   03D
+....................       } 
+....................       //HIEN THI LED 7 DOAN 
+....................       OUTPUT_D(MA7DOAN[LEVEL]); 
+00CB:  MOVF   20,W
+00CC:  CALL   004
+00CD:  MOVWF  23
+00CE:  BSF    03.5
+00CF:  CLRF   08
+00D0:  BCF    03.5
+00D1:  MOVF   23,W
+00D2:  MOVWF  08
+00D3:  GOTO   085
+....................    } 
+.................... } 
+00D4:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE5   INTRC NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

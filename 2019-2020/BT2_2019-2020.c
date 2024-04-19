@@ -1,0 +1,92 @@
+#INCLUDE<16F887.H>
+#DEVICE ADC=10
+#FUSES HS
+#USE DELAY(CLOCK=20M)
+
+#define LCD_ENABLE_PIN  PIN_D3                                  
+#define LCD_RS_PIN      PIN_D1                                    
+#define LCD_RW_PIN      PIN_D2                                    
+#define LCD_DATA4       PIN_D4                                    
+#define LCD_DATA5       PIN_D5                                    
+#define LCD_DATA6       PIN_D6                                    
+#define LCD_DATA7       PIN_D7 
+
+#INCLUDE<LCD.C>
+
+UNSIGNED INT16 TEMP,BOX=0;
+UNSIGNED INT8 PRODUCT=0;
+INT1 STATUS; //0 DEM
+             //1 DUNG DEM
+      
+#INT_AD
+VOID NGATADC()
+{
+   TEMP=READ_ADC(ADC_READ_ONLY);
+   TEMP=TEMP/2.016;
+}
+
+VOID MAIN()
+{
+   SET_TRIS_C(0XFF);
+   SET_TRIS_D(0X00);
+   SET_TRIS_E(0XFF);
+   
+   //INSTALL LCD
+   LCD_INIT();
+   
+   //SETUP COUNTER DEM
+   SETUP_TIMER_1(T1_EXTERNAL|T1_DIV_BY_1);
+   SET_TIMER1(0);
+   
+   //SETUP ADC
+   SETUP_ADC(ADC_CLOCK_INTERNAL);
+   SETUP_ADC_PORTS(SAN5|VSS_VDD);
+   
+   //CHO PHEP NGAT
+   ENABLE_INTERRUPTS(GLOBAL);
+   ENABLE_INTERRUPTS(INT_AD);
+     
+   WHILE(TRUE)
+   { 
+      SET_ADC_CHANNEL(5);
+      READ_ADC(ADC_START_ONLY);
+      IF(TEMP<100)
+      {
+         //DEM
+         SETUP_TIMER_1(T1_EXTERNAL|T1_DIV_BY_1); //SETUP LAI
+         STATUS=0;
+      }
+      IF(TEMP>=100)
+      {
+         //DUNG DEM
+         SETUP_TIMER_1(T1_DISABLED);
+         STATUS=1;
+      }
+      IF(STATUS==0)
+      {
+         PRODUCT=GET_TIMER1();
+         IF(PRODUCT==50)
+         {                      
+            BOX++;
+            SET_TIMER1(0);
+         }   
+      }
+      ELSE
+      {
+         //KHONG LAM GI
+      }
+      LCD_GOTOXY(20,2);
+      PRINTF(LCD_PUTC, "%U", STATUS);
+      
+      LCD_GOTOXY(1,1);
+      PRINTF(LCD_PUTC,"P=%02U",PRODUCT);
+      LCD_GOTOXY(1,2);
+      PRINTF(LCD_PUTC,"Box=%05LU",BOX);
+      LCD_GOTOXY(8,1);
+      PRINTF(LCD_PUTC,"T=%03LU",TEMP);
+      LCD_PUTC(223); LCD_PUTC('C');
+   }
+}
+
+
+

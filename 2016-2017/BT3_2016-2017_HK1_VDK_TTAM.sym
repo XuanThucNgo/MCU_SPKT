@@ -1,0 +1,60 @@
+004-005 @WRITE_PROGRAM_MEMORY8.P1
+004-005 @READ_PROGRAM_MEMORY8.P2
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020     I
+021     mode
+022     @TRIS_C
+023     MAIN.@SCRATCH1
+024     @delay_ms1.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+107.6   C1OUT
+108.6   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  @delay_ms1
+000018  @cinit1
+000018  MAIN
+00003B  @cinit2
+
+Project Directory:
+    E:\BAI TAP VXL\DETHI-GIAIDETHI\2016-2017\
+
+Project Files:
+    BT3_2016-2017_HK1_VDK_TTAM.c                            [16-Dec-23 21:39  CRC=1C97B165]
+    C:\Program Files (x86)\PICC\Devices\16F887.H            [12-Nov-13 14:35  CRC=6CB1A611]
+
+Source signature=F5FAFD87
+
+Units:
+    BT3_2016-2017_HK1_VDK_TTAM (main)
+
+Compiler Settings:
+    Processor:      PIC16F887
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   BT3_2016-2017_HK1_VDK_TTAM.xsym
+    Errors:      BT3_2016-2017_HK1_VDK_TTAM.err
+    Ext Symbols: BT3_2016-2017_HK1_VDK_TTAM.esym
+    INHX8:       BT3_2016-2017_HK1_VDK_TTAM.hex
+    Symbols:     BT3_2016-2017_HK1_VDK_TTAM.sym
+    List:        BT3_2016-2017_HK1_VDK_TTAM.lst
+    Debug/COFF:  BT3_2016-2017_HK1_VDK_TTAM.cof
+    Project:     BT3_2016-2017_HK1_VDK_TTAM.ccspjt
+    Call Tree:   BT3_2016-2017_HK1_VDK_TTAM.tre
+    Statistics:  BT3_2016-2017_HK1_VDK_TTAM.STA

@@ -1,0 +1,38 @@
+ÀÄBT1_2017-2018_HK2_CLC
+   ÀÄMAIN  0/425  Ram=3
+      ÃÄ@cinit1  (Inline)  Ram=0
+      ÃÄ@delay_ms1  0/20  Ram=1
+      ÃÄREAD_ADC2  0/58  Ram=2
+      ³  ÃÄ@ITOF  0/29  Ram=2
+      ³  ÃÄ@DIVFF  0/202  Ram=14
+      ³  ÀÄ@SFTOI  0/31  Ram=4
+      ÃÄ@DIV1616  0/37  Ram=5
+      ÃÄ@const620  0/14  Ram=0
+      ÃÄ@DIV1616  0/37  Ram=5
+      ÃÄ@const620  0/14  Ram=0
+      ÃÄREAD_ADC3  0/58  Ram=2
+      ³  ÃÄ@ITOF  0/29  Ram=2
+      ³  ÃÄ@DIVFF  0/202  Ram=14
+      ³  ÀÄ@SFTOI  0/31  Ram=4
+      ÃÄ@DIV1616  0/37  Ram=5
+      ÃÄ@const620  0/14  Ram=0
+      ÃÄ@DIV1616  0/37  Ram=5
+      ÃÄ@const620  0/14  Ram=0
+      ÃÄREAD_ADC2  0/58  Ram=2
+      ³  ÀÄ*
+      ÃÄ@DIV1616  0/37  Ram=5
+      ÃÄ@const620  0/14  Ram=0
+      ÃÄ@DIV1616  0/37  Ram=5
+      ÃÄ@const620  0/14  Ram=0
+      ÃÄ@delay_ms1  0/20  Ram=1
+      ÃÄREAD_ADC3  0/58  Ram=2
+      ³  ÀÄ*
+      ÃÄ@DIV1616  0/37  Ram=5
+      ÃÄ@const620  0/14  Ram=0
+      ÃÄ@DIV1616  0/37  Ram=5
+      ÃÄ@const620  0/14  Ram=0
+      ÃÄ@delay_ms1  0/20  Ram=1
+      ÃÄ@delay_ms1  0/20  Ram=1
+      ÃÄ@delay_ms1  0/20  Ram=1
+      ÃÄ@delay_ms1  0/20  Ram=1
+      ÀÄ@delay_ms1  0/20  Ram=1

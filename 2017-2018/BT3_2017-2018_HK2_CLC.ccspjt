@@ -1,0 +1,22 @@
+[PROJECT]
+Target=BT3_2017-2018_HK2_CLC.hex
+Processor_Text=PIC16F887
+CCSVersion=5.015
+Compiler=PCM
+[Target Data]
+FileList=BT3_2017-2018_HK2_CLC.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[BT3_2017-2018_HK2_CLC.c]
+Type=4
+[mru-list]
+1=BT3_2017-2018_HK2_CLC.c
+[Opened Files]
+1=BT3_2017-2018_HK2_CLC.c
+2=..\..\TIMER AND COUNTER\BAITAP_DETHIMAU\CAU2_2017-2018.c
+3=..\2016-2017\BT1_2016-2017_HK1.c
+4=..\..\PWM\BAITAP_ANHPHUC.c
+5=
+[Units]
+Count=1
+1=BT3_2017-2018_HK2_CLC (main)

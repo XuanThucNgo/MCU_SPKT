@@ -1,0 +1,163 @@
+CCS PCM C Compiler, Version 5.015, 5967               18-Dec-23 02:08
+
+               Filename:   E:\BAI TAP VXL\DETHI-GIAIDETHI\2020-2021\BT2A_2020-2021_HK1_CLC.lst
+
+               ROM used:   93 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   7 (2%) at main() level
+                           7 (2%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+.................... //HE THONG A 
+.................... #INCLUDE<16F887.H> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+....................  
+.................... #list 
+....................  
+.................... #FUSES HS 
+.................... #USE DELAY(CLOCK=10M) 
+.................... #USE RS232(BAUD=19200,BITS=8,STOP=1,PARITY=N, XMIT=PIN_C6,RCV=PIN_C7) 
+....................  
+.................... #DEFINE A  PIN_B0 
+.................... #DEFINE B  PIN_B1 
+.................... #DEFINE C  PIN_B2 
+.................... #DEFINE D  PIN_B3 
+.................... #DEFINE E  PIN_B4 
+....................  
+.................... VOID MAIN() 
+0004:  MOVF   03,W
+0005:  ANDLW  1F
+0006:  MOVWF  03
+0007:  BSF    03.5
+0008:  BSF    03.6
+0009:  BSF    07.3
+000A:  MOVLW  81
+000B:  BCF    03.6
+000C:  MOVWF  19
+000D:  MOVLW  00
+000E:  MOVWF  1A
+000F:  MOVLW  A6
+0010:  MOVWF  18
+0011:  MOVLW  90
+0012:  BCF    03.5
+0013:  MOVWF  18
+0014:  MOVLW  FF
+0015:  MOVWF  20
+0016:  BSF    03.5
+0017:  BSF    03.6
+0018:  MOVF   09,W
+0019:  ANDLW  C0
+001A:  MOVWF  09
+001B:  BCF    03.6
+001C:  BCF    1F.4
+001D:  BCF    1F.5
+001E:  MOVLW  00
+001F:  BSF    03.6
+0020:  MOVWF  08
+0021:  BCF    03.5
+0022:  CLRF   07
+0023:  CLRF   08
+0024:  CLRF   09
+0025:  BCF    03.7
+.................... { 
+....................    SET_TRIS_B(0XFF); 
+0026:  MOVLW  FF
+0027:  BSF    03.5
+0028:  BCF    03.6
+0029:  MOVWF  06
+....................    SET_TRIS_C(0X80); 
+002A:  MOVLW  80
+002B:  MOVWF  07
+002C:  BCF    03.5
+002D:  MOVWF  20
+....................    WHILE(TRUE) 
+....................    { 
+....................       IF(INPUT(A)==0)  
+002E:  BSF    03.5
+002F:  BSF    06.0
+0030:  BCF    03.5
+0031:  BTFSC  06.0
+0032:  GOTO   037
+....................       { 
+....................          PUTC(0X00); 
+0033:  MOVLW  00
+0034:  BTFSS  0C.4
+0035:  GOTO   034
+0036:  MOVWF  19
+....................       } 
+....................       IF(INPUT(B)==0) 
+0037:  BSF    03.5
+0038:  BSF    06.1
+0039:  BCF    03.5
+003A:  BTFSC  06.1
+003B:  GOTO   040
+....................       { 
+....................          PUTC(0X01); 
+003C:  MOVLW  01
+003D:  BTFSS  0C.4
+003E:  GOTO   03D
+003F:  MOVWF  19
+....................       } 
+....................       IF(INPUT(C)==0) 
+0040:  BSF    03.5
+0041:  BSF    06.2
+0042:  BCF    03.5
+0043:  BTFSC  06.2
+0044:  GOTO   049
+....................       { 
+....................          PUTC(0X02); 
+0045:  MOVLW  02
+0046:  BTFSS  0C.4
+0047:  GOTO   046
+0048:  MOVWF  19
+....................       } 
+....................       IF(INPUT(D)==0) 
+0049:  BSF    03.5
+004A:  BSF    06.3
+004B:  BCF    03.5
+004C:  BTFSC  06.3
+004D:  GOTO   052
+....................       { 
+....................          PUTC(0X03); 
+004E:  MOVLW  03
+004F:  BTFSS  0C.4
+0050:  GOTO   04F
+0051:  MOVWF  19
+....................       } 
+....................       IF(INPUT(E)==0) 
+0052:  BSF    03.5
+0053:  BSF    06.4
+0054:  BCF    03.5
+0055:  BTFSC  06.4
+0056:  GOTO   05B
+....................       { 
+....................          PUTC(0X04); 
+0057:  MOVLW  04
+0058:  BTFSS  0C.4
+0059:  GOTO   058
+005A:  MOVWF  19
+....................       } 
+005B:  GOTO   02E
+....................    } 
+.................... } 
+005C:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE2   HS NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

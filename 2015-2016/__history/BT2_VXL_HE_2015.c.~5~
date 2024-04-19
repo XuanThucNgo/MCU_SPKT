@@ -1,0 +1,79 @@
+#INCLUDE<16F887.H>
+#FUSES HS
+#USE DELAY(CLOCK=20M)
+
+#DEFINE START  PIN_B0
+#DEFINE STOP   PIN_B1
+
+#define LCD_ENABLE_PIN  PIN_D3                                    
+#define LCD_RS_PIN      PIN_D1                                   
+#define LCD_RW_PIN      PIN_D2                                    
+#define LCD_DATA4       PIN_D4                                    
+#define LCD_DATA5       PIN_D5                                   
+#define LCD_DATA6       PIN_D6                                    
+#define LCD_DATA7       PIN_D7
+
+#INCLUDE<LCD.C>
+
+UNSIGNED INT8 PRODUCT;
+UNSIGNED INT1 STATUS=0; //0 START
+                        //1 STOP
+
+VOID MAIN()
+{
+   SET_TRIS_B(0XFF);
+   SET_TRIS_D(0X00);
+   //INSTALL LCD
+   LCD_INIT();
+   
+   //CONG VIEC THUC HIEN 1 LAN
+   LCD_GOTOXY(1,1);
+   LCD_PUTC("NHAN START");
+   LCD_GOTOXY(1,2);
+   LCD_PUTC("DE KHOI DONG");
+   
+   //CHO NHAN NUT START
+   IF(INPUT(START)==1)
+   STATUS=0;
+   //KHOI DONG BO DEM
+   SETUP_TIMER_1(T1_EXTERNAL|T1_DIV_BY_1);
+   SET_TIMER1(0);
+   
+   //HIEN THI LAI LCD SAU KHI NHAN NUT START
+   LCD_GOTOXY(1,1);
+   LCD_PUTC("DEM SAN PHAM");
+   LCD_GOTOXY(1,2);
+   LCD_PUTC("SO LUONG:   ");
+   
+   WHILE(TRUE)
+   {
+      //KIEM TRA NUT START
+      IF(INPUT(START)==0)
+      {
+         //SETUP LAI COUNTER
+         SETUP_TIMER_1(T1_EXTERNAL|T1_DIV_BY_1);
+         STATUS=0;
+      }
+      IF(INPUT(STOP)==0)
+      {
+         //NGUNG DEM
+         SETUP_TIMER_1(T1_DISABLED);
+         STATUS=1;
+      }
+      IF(STATUS==0)
+      {
+         PRODUCT=GET_TIMER1();
+         //DU 30 SAN PHAM NGUNG DEM
+         IF(PRODUCT>=30)
+         {
+            SETUP_TIMER_1(T1_DISABLED);
+         }
+         LCD_GOTOXY(10,2);
+         PRINTF(LCD_PUTC,"%02U",PRODUCT);
+      }
+      ELSE
+      {
+         //KHONG LAM GI
+      }
+   }  
+}

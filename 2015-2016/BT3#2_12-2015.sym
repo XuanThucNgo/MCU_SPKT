@@ -1,0 +1,65 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+015     CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020     DEM2
+021     @TRIS_C
+022     @delay_ms1.P1
+022     @DIV88.P2
+022     MAIN.@SCRATCH1
+023     @DIV88.P1
+024     @DIV88.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+107.6   C1OUT
+108.6   C2OUT
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  MA7DOAN.call
+000008  MA7DOAN.data
+000012  @delay_ms1
+000028  @DIV88
+00003D  @cinit1
+00003D  MAIN
+00005E  @cinit2
+
+Project Directory:
+    E:\BAI TAP VXL\DETHI-GIAIDETHI\2015-2016\
+
+Project Files:
+    BT3#2_12-2015.c                                         [10-Dec-23 23:33  CRC=A651F24C]
+    C:\Program Files (x86)\PICC\Devices\16F887.H            [12-Nov-13 14:35  CRC=6CB1A611]
+
+Source signature=7FB53E6E
+
+Units:
+    BT3#2_12-2015 (main)
+
+Compiler Settings:
+    Processor:      PIC16F887
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   BT3#2_12-2015.xsym
+    Errors:      BT3#2_12-2015.err
+    Ext Symbols: BT3#2_12-2015.esym
+    INHX8:       BT3#2_12-2015.hex
+    Symbols:     BT3#2_12-2015.sym
+    List:        BT3#2_12-2015.lst
+    Debug/COFF:  BT3#2_12-2015.cof
+    Project:     BT3#2_12-2015.ccspjt
+    Call Tree:   BT3#2_12-2015.tre
+    Statistics:  BT3#2_12-2015.STA

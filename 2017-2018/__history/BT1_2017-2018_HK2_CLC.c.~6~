@@ -1,0 +1,149 @@
+#INCLUDE<16F887.H>
+#DEVICE ADC=10
+#FUSES HS
+#USE DELAY(CLOCK=20M)
+
+#DEFINE BUTTON_STATUS    PIN_E0
+#DEFINE BUZZER           PIN_E1
+
+CONST UNSIGNED INT8 MA7DOAN[10] = {0XC0, 0XF9, 0XA4, 0XB0, 0X99, 0X92, 0X82, 0XF8, 0X80, 0X90};
+
+UNSIGNED INT16 TEMP1=0, TEMP2=0, OLDTEMP1=0, OLDTEMP2=0;
+UNSIGNED INT8 STATUS=0;
+
+VOID READ_ADC2()
+{
+   SET_ADC_CHANNEL(2);
+   DELAY_US(20);
+   TEMP1=READ_ADC()/2.046;
+}
+
+VOID READ_ADC3()
+{
+   SET_ADC_CHANNEL(3);
+   DELAY_US(20);
+   TEMP2=READ_ADC()/2.046;
+}
+
+VOID MAIN()
+{
+   SET_TRIS_B(0X00);
+   SET_TRIS_D(0X00);
+   SET_TRIS_C(0X08);
+   SET_TRIS_E(0X03);
+   //SETUP ADC
+   SETUP_ADC(ADC_CLOCK_INTERNAL);
+   SETUP_ADC_PORTS(SAN2|SAN3|VSS_VDD);
+   
+   WHILE(TRUE)
+   {
+      //KIEM TRA NUT NHAN CHON CHE DO
+      IF(INPUT(BUTTON_STATUS)==0)
+      {
+         DELAY_MS(10);
+         IF(INPUT(BUTTON_STATUS)==0)
+         {
+            STATUS++;
+            WHILE(INPUT(BUTTON_STATUS)==0);
+         }
+      }
+      IF(STATUS>2)    STATUS=0;
+      //THUC HIEN CAC CHE DO
+      IF(STATUS==1)
+      {
+         //DO KENH AN2
+         READ_ADC2();
+         //HIEN THI HANG CHUC NHIET DO
+         OUTPUT_D(MA7DOAN[TEMP1/10]);
+         //HIEN THI HANG DON VI NHIET DO
+         OUTPUT_C(MA7DOAN[TEMP1%10]);
+         //HIEN THI KI TU DO
+         OUTPUT_B(0X9C);        
+      }
+      ELSE IF(STATUS==2)
+      {
+         //DO KENH AN3
+         READ_ADC3();
+         //HIEN THI HANG CHUC NHIET DO
+         OUTPUT_D(MA7DOAN[TEMP2/10]);
+         //HIEN THI HANG DON VI NHIET DO
+         OUTPUT_C(MA7DOAN[TEMP2%10]);
+         //HIEN THI KI TU DO
+         OUTPUT_B(0X9C);        
+      }
+      ELSE IF(STATUS==0)
+      {
+      
+         //DO LAN LUOT 2 KENH CACH NHAU 3S
+         
+         //DO KENH AN2
+         READ_ADC2();
+         //HIEN THI HANG CHUC NHIET DO
+         OUTPUT_D(MA7DOAN[TEMP1/10]);
+         //HIEN THI HANG DON VI NHIET DO
+         OUTPUT_C(MA7DOAN[TEMP1%10]);
+         //HIEN THI KI TU DO
+         OUTPUT_B(0X9C);
+         
+         DELAY_MS(300);
+         
+         //DO KENH AN3
+         READ_ADC3();
+         //HIEN THI HANG CHUC NHIET DO
+         OUTPUT_D(MA7DOAN[TEMP2/10]);
+         //HIEN THI HANG DON VI NHIET DO
+         OUTPUT_C(MA7DOAN[TEMP2%10]);
+         //HIEN THI KI TU DO
+         OUTPUT_B(0X9C);
+      }
+      
+      //KIEM TRA SU THAY DOI NHIET DO
+      IF(OLDTEMP1!=TEMP1||OLDTEMP2!=TEMP2)
+      {
+         OLDTEMP1=TEMP1;
+         OLDTEMP2=TEMP2;
+         IF(TEMP1>35)
+         {
+            //CHO LOA KEU
+            OUTPUT_LOW(BUZZER);
+            //NHAP NHAY GIA TRI NHIET DO
+            
+            //HIEN THI HANG CHUC NHIET DO
+            OUTPUT_D(MA7DOAN[TEMP1/10]);
+            //HIEN THI HANG DON VI NHIET DO
+            OUTPUT_C(MA7DOAN[TEMP1%10]);
+            //HIEN THI KI TU DO
+            OUTPUT_B(0X9C);
+            DELAY_MS(500);
+            //HIEN THI HANG CHUC NHIET DO
+            OUTPUT_D(0XFF);
+            //HIEN THI HANG DON VI NHIET DO
+            OUTPUT_C(0XFF);
+            //HIEN THI KI TU DO
+            OUTPUT_B(0XFF);
+            DELAY_MS(500);
+         }
+         ELSE IF(TEMP2>35)
+         {
+            //CHO LOA KEU
+            OUTPUT_LOW(BUZZER);
+            //NHAP NHAY GIA TRI NHIET DO
+            
+            //HIEN THI HANG CHUC NHIET DO
+            OUTPUT_D(MA7DOAN[TEMP2/10]);
+            //HIEN THI HANG DON VI NHIET DO
+            OUTPUT_C(MA7DOAN[TEMP2%10]);
+            //HIEN THI KI TU DO
+            OUTPUT_B(0X9C);
+            DELAY_MS(500);
+            //HIEN THI HANG CHUC NHIET DO
+            OUTPUT_D(0XFF);
+            //HIEN THI HANG DON VI NHIET DO
+            OUTPUT_C(0XFF);
+            //HIEN THI KI TU DO
+            OUTPUT_B(0XFF);
+            DELAY_MS(500);
+         }
+      }
+   }  
+}

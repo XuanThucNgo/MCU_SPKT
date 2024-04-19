@@ -1,0 +1,35 @@
+[PROJECT]
+Target=BT3_2023-2024_HK1_CLC.hex
+Processor_Text=PIC16F887
+CCSVersion=5.015
+Compiler=PCM
+[Target Data]
+FileList=BT3_2023-2024_HK1_CLC.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[BT3_2023-2024_HK1_CLC.c]
+Type=4
+[mru-list]
+1=BT3_2023-2024_HK1_CLC.c
+[Opened Files]
+1=..\2015-2016\BT3_VXL_HE_2015_VDKA.c
+2=..\2015-2016\BT3_VXL_HE_2015_VDKB.c
+3=..\2015-2016\BAI3_2015-2016.c
+4=..\2020-2021\BT2A_2020-2021_HK1_CLC.c
+5=..\2020-2021\BT2B_2020-2021_HK1_CLC.c
+6=..\2022-2023\BT3_2022-2023_HK1_CLC.c
+7=BT3_2023-2024_HK1_CLC.c
+8=C:\Users\LENOVO\Documents\Zalo Received Files\HKII-22-23.c
+9=C:\Program Files (x86)\PICC\Devices\16f887.h
+10=C:\Users\LENOVO\Documents\Zalo Received Files\cau3_clc_23.c
+11=C:\Users\LENOVO\Documents\Zalo Received Files\HKII-22-23 (1).c
+12=..\2017-2018\BT1_2017-2018_HK1_CLC.c
+13=..\2017-2018\BT1_2017-2018_HK2.c
+14=..\2017-2018\BT2_2017-2018_HK1_CLC.c
+15=..\2017-2018\BT2_2017-2018_HK1.c
+16=..\..\TIMER AND COUNTER\BAITAP_DETHIMAU\CAU2_2017-2018.c
+17=BT2_2023-2024_HK1_CLC.c
+18=
+[Units]
+Count=1
+1=BT3_2023-2024_HK1_CLC (main)

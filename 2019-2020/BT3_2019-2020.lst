@@ -1,0 +1,157 @@
+CCS PCM C Compiler, Version 5.015, 5967               06-Dec-23 17:44
+
+               Filename:   E:\BAI TAP VXL\DETHI-GIAIDETHI\2019-2020\BT3_2019-2020.lst
+
+               ROM used:   97 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   8 (2%) at main() level
+                           8 (2%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+.................... #INCLUDE<16F887.H> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+....................  
+.................... #list 
+....................  
+.................... #FUSES HS 
+.................... #USE DELAY(CLOCK=20M) 
+....................  
+.................... #USE RS232 (BAUD=9600,XMIT=PIN_C6,RCV=PIN_C7) 
+....................  
+.................... #DEFINE RUN PIN_D0 
+.................... #DEFINE STOP PIN_D1 
+.................... #DEFINE STATUS PIN_D2 
+....................  
+.................... UNSIGNED CHAR RXDATA=0; 
+....................  
+.................... VOID MAIN() 
+0004:  MOVF   03,W
+0005:  ANDLW  1F
+0006:  MOVWF  03
+0007:  BSF    03.5
+0008:  BSF    03.6
+0009:  BSF    07.3
+000A:  MOVLW  08
+000B:  BCF    03.6
+000C:  MOVWF  19
+000D:  MOVLW  02
+000E:  MOVWF  1A
+000F:  MOVLW  A6
+0010:  MOVWF  18
+0011:  MOVLW  90
+0012:  BCF    03.5
+0013:  MOVWF  18
+0014:  CLRF   20
+0015:  MOVLW  FF
+0016:  MOVWF  21
+0017:  BSF    03.5
+0018:  BSF    03.6
+0019:  MOVF   09,W
+001A:  ANDLW  C0
+001B:  MOVWF  09
+001C:  BCF    03.6
+001D:  BCF    1F.4
+001E:  BCF    1F.5
+001F:  MOVLW  00
+0020:  BSF    03.6
+0021:  MOVWF  08
+0022:  BCF    03.5
+0023:  CLRF   07
+0024:  CLRF   08
+0025:  CLRF   09
+0026:  BCF    03.7
+.................... { 
+....................    SET_TRIS_D(0X0F); 
+0027:  MOVLW  0F
+0028:  BSF    03.5
+0029:  BCF    03.6
+002A:  MOVWF  08
+....................    SET_TRIS_C(0XFF); 
+002B:  MOVLW  FF
+002C:  MOVWF  07
+002D:  BCF    03.5
+002E:  MOVWF  21
+....................    OUTPUT_LOW(STATUS); 
+002F:  BSF    03.5
+0030:  BCF    08.2
+0031:  BCF    03.5
+0032:  BCF    08.2
+....................     
+....................    WHILE(TRUE) 
+....................    { 
+....................       IF(KBHIT()==1) 
+0033:  MOVLW  00
+0034:  BTFSC  0C.5
+0035:  MOVLW  01
+0036:  SUBLW  01
+0037:  BTFSS  03.2
+0038:  GOTO   03D
+....................       { 
+....................          RXDATA=GETC();       
+0039:  BTFSS  0C.5
+003A:  GOTO   039
+003B:  MOVF   1A,W
+003C:  MOVWF  20
+....................       } 
+....................       IF(RXDATA=='1')   OUTPUT_HIGH(STATUS); 
+003D:  MOVF   20,W
+003E:  SUBLW  31
+003F:  BTFSS  03.2
+0040:  GOTO   045
+0041:  BSF    03.5
+0042:  BCF    08.2
+0043:  BCF    03.5
+0044:  BSF    08.2
+....................       IF(RXDATA=='2')   OUTPUT_LOW(STATUS); 
+0045:  MOVF   20,W
+0046:  SUBLW  32
+0047:  BTFSS  03.2
+0048:  GOTO   04D
+0049:  BSF    03.5
+004A:  BCF    08.2
+004B:  BCF    03.5
+004C:  BCF    08.2
+....................       IF(INPUT(RUN)==0)   PUTC('R'); 
+004D:  BSF    03.5
+004E:  BSF    08.0
+004F:  BCF    03.5
+0050:  BTFSC  08.0
+0051:  GOTO   056
+0052:  MOVLW  52
+0053:  BTFSS  0C.4
+0054:  GOTO   053
+0055:  MOVWF  19
+....................       IF(INPUT(STOP)==0)   PUTC('S'); 
+0056:  BSF    03.5
+0057:  BSF    08.1
+0058:  BCF    03.5
+0059:  BTFSC  08.1
+005A:  GOTO   05F
+005B:  MOVLW  53
+005C:  BTFSS  0C.4
+005D:  GOTO   05C
+005E:  MOVWF  19
+005F:  GOTO   033
+....................    } 
+.................... } 
+0060:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE2   HS NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

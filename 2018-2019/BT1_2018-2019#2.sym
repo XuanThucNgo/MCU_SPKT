@@ -1,0 +1,71 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2
+01B     CCP_2_LOW
+01C     CCP_2_HIGH
+020     level
+021.0   mode
+022     @TRIS_C
+023-024 @MUL1616.P1
+023     MAIN.@SCRATCH1
+024     MAIN.@SCRATCH2
+025-026 @MUL1616.P1
+025-026 DELAY_MSX.T
+027     DELAY_MSX.I
+027     @MUL1616.@SCRATCH1
+028     @delay_ms1.P1
+028     DELAY_MSX.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+107.6   C1OUT
+108.6   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  MA7DOAN.call
+000008  MA7DOAN.data
+000012  @delay_ms1
+000026  @MUL1616
+00003D  DELAY_MSX
+000056  MAIN
+000056  @cinit1
+000072  @cinit2
+
+Project Directory:
+    E:\BAI TAP VXL\DETHI-GIAIDETHI\2018-2019\
+
+Project Files:
+    BT1_2018-2019#2.c                                       [11-Dec-23 19:20  CRC=EC2FD06F]
+    C:\Program Files (x86)\PICC\Devices\16F887.H            [12-Nov-13 14:35  CRC=6CB1A611]
+
+Source signature=C5931C91
+
+Units:
+    BT1_2018-2019#2 (main)
+
+Compiler Settings:
+    Processor:      PIC16F887
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   BT1_2018-2019#2.xsym
+    Errors:      BT1_2018-2019#2.err
+    Ext Symbols: BT1_2018-2019#2.esym
+    INHX8:       BT1_2018-2019#2.hex
+    Symbols:     BT1_2018-2019#2.sym
+    List:        BT1_2018-2019#2.lst
+    Debug/COFF:  BT1_2018-2019#2.cof
+    Project:     BT1_2018-2019#2.ccspjt
+    Call Tree:   BT1_2018-2019#2.tre
+    Statistics:  BT1_2018-2019#2.STA

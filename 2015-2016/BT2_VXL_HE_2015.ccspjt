@@ -1,0 +1,26 @@
+[PROJECT]
+Target=BT2_VXL_HE_2015.hex
+Processor_Text=PIC16F887
+CCSVersion=5.015
+Compiler=PCM
+[Target Data]
+FileList=BT2_VXL_HE_2015.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[BT2_VXL_HE_2015.c]
+Type=4
+[mru-list]
+1=BT2_VXL_HE_2015.c
+[Opened Files]
+1=..\2017-2018\BT1_2017-2018_HK1_CLC.c
+2=..\2017-2018\BT1_2017-2018_HK2.c
+3=..\2017-2018\BT2_2017-2018_HK1_CLC.c
+4=C:\Users\LENOVO\Documents\Zalo Received Files\1_HK1_17_18_CLC.c
+5=..\..\TIMER AND COUNTER\BAITAP_DETHIMAU\CAU2_2017-2018.c
+6=..\2020-2021\BT3_2020-2021_HK1_VDK2.c
+7=..\2016-2017\BT1_2016-2017_HK1.c
+8=BT2_VXL_HE_2015.c
+9=
+[Units]
+Count=1
+1=BT2_VXL_HE_2015 (main)

@@ -1,0 +1,67 @@
+
+ROM used:   910/8192 (11%)
+            910/8192 (11%) including unused fragments
+
+            0.7 Average locations per line
+            6.4 Average locations per statement
+
+RAM used:   10/368 (3%) at main() level
+            29/368 (8%) worst case
+
+Stack used: 5 worst case (5 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   85    42  30  BT3_2017-2018.c
+  768     0   0  C:\Program Files (x86)\PICC\Devices\16F887.H
+  456   100  70  C:\Program Files (x86)\PICC\Drivers\LCD.C
+----- -----
+ 1309   142 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     20   2    1             @delay_ms1
+ Inline         3   760  4.5  lcd_read_byte
+0     49   5    2   262  3.7  lcd_read_nibble
+0     48   5    1   399  2.4  lcd_send_nibble
+0     94  10    3   415  3.7  lcd_send_byte
+0     70   8    6   852  6.2  lcd_init
+0     18   2    4   208  6.3  lcd_gotoxy
+0     44   5    1   354  4.7  lcd_putc
+0    191  21    1  1234  4.8  MAIN
+0      3   0    0             @const662
+0     86   9    4             @PSTRINGC7_644
+0      3   0    0             @const664
+0      3   0    0             @const665
+0      3   0    0             @const666
+0      3   0    0             @const667
+0     21   2    3             @DIV88
+0     55   6    2             @PRINTF_U_644
+0      5   1    0   364  4.0  @const675
+0     89  10    5             @PSTRINGCN7_644
+0    101  11    9             @PRINTF_LU_644
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               9
+    Statements              142
+    Comments                256
+    Volume (V)              7368
+    Difficulty (D)          38.5
+    Effort to implement (E) 283879
+    Time to implement (T)   4 hours, 23 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   16
+    Maintainability (MI)    137
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   906  1138  
+00800-00FFF     0  2048  
+01000-017FF     0  2048  
+01800-01FFF     0  2048  
+
+
+

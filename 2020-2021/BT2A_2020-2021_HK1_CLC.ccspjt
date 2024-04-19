@@ -1,0 +1,23 @@
+[PROJECT]
+Target=BT2A_2020-2021_HK1_CLC.hex
+Processor_Text=PIC16F887
+CCSVersion=5.015
+Compiler=PCM
+[Target Data]
+FileList=BT2A_2020-2021_HK1_CLC.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[BT2A_2020-2021_HK1_CLC.c]
+Type=4
+[mru-list]
+1=BT2A_2020-2021_HK1_CLC.c
+[Opened Files]
+1=..\2015-2016\BT3_VXL_HE_2015_VDKA.c
+2=..\2015-2016\BT3_VXL_HE_2015_VDKB.c
+3=BT2A_2020-2021_HK1_CLC.c
+4=..\2015-2016\BAI3_2015-2016.c
+5=BT2B_2020-2021_HK1_CLC.c
+6=
+[Units]
+Count=1
+1=BT2A_2020-2021_HK1_CLC (main)

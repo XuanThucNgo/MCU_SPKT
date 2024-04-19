@@ -1,0 +1,10 @@
+юдBT3_2017-2018_HK2
+   юдMAIN  0/186  Ram=1
+      цд@cinit1  (Inline)  Ram=0
+      цд@PRINTF_U_2400_62_63  0/56  Ram=2
+      Ё  цд@DIV88  0/21  Ram=3
+      Ё  юд@DIV88  0/21  Ram=3
+      цд@PRINTF_LU_2400_62_63  0/89  Ram=9
+      цд@PRINTF_U_2400_62_63  0/56  Ram=2
+      Ё  юд*
+      юд@PRINTF_LU_2400_62_63  0/89  Ram=9

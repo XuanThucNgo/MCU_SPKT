@@ -1,0 +1,55 @@
+
+ROM used:   878/8192 (11%)
+            878/8192 (11%) including unused fragments
+
+            1.0 Average locations per line
+            12.9 Average locations per statement
+
+RAM used:   18/368 (5%) at main() level
+            31/368 (8%) worst case
+
+Stack used: 2 worst case (2 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  152    68 100  BT1_2017-2018_HK2_CLC.c
+  768     0   0  C:\Program Files (x86)\PICC\Devices\16F887.H
+----- -----
+  920    68 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     20   2    1             @delay_ms1
+0     14   2    0   829  6.6  @const620
+0     58   7    2    66  1.8  READ_ADC2
+0     29   3    2   399  2.4  @ITOF
+0    202  23   14   415  3.7  @DIVFF
+0     31   4    4   852  6.2  @SFTOI
+0     58   7    2    66  1.8  READ_ADC3
+0    425  48    3  1936  7.9  MAIN
+0     37   4    5   236  3.5  @DIV1616
+ Inline         0   267  6.8  @cinit1
+
+Program metrics:
+    Functions               9
+    Statements              68
+    Comments                173
+    Volume (V)              7331
+    Difficulty (D)          40.8
+    Effort to implement (E) 298764
+    Time to implement (T)   4 hours, 37 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   19
+    Maintainability (MI)    127
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   874  1170  
+00800-00FFF     0  2048  
+01000-017FF     0  2048  
+01800-01FFF     0  2048  
+
+
+

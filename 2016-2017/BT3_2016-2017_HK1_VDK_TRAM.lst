@@ -1,0 +1,319 @@
+CCS PCM C Compiler, Version 5.015, 5967               16-Dec-23 21:42
+
+               Filename:   E:\BAI TAP VXL\DETHI-GIAIDETHI\2016-2017\BT3_2016-2017_HK1_VDK_TRAM.lst
+
+               ROM used:   242 words (3%)
+                           Largest free fragment is 2048
+               RAM used:   16 (4%) at main() level
+                           17 (5%) worst case
+               Stack used: 2 locations (1 in main + 1 for interrupts)
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   073
+0003:  NOP
+0004:  MOVWF  7F
+0005:  SWAPF  03,W
+0006:  CLRF   03
+0007:  MOVWF  21
+0008:  MOVF   0A,W
+0009:  MOVWF  20
+000A:  CLRF   0A
+000B:  MOVF   04,W
+000C:  MOVWF  22
+000D:  MOVF   77,W
+000E:  MOVWF  23
+000F:  MOVF   78,W
+0010:  MOVWF  24
+0011:  MOVF   79,W
+0012:  MOVWF  25
+0013:  MOVF   7A,W
+0014:  MOVWF  26
+0015:  BCF    03.7
+0016:  BCF    03.5
+0017:  MOVLW  8C
+0018:  MOVWF  04
+0019:  BTFSS  00.5
+001A:  GOTO   01D
+001B:  BTFSC  0C.5
+001C:  GOTO   02E
+001D:  MOVF   22,W
+001E:  MOVWF  04
+001F:  MOVF   23,W
+0020:  MOVWF  77
+0021:  MOVF   24,W
+0022:  MOVWF  78
+0023:  MOVF   25,W
+0024:  MOVWF  79
+0025:  MOVF   26,W
+0026:  MOVWF  7A
+0027:  MOVF   20,W
+0028:  MOVWF  0A
+0029:  SWAPF  21,W
+002A:  MOVWF  03
+002B:  SWAPF  7F,F
+002C:  SWAPF  7F,W
+002D:  RETFIE
+002E:  BCF    0A.3
+002F:  BCF    0A.4
+0030:  GOTO   031
+.................... #INCLUDE<16F887.H> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+....................  
+.................... #list 
+....................  
+.................... #FUSES HS 
+.................... #USE DELAY(CLOCK=20M) 
+*
+005F:  MOVLW  2B
+0060:  MOVWF  04
+0061:  BCF    03.7
+0062:  MOVF   00,W
+0063:  BTFSC  03.2
+0064:  GOTO   072
+0065:  MOVLW  06
+0066:  MOVWF  78
+0067:  CLRF   77
+0068:  DECFSZ 77,F
+0069:  GOTO   068
+006A:  DECFSZ 78,F
+006B:  GOTO   067
+006C:  MOVLW  7B
+006D:  MOVWF  77
+006E:  DECFSZ 77,F
+006F:  GOTO   06E
+0070:  DECFSZ 00,F
+0071:  GOTO   065
+0072:  RETURN
+....................  
+.................... #USE RS232(BAUD=4800, XMIT=PIN_C6,RCV=PIN_C7) 
+....................  
+.................... UNSIGNED CHAR DATA; 
+.................... UNSIGNED INT8 STATUS; 
+....................  
+.................... #INT_RDA 
+.................... VOID NGAT_UART() 
+.................... { 
+....................    DATA=GETC(); 
+*
+0031:  BTFSS  0C.5
+0032:  GOTO   031
+0033:  MOVF   1A,W
+0034:  MOVWF  27
+....................    IF(DATA='0')      STATUS=0; 
+0035:  MOVLW  30
+0036:  MOVWF  27
+0037:  MOVF   27,F
+0038:  BTFSC  03.2
+0039:  GOTO   03C
+003A:  CLRF   28
+003B:  GOTO   05B
+....................    ELSE IF(DATA='1') STATUS=1; 
+003C:  MOVLW  31
+003D:  MOVWF  27
+003E:  MOVF   27,F
+003F:  BTFSC  03.2
+0040:  GOTO   044
+0041:  MOVLW  01
+0042:  MOVWF  28
+0043:  GOTO   05B
+....................    ELSE IF(DATA='2') STATUS=2; 
+0044:  MOVLW  32
+0045:  MOVWF  27
+0046:  MOVF   27,F
+0047:  BTFSC  03.2
+0048:  GOTO   04C
+0049:  MOVLW  02
+004A:  MOVWF  28
+004B:  GOTO   05B
+....................    ELSE IF(DATA='3') STATUS=3; 
+004C:  MOVLW  33
+004D:  MOVWF  27
+004E:  MOVF   27,F
+004F:  BTFSC  03.2
+0050:  GOTO   054
+0051:  MOVLW  03
+0052:  MOVWF  28
+0053:  GOTO   05B
+....................    ELSE IF(DATA='T') STATUS=4; 
+0054:  MOVLW  54
+0055:  MOVWF  27
+0056:  MOVF   27,F
+0057:  BTFSC  03.2
+0058:  GOTO   05B
+0059:  MOVLW  04
+005A:  MOVWF  28
+005B:  BCF    0C.5
+005C:  BCF    0A.3
+005D:  BCF    0A.4
+005E:  GOTO   01D
+.................... } 
+....................  
+.................... VOID MAIN() 
+*
+0073:  MOVF   03,W
+0074:  ANDLW  1F
+0075:  MOVWF  03
+0076:  BSF    03.5
+0077:  BSF    03.6
+0078:  BSF    07.3
+0079:  MOVLW  11
+007A:  BCF    03.6
+007B:  MOVWF  19
+007C:  MOVLW  04
+007D:  MOVWF  1A
+007E:  MOVLW  A6
+007F:  MOVWF  18
+0080:  MOVLW  90
+0081:  BCF    03.5
+0082:  MOVWF  18
+0083:  MOVLW  FF
+0084:  MOVWF  29
+0085:  BSF    03.5
+0086:  BSF    03.6
+0087:  MOVF   09,W
+0088:  ANDLW  C0
+0089:  MOVWF  09
+008A:  BCF    03.6
+008B:  BCF    1F.4
+008C:  BCF    1F.5
+008D:  MOVLW  00
+008E:  BSF    03.6
+008F:  MOVWF  08
+0090:  BCF    03.5
+0091:  CLRF   07
+0092:  CLRF   08
+0093:  CLRF   09
+0094:  BCF    03.7
+.................... { 
+....................    SET_TRIS_D(0X00); 
+0095:  MOVLW  00
+0096:  BSF    03.5
+0097:  BCF    03.6
+0098:  MOVWF  08
+....................    SET_TRIS_C(0X80); 
+0099:  MOVLW  80
+009A:  MOVWF  07
+009B:  BCF    03.5
+009C:  MOVWF  29
+....................    ENABLE_INTERRUPTS(GLOBAL); 
+009D:  MOVLW  C0
+009E:  IORWF  0B,F
+....................    ENABLE_INTERRUPTS(INT_RDA); 
+009F:  BSF    03.5
+00A0:  BSF    0C.5
+....................    WHILE(TRUE) 
+....................    { 
+....................       OUTPUT_D(0B00111100); 
+00A1:  CLRF   08
+00A2:  MOVLW  3C
+00A3:  BCF    03.5
+00A4:  MOVWF  08
+....................       DELAY_MS(2000); 
+00A5:  MOVLW  08
+00A6:  MOVWF  2A
+00A7:  MOVLW  FA
+00A8:  MOVWF  2B
+00A9:  CALL   05F
+00AA:  DECFSZ 2A,F
+00AB:  GOTO   0A7
+....................       OUTPUT_D(0X00); 
+00AC:  BSF    03.5
+00AD:  CLRF   08
+00AE:  BCF    03.5
+00AF:  CLRF   08
+....................       IF(STATUS==0)        OUTPUT_D(0X00); 
+00B0:  MOVF   28,F
+00B1:  BTFSS  03.2
+00B2:  GOTO   0B8
+00B3:  BSF    03.5
+00B4:  CLRF   08
+00B5:  BCF    03.5
+00B6:  CLRF   08
+00B7:  GOTO   0EF
+....................       ELSE IF(STATUS==1)   OUTPUT_D(0B00000001); 
+00B8:  DECFSZ 28,W
+00B9:  GOTO   0C0
+00BA:  BSF    03.5
+00BB:  CLRF   08
+00BC:  MOVLW  01
+00BD:  BCF    03.5
+00BE:  MOVWF  08
+00BF:  GOTO   0EF
+....................       ELSE IF(STATUS==2)   OUTPUT_D(0B00000010); 
+00C0:  MOVF   28,W
+00C1:  SUBLW  02
+00C2:  BTFSS  03.2
+00C3:  GOTO   0CA
+00C4:  BSF    03.5
+00C5:  CLRF   08
+00C6:  MOVLW  02
+00C7:  BCF    03.5
+00C8:  MOVWF  08
+00C9:  GOTO   0EF
+....................       ELSE IF(STATUS==3)   OUTPUT_D(0B00000100); 
+00CA:  MOVF   28,W
+00CB:  SUBLW  03
+00CC:  BTFSS  03.2
+00CD:  GOTO   0D4
+00CE:  BSF    03.5
+00CF:  CLRF   08
+00D0:  MOVLW  04
+00D1:  BCF    03.5
+00D2:  MOVWF  08
+00D3:  GOTO   0EF
+....................       ELSE IF(STATUS==4) 
+00D4:  MOVF   28,W
+00D5:  SUBLW  04
+00D6:  BTFSS  03.2
+00D7:  GOTO   0EF
+....................       { 
+....................          OUTPUT_D(0XFF); 
+00D8:  BSF    03.5
+00D9:  CLRF   08
+00DA:  MOVLW  FF
+00DB:  BCF    03.5
+00DC:  MOVWF  08
+....................          DELAY_MS(1000); 
+00DD:  MOVLW  04
+00DE:  MOVWF  2A
+00DF:  MOVLW  FA
+00E0:  MOVWF  2B
+00E1:  CALL   05F
+00E2:  DECFSZ 2A,F
+00E3:  GOTO   0DF
+....................          OUTPUT_D(0X00); 
+00E4:  BSF    03.5
+00E5:  CLRF   08
+00E6:  BCF    03.5
+00E7:  CLRF   08
+....................          DELAY_MS(1000); 
+00E8:  MOVLW  04
+00E9:  MOVWF  2A
+00EA:  MOVLW  FA
+00EB:  MOVWF  2B
+00EC:  CALL   05F
+00ED:  DECFSZ 2A,F
+00EE:  GOTO   0EA
+....................       } 
+00EF:  BSF    03.5
+00F0:  GOTO   0A1
+....................    } 
+.................... } 
+00F1:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE2   HS NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

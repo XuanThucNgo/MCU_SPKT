@@ -1,0 +1,85 @@
+/*1-a #INCLUDE<16F887.H>
+#FUSES HS
+#USE DELAY(CLOCK=20M)
+
+#DEFINE PULSEOUT PIN_D0
+UNSIGNED INT8 I;
+
+VOID MAIN()
+{
+   SET_TRIS_D(0XFF);
+   WHILE(TRUE)
+   {
+      OUTPUT_LOW(PULSEOUT);
+      DELAY_MS(10);
+      FOR(I=0; I<4; I++)
+      {
+         OUTPUT_HIGH(PULSEOUT);
+         DELAY_MS(1);
+         OUTPUT_LOW(PULSEOUT);
+         DELAY_MS(1);
+      }
+      OUTPUT_HIGH(PULSEOUT);
+      DELAY_MS(10);
+      FOR(I=0; I<4; I++)
+      {
+         OUTPUT_LOW(PULSEOUT);
+         DELAY_MS(1);
+         OUTPUT_HIGH(PULSEOUT);
+         DELAY_MS(1);
+      }
+   }
+}*/
+//1b
+#INCLUDE<16F887.H>
+#FUSES HS
+#USE DELAY(CLOCK=8M)
+
+#BIT TMR1IF = 0X0C.0
+#DEFINE PULSE PIN_D0
+UNSIGNED INT8 COUNT;
+UNSIGNED INT8 I;
+/*DINH THOI 1MS  SET TIMER   65286
+                  BO CHIA     8*/
+//10MS = 1MS X 10 -> LOW
+//1MS = 1MS X 1 -> HIGH  
+//1MS = 1MS X 1 -> LOW 
+//10MS = 1MS X 10 -> HIGH
+//1MS = 1MS X 1 -> LOW 
+//1MS = 1MS X 1 -> HIGH
+//TAN SO             8MHZ
+ VOID MAIN()
+ {
+   SET_TRIS_D(0X00);
+   //SETUP TIMER1 CHE DO DINH THOI
+   SETUP_TIMER_1(T1_INTERNAL|T1_DIV_BY_8);
+   SET_TIMER1(65286); //DINHTHOI1MS
+   //OUTPUT_LOW(PULSE);
+   
+   WHILE(TRUE)
+   {
+      IF(TMR1IF==1)
+      {
+         //1MS
+         COUNT++;
+         SET_TIMER1(65286);
+         TMR1IF=0;
+         
+         IF(COUNT<=10)   OUTPUT_LOW(PULSE);
+         ELSE IF(COUNT<=17)
+         {
+            IF(COUNT%2==0) OUTPUT_LOW(PULSE);
+            ELSE           OUTPUT_HIGH(PULSE);           
+         }
+         ELSE IF(COUNT<=28)   OUTPUT_HIGH(PULSE);
+         ELSE IF(COUNT<=36)
+         {
+            IF(COUNT%2==0) OUTPUT_HIGH(PULSE);
+            ELSE           OUTPUT_LOW(PULSE);           
+         }
+         ELSE              COUNT=0;
+      }     
+   }
+ }
+
+

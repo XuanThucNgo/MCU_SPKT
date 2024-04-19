@@ -1,0 +1,36 @@
+#INCLUDE<16F887.H>
+#FUSES HS
+#USE DELAY(CLOCK=20M)
+
+#USE RS232 (BAUD=9600,XMIT=PIN_C6,RCV=PIN_C7)
+
+
+#DEFINE BLINK PIN_E0
+
+UNSIGNED CHAR RXDATA=0;
+
+VOID MAIN()
+{
+   SET_TRIS_C(0X0F);
+   SET_TRIS_E(0XFF);
+   OUTPUT_LOW(BLINK);
+   
+   WHILE(TRUE)
+   {
+      IF(KBHIT()==1)
+      {
+         RXDATA=GETC();      
+      }
+      IF(RXDATA=='R')
+      {
+         OUTPUT_HIGH(BLINK);
+         DELAY_MS(1000);
+         PUTC('1');
+      }
+      IF(RXDATA=='S')
+      {
+         OUTPUT_LOW(BLINK);
+         PUTC('2');
+      }
+   }
+}

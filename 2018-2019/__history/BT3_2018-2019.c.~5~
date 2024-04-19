@@ -1,0 +1,33 @@
+#INCLUDE<16F887.H>
+#FUSES INTRC
+#USE DELAY(CLOCK=8M)
+
+#DEFINE RANDOM PIN_E1
+
+CONST UNSIGNED INT8 MA7DOAN[10] = {0XC0, 0XF9, 0XA4, 0XB0, 0X99, 0X92, 0X82, 0XF8, 0X80, 0X90};
+UNSIGNED INT8 I;
+
+VOID MAIN()
+{
+   SET_TRIS_E(0XFF);
+   SET_TRIS_B(0X00);
+   SET_TRIS_D(0X00);
+   WHILE(TRUE)
+   {
+      FOR(I=0;I<100;I++)
+      {
+         //KIEM TRA CO NUT NHAN HAY KHONG
+         // CO => LAY GIA TRI I TAI THOI DIEM NHAN
+         IF(INPUT(RANDOM)==0)
+         {
+            DELAY_MS(10);
+            IF(INPUT(RANDOM)==0)
+            {
+               OUTPUT_D(MA7DOAN[I/10]);
+               OUTPUT_B(MA7DOAN[I%10]);
+               WHILE(INPUT(RANDOM)==0);
+            }
+         }
+      }
+   }
+}

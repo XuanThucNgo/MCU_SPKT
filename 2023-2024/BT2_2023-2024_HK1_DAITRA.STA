@@ -1,0 +1,48 @@
+
+ROM used:   100/8192 (1%)
+            100/8192 (1%) including unused fragments
+
+            0.1 Average locations per line
+            5.0 Average locations per statement
+
+RAM used:   7/368 (2%) at main() level
+            7/368 (2%) worst case
+
+Stack used: 1 worst case (1 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   43    20 100  BT2_2023-2024_HK1_DAITRA.c
+  768     0   0  C:\Program Files (x86)\PICC\Devices\16F887.H
+----- -----
+  811    20 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     22  22    1             @delay_ms1
+0     74  74    1   418  3.8  MAIN
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               1
+    Statements              20
+    Comments                133
+    Volume (V)              423
+    Difficulty (D)          3.5
+    Effort to implement (E) 1500
+    Time to implement (T)   1 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   4
+    Maintainability (MI)    48
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF    96  1948  
+00800-00FFF     0  2048  
+01000-017FF     0  2048  
+01800-01FFF     0  2048  
+
+
+

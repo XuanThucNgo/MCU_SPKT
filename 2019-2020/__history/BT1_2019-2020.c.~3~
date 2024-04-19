@@ -1,0 +1,44 @@
+#INCLUDE<16F887.H>
+#FUSES INTRC
+#USE DELAY(CLOCK=8M)
+
+CONST UNSIGNED INT8 MA7DOAN[10] = {0XC0, 0XF9, 0XA4, 0XB0, 0X99, 0X92, 0X82, 0XF8, 0X80, 0X90};
+
+#DEFINE ADJ PIN_E0
+#DEFINE RUN_STOP PIN_B2 
+
+UNSIGNED INT8 LEVEL=0;
+
+VOID MAIN()
+{
+   SET_TRIS_E(0XFF);
+   SET_TRIS_C(0X00);
+   SET_TRIS_D(0X00);
+   
+   SETUP_TIMER_2(T2_DIV_BY_16,249,1);  //PR2=249 => MAXDUTY=(249+1)X4=1000  
+                                       //10 CAP DO 0-1-2-3-4-5-6-7-8-9      1000/10=100
+                                       //MOI CAP DO TUONG UNG VOI 125 DUTY
+   SETUP_CCP1(CCP_PWM); //RC2
+   SET_TIMER2(0);
+   OUTPUT_D(MA7DOAN[0]);
+   
+   WHILE(TRUE)
+   {
+   
+      //KIEM TRA NUT NHAN SPEED
+      IF(INPUT(ADJ)==0)
+      {
+         DELAY_MS(10);
+         IF(INPUT(ADJ)==0)
+         {
+            LEVEL++;
+            WHILE(INPUT(ADJ)==0);
+         }
+      }
+      IF(LEVEL>9)    LEVEL=0;
+      
+      SET_PWM1_DUTY((UNSIGNED INT16)LEVEL*100);
+      OUTPUT_D(MA7DOAN[LEVEL]);
+      }  
+}
+

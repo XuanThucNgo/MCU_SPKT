@@ -1,0 +1,59 @@
+#INCLUDE<16F887.H>
+#FUSES INTRC
+#USE DELAY(CLOCK=8M)
+
+#DEFINE  CD_1   PIN_B0  //0%     PWM
+#DEFINE  CD_2   PIN_B1  //50%    PWM
+#DEFINE  CD_3   PIN_B2  //100%   PWM
+#DEFINE  MODE   PIN_B3
+
+INT1 STATUS=0; //0 QUAY THUAN
+               //1 QUAY NGHICH
+              
+VOID MAIN()
+{
+   SET_TRIS_B(0XFF);
+   SET_TRIS_C(0X00);
+   
+   //SETUP PWM DE QUAY THUAN VA NGHICH
+   SETUP_TIMER_2(T2_DIV_BY_16,124,1); //PR2=124 => MAXDUTY=(124+1)X4=500
+   SET_TIMER2(0);
+   SETUP_CCP1(CCP_PWM); //RC2
+   SETUP_CCP2(CCP_PWM); //RC1
+   SET_PWM1_DUTY(0); //BAN DAU DUNG DONG CO
+   SET_PWM2_DUTY(0); //BAN DAU DUNG DONG CO
+   
+   WHILE(TRUE)
+   {
+      //KIEM TRA NUT NHAN MODE
+      IF(INPUT(MODE)==0)
+      {
+         DELAY_MS(10);
+         IF(INPUT(MODE)==0)
+         {
+            STATUS=~STATUS;
+            WHILE(INPUT(MODE)==0);
+         }
+      }
+      //KIEM TRA QUAY THUAN VA QUAY NGHICH
+      IF(MODE==0)
+      {
+         //QUAY THUAN
+         //XUAT XUNG RC1, LOW RC2
+         OUTPUT_LOW(PIN_C2);
+         IF(INPUT(CD_1)==0)   SET_PWM2_DUTY((UNSIGNED INT16)0);
+         IF(INPUT(CD_2)==0)   SET_PWM2_DUTY((UNSIGNED INT16)250);
+         IF(INPUT(CD_3)==0)   SET_PWM2_DUTY((UNSIGNED INT16)500);
+      }
+      ELSE
+      {
+         //QUAY NGHICH
+         //XUAT XUNG RC2, LOW RC1
+         OUTPUT_LOW(PIN_C1);
+         IF(INPUT(CD_1)==0)   SET_PWM1_DUTY((UNSIGNED INT16)0);
+         IF(INPUT(CD_2)==0)   SET_PWM1_DUTY((UNSIGNED INT16)250);
+         IF(INPUT(CD_3)==0)   SET_PWM1_DUTY((UNSIGNED INT16)500);
+      }
+   }
+}
+

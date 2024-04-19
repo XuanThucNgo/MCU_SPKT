@@ -1,0 +1,28 @@
+#INCLUDE<16F887.H>
+#FUSES HS
+#USE DELAY(CLOCK=20M)
+
+#DEFINE C_DOI  PIN_C0 
+#DEFINE LOA    PIN_C1
+
+#define LCD_ENABLE_PIN   PIN_D3                                   
+#define LCD_RS_PIN      PIN_D1                                   
+#define LCD_RW_PIN      PIN_D2                                  
+#define LCD_DATA4       PIN_D4                                   
+#define LCD_DATA5       PIN_D5                                   
+#define LCD_DATA6       PIN_D6                                   
+#define LCD_DATA7       PIN_D7
+
+INCLUDE<LCD.C>
+
+UNSIGNED INT16 XX=0,YY=45,ZZZ,QQQ=318;
+
+VOID MAIN()
+{
+   SET_TRIS_C(0X01);
+   SET_TRIS_D(0X00);
+   
+   //INSTALL LCD
+   LCD_INIT();
+}
+

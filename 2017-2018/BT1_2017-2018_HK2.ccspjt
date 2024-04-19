@@ -1,0 +1,27 @@
+[PROJECT]
+Target=BT1_2017-2018_HK2.hex
+Processor_Text=PIC16F887
+CCSVersion=5.015
+Compiler=PCM
+[Target Data]
+FileList=BT1_2017-2018_HK2.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[BT1_2017-2018_HK2.c]
+Type=4
+[mru-list]
+1=BT1_2017-2018_HK2.c
+[Opened Files]
+1=..\2018-2019\BT2_2018-2019.c
+2=..\2018-2019\BT3_2018-2019#1.c
+3=C:\Program Files (x86)\PICC\Devices\16F887.H
+4=BT3_2017-2018.c
+5=..\2015-2016\BAI1_2015-2016.c
+6=BT2_2017-2018_HK1.c
+7=..\..\PWM\BAITAP_ANHPHUC.c
+8=..\..\PWM\BAITAP10_THAYHIEP.c
+9=BT1_2017-2018_HK2.c
+10=
+[Units]
+Count=1
+1=BT1_2017-2018_HK2 (main)

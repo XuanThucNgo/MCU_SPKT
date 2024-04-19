@@ -1,0 +1,57 @@
+#INCLUDE<16F887.H>
+#FUSES INTRC
+#USE DELAY(CLOCK=8M)
+#USE RS232(BAUD=9600,BITS=8,STOP=1,PARITY=N, XMIT=PIN_C6,RCV=PIN_C7)
+
+#BIT TMR1IF = 0X0C.0
+
+#DEFINE PULSE        PIN_D2
+#DEFINE STATUS       PIN_E0 
+
+UNSIGNED CHAR DATA=0;
+//VDK2 GUI VDK1 'S' -> SANG 'T' -> TAT
+//VDK1 GUI VDK2 RUN -> 'R' -> PHAT XUNG 4MS DUTY=50% 
+             //STOP -> 'S' -> TAT XUNG
+
+VOID MAIN()
+{
+   SET_TRIS_D(0X00);
+   SET_TRIS_E(0X00);
+   SET_TRIS_C(0X80);
+  
+   //SETUP TIMER
+   SETUP_TIMER_1(T1_INTERNAL|T1_DIV_BY_8); //NAP:65036 
+                                           //BC:8
+   //TRANG THAI BAN DAU TAT LED
+   OUTPUT_LOW(STATUS);
+   
+   WHILE(TRUE)
+   {
+      //NHAN DU LIEU VDK1
+      IF(KBHIT()==1)
+      {
+         DATA=GETC();
+      }
+      IF(DATA=='R')
+      {
+         PUTC('S');
+         //PHAT XUNG
+         OUTPUT_HIGH(PULSE);
+         SET_TIMER1(65036); //DINHTHOI2MS
+         WHILE(TMR1IF==0);   //CHO CHO TOI KHI TIMER BI TRAN
+                            //TIMER BI TRAN (TMR1IF==1)DA DU 2MS
+                            //64286 ------------> 65536 -----> DU 2MS
+         OUTPUT_LOW(PULSE);
+         TMR1IF=0; //XOA CO TRAN VE 0 CHO LAN TRAN TIEP THEO
+         SET_TIMER1(65036); //DINHTHOI2MS
+         WHILE(TMR1IF==0);
+         OUTPUT_HIGH(STATUS);
+      }
+      ELSE IF(DATA=='S')
+      {
+         OUTPUT_LOW(PULSE);
+         OUTPUT_LOW(STATUS);
+         PUTC('T');
+      }
+   }
+}

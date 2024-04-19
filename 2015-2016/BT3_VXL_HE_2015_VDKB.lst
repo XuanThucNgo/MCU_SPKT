@@ -1,0 +1,173 @@
+CCS PCM C Compiler, Version 5.015, 5967               17-Dec-23 16:35
+
+               Filename:   E:\BAI TAP VXL\DETHI-GIAIDETHI\2015-2016\BT3_VXL_HE_2015_VDKB.lst
+
+               ROM used:   111 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   8 (2%) at main() level
+                           8 (2%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+.................... #INCLUDE<16F887.H> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+....................  
+.................... #list 
+....................  
+.................... #FUSES HS 
+.................... #USE DELAY(CLOCK=20M) 
+.................... #USE RS232(BAUD=9600,BITS=8,STOP=1,PARITY=N, XMIT=PIN_C6,RCV=PIN_C7) 
+....................  
+.................... UNSIGNED CHAR RXDATA=0; 
+....................  
+.................... VOID MAIN() 
+0004:  MOVF   03,W
+0005:  ANDLW  1F
+0006:  MOVWF  03
+0007:  BSF    03.5
+0008:  BSF    03.6
+0009:  BSF    07.3
+000A:  MOVLW  08
+000B:  BCF    03.6
+000C:  MOVWF  19
+000D:  MOVLW  02
+000E:  MOVWF  1A
+000F:  MOVLW  A6
+0010:  MOVWF  18
+0011:  MOVLW  90
+0012:  BCF    03.5
+0013:  MOVWF  18
+0014:  CLRF   20
+0015:  MOVLW  FF
+0016:  MOVWF  21
+0017:  BSF    03.5
+0018:  BSF    03.6
+0019:  MOVF   09,W
+001A:  ANDLW  C0
+001B:  MOVWF  09
+001C:  BCF    03.6
+001D:  BCF    1F.4
+001E:  BCF    1F.5
+001F:  MOVLW  00
+0020:  BSF    03.6
+0021:  MOVWF  08
+0022:  BCF    03.5
+0023:  CLRF   07
+0024:  CLRF   08
+0025:  CLRF   09
+0026:  BCF    03.7
+.................... { 
+....................    SET_TRIS_C(0X80); 
+0027:  MOVLW  80
+0028:  BSF    03.5
+0029:  BCF    03.6
+002A:  MOVWF  07
+002B:  BCF    03.5
+002C:  MOVWF  21
+....................    SETUP_TIMER_2(T2_DIV_BY_16,124,1);  //PR2=124 => MAXDUTY=(124+1)X4=500                                      
+002D:  MOVLW  00
+002E:  MOVWF  78
+002F:  IORLW  06
+0030:  MOVWF  12
+0031:  MOVLW  7C
+0032:  BSF    03.5
+0033:  MOVWF  12
+....................    SETUP_CCP1(CCP_PWM); //RC2 
+0034:  BCF    03.5
+0035:  BCF    21.2
+0036:  MOVF   21,W
+0037:  BSF    03.5
+0038:  MOVWF  07
+0039:  BCF    03.5
+003A:  BCF    07.2
+003B:  MOVLW  0C
+003C:  MOVWF  17
+003D:  BSF    03.5
+003E:  CLRF   1B
+003F:  CLRF   1C
+0040:  MOVLW  01
+0041:  MOVWF  1D
+....................    SET_TIMER2(0); 
+0042:  BCF    03.5
+0043:  CLRF   11
+....................    SET_PWM1_DUTY(0); //BAN DAU DUNG DONG CO 
+0044:  CLRF   15
+....................    WHILE(TRUE) 
+....................    { 
+....................       IF(KBHIT()==1) 
+0045:  MOVLW  00
+0046:  BTFSC  0C.5
+0047:  MOVLW  01
+0048:  SUBLW  01
+0049:  BTFSS  03.2
+004A:  GOTO   04F
+....................       { 
+....................          RXDATA=GETC(); 
+004B:  BTFSS  0C.5
+004C:  GOTO   04B
+004D:  MOVF   1A,W
+004E:  MOVWF  20
+....................       } 
+....................       IF(RXDATA=='R') 
+004F:  MOVF   20,W
+0050:  SUBLW  52
+0051:  BTFSS  03.2
+0052:  GOTO   067
+....................       { 
+....................          //XUAT XUNG DUTY BANG 0.4 
+....................          SETUP_CCP1(CCP_PWM); 
+0053:  BCF    21.2
+0054:  MOVF   21,W
+0055:  BSF    03.5
+0056:  MOVWF  07
+0057:  BCF    03.5
+0058:  BCF    07.2
+0059:  MOVLW  0C
+005A:  MOVWF  17
+005B:  BSF    03.5
+005C:  CLRF   1B
+005D:  CLRF   1C
+005E:  MOVLW  01
+005F:  MOVWF  1D
+....................          SET_PWM1_DUTY((UNSIGNED INT16)200); 
+0060:  MOVLW  32
+0061:  BCF    03.5
+0062:  MOVWF  15
+0063:  MOVF   17,W
+0064:  ANDLW  CF
+0065:  MOVWF  17
+....................       } 
+0066:  GOTO   06D
+....................       ELSE IF(RXDATA=='S') 
+0067:  MOVF   20,W
+0068:  SUBLW  53
+0069:  BTFSS  03.2
+006A:  GOTO   06D
+....................       { 
+....................          SETUP_CCP1(CCP_OFF); 
+006B:  MOVLW  F0
+006C:  ANDWF  17,F
+....................       } 
+006D:  GOTO   045
+....................    } 
+.................... } 
+006E:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE2   HS NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

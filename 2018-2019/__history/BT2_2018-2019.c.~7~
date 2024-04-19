@@ -1,0 +1,50 @@
+#INCLUDE<16F887.H>
+#FUSES HS
+#USE DELAY(CLOCK=20M)
+
+#USE RS232 (BAUD=9600,XMIT=PIN_C6,RCV=PIN_C7)
+#DEFINE LED PIN_D0
+
+#define LCD_ENABLE_PIN  PIN_E0                                 
+#define LCD_RS_PIN      PIN_E1                                 
+#define LCD_RW_PIN      PIN_E2                               
+#define LCD_DATA4       PIN_D4                               
+#define LCD_DATA5       PIN_D5                              
+#define LCD_DATA6       PIN_D6                                
+#define LCD_DATA7       PIN_D7
+
+#INCLUDE<LCD.C>
+
+UNSIGNED CHAR RXDATA=0;
+UNSIGNED INT16 TEMP1,TEMP2;
+
+VOID READ_ADC1()
+{
+   //READ TEMPERATURE ADC1
+   SET_ADC_CHANNEL(1);
+   DELAY_US(20);
+   TEMP1=READ_ADC()/2.046;
+   //DISPLAY_LCD
+   LCD_GOTOXY(1,1);
+   PRINTF(LCD_PUTC,"CH1=%03LU",TEMP1);
+   LCD_PUTC(223); LCD_PUTC('C');
+   IF(TEMP1>=50)
+   {
+      LCD_GOTOXY(14,1); 
+      LCD_PUTC("[H]");
+   }
+}
+
+VOID MAIN()
+{
+   SET_TRIS_A(0XFF);
+   SET_TRIS_B(0X00);
+   SET_TRIS_C(0X00);
+   
+   //INSTALL LCD
+   LCD_INIT();
+   //SETUP ADC
+   SETUP_ADC(ADC_CLOCK_INTERNAL);
+   SETUP_ADC_PORTS(SAN1|SAN2|VSS_VDD);
+   
+}

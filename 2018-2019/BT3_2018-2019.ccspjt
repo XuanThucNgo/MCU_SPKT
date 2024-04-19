@@ -1,0 +1,29 @@
+[PROJECT]
+Target=BT3_2018-2019.hex
+Processor_Text=PIC16F887
+CCSVersion=5.015
+Compiler=PCM
+[Target Data]
+FileList=BT3_2018-2019.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[BT3_2018-2019.c]
+Type=4
+[mru-list]
+1=BT3_2018-2019.c
+[Opened Files]
+1=..\2017-2018\BT3_2017-2018_HK2_CLC.c
+2=..\..\TIMER AND COUNTER\BAITAP_DETHIMAU\CAU2_2017-2018.c
+3=..\2016-2017\BT1_2016-2017_HK1.c
+4=..\2016-2017\BT2_2016-2017_HK1.c
+5=C:\Program Files (x86)\PICC\Drivers\LCD.C
+6=BT3_2018-2019.c
+7=
+8=BT1_2018-2019.c
+9=BT2_2018-2019.c
+10=..\2015-2016\BAI3_2015-2016.c
+11=BT3_2018-2019.c
+12=
+[Units]
+Count=1
+1=BT3_2018-2019 (main)

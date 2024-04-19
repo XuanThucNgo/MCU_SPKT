@@ -1,0 +1,165 @@
+CCS PCM C Compiler, Version 5.015, 5967               02-Jan-24 21:42
+
+               Filename:   E:\BAI TAP VXL\DETHI-GIAIDETHI\2023-2024\BT5_2023-2024_HK1_DAITRA.lst
+
+               ROM used:   89 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   6 (2%) at main() level
+                           9 (2%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   017
+0003:  NOP
+.................... #INCLUDE<16F887.H> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+....................  
+.................... #list 
+....................  
+.................... #FUSES HS 
+.................... #USE DELAY(CLOCK=10M) 
+.................... #BIT TMR1IF = 0X0C.0 
+....................  
+.................... #DEFINE PULSE PIN_E0 
+.................... UNSIGNED INT8 I; 
+....................  
+.................... VOID DELAY(UNSIGNED INT16 T) 
+.................... { 
+....................    //SET T = 1 
+....................    //WAIT 1MS 
+....................    WHILE(T--) 
+0004:  MOVF   22,W
+0005:  MOVWF  7A
+0006:  MOVF   21,W
+0007:  BTFSC  03.2
+0008:  DECF   22,F
+0009:  DECF   21,F
+000A:  IORWF  7A,W
+000B:  BTFSC  03.2
+000C:  GOTO   016
+....................    { 
+....................       WHILE(TMR1IF!=1); 
+000D:  BTFSS  0C.0
+000E:  GOTO   00D
+....................       SET_TIMER1(64911); 
+000F:  CLRF   0E
+0010:  MOVLW  FD
+0011:  MOVWF  0F
+0012:  MOVLW  8F
+0013:  MOVWF  0E
+....................       TMR1IF=0; 
+0014:  BCF    0C.0
+0015:  GOTO   004
+....................    } 
+0016:  RETURN
+.................... } 
+.................... VOID MAIN() 
+0017:  MOVF   03,W
+0018:  ANDLW  1F
+0019:  MOVWF  03
+001A:  BSF    03.5
+001B:  BSF    03.6
+001C:  MOVF   09,W
+001D:  ANDLW  C0
+001E:  MOVWF  09
+001F:  BCF    03.6
+0020:  BCF    1F.4
+0021:  BCF    1F.5
+0022:  MOVLW  00
+0023:  BSF    03.6
+0024:  MOVWF  08
+0025:  BCF    03.5
+0026:  CLRF   07
+0027:  CLRF   08
+0028:  CLRF   09
+0029:  BCF    03.7
+.................... { 
+....................    SET_TRIS_E(0X00); 
+002A:  BSF    03.5
+002B:  BCF    03.6
+002C:  BCF    09.0
+002D:  BCF    09.1
+002E:  BCF    09.2
+002F:  BCF    09.3
+....................    //SETUP TIMER 
+....................    SETUP_TIMER_1(T1_INTERNAL|T1_DIV_BY_4); 
+0030:  MOVLW  25
+0031:  BCF    03.5
+0032:  MOVWF  10
+....................    SET_TIMER1(64911); 
+0033:  CLRF   0E
+0034:  MOVLW  FD
+0035:  MOVWF  0F
+0036:  MOVLW  8F
+0037:  MOVWF  0E
+....................    //T HIGH 1MS 
+....................    //T LOW  3MS 
+....................    WHILE(TRUE) 
+....................    { 
+....................       FOR(I=0;I<4;I++) 
+0038:  CLRF   20
+0039:  MOVF   20,W
+003A:  SUBLW  03
+003B:  BTFSS  03.0
+003C:  GOTO   057
+....................       { 
+....................          IF(I<1) 
+003D:  MOVF   20,F
+003E:  BTFSS  03.2
+003F:  GOTO   049
+....................          { 
+....................             OUTPUT_HIGH(PULSE); 
+0040:  BSF    03.5
+0041:  BCF    09.0
+0042:  BCF    03.5
+0043:  BSF    09.0
+....................             DELAY(1); 
+0044:  CLRF   22
+0045:  MOVLW  01
+0046:  MOVWF  21
+0047:  CALL   004
+....................          } 
+0048:  GOTO   055
+....................          ELSE IF(I<4) 
+0049:  MOVF   20,W
+004A:  SUBLW  03
+004B:  BTFSS  03.0
+004C:  GOTO   055
+....................          { 
+....................             OUTPUT_LOW(PULSE); 
+004D:  BSF    03.5
+004E:  BCF    09.0
+004F:  BCF    03.5
+0050:  BCF    09.0
+....................             DELAY(1); 
+0051:  CLRF   22
+0052:  MOVLW  01
+0053:  MOVWF  21
+0054:  CALL   004
+....................          } 
+0055:  INCF   20,F
+0056:  GOTO   039
+....................       } 
+0057:  GOTO   038
+....................    }   
+.................... } 
+....................  
+0058:  SLEEP
+....................  
+
+Configuration Fuses:
+   Word  1: 2FE2   HS NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

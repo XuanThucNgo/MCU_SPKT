@@ -1,0 +1,43 @@
+#INCLUDE<16F887.H>
+#FUSES INTRC
+#USE DELAY(CLOCK=8M)
+#USE RS232(BAUD=9600,BITS=8,STOP=1,PARITY=N, XMIT=PIN_C6,RCV=PIN_C7)
+
+
+#DEFINE RUN       PIN_D0 
+#DEFINE STOP      PIN_D1 
+#DEFINE FEEDBACK  PIN_D2 
+
+UNSIGNED CHAR DATA=0;
+//VDK2 GUI VDK1 'S' -> SANG 'T' -> TAT
+//VDK1 GUI VDK2 RUN -> 'R' STOP -> 'S'
+
+VOID MAIN()
+{
+   SET_TRIS_D(0X03);
+   SET_TRIS_C(0X80);
+   //TRANG THAI BAN DAU TAT LED
+   OUTPUT_LOW(FEEDBACK);
+   WHILE(TRUE)
+   {
+      //GUI DU LIEU VDK2
+      IF(INPUT(RUN)==0)
+      {
+         PUTC('R');
+      }
+      IF(INPUT(STOP)==0)
+      {
+         PUTC('S');
+      }
+      //NHAN DU LIEU VDK2
+      IF(KBHIT()==1)
+      {
+         DATA=GETC();
+      }
+      IF(DATA=='S')
+      OUTPUT_HIGH(FEEDBACK);
+      ELSE IF(DATA=='T')
+      OUTPUT_LOW(FEEDBACK);
+   }
+   
+}

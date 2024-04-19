@@ -1,0 +1,4 @@
+>>> Warning 202 "BT2_12-2015.c" Line 24(15,23): Variable never used:   MAXSPEED
+      Memory usage:   ROM=12%      RAM=2% - 7%
+      0 Errors,  1 Warnings.
+Build Successful.

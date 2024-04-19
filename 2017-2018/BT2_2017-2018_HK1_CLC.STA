@@ -1,0 +1,71 @@
+
+ROM used:   1243/8192 (15%)
+            1243/8192 (15%) including unused fragments
+
+            0.9 Average locations per line
+            8.0 Average locations per statement
+
+RAM used:   10/368 (3%) at main() level
+            30/368 (8%) worst case
+
+Stack used: 6 worst case (6 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   97    56  36  BT2_2017-2018_HK1_CLC.c
+  768     0   0  C:\Program Files (x86)\PICC\Devices\16F887.H
+  456   100  64  C:\Program Files (x86)\PICC\Drivers\LCD.C
+----- -----
+ 1321   156 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     20   2    1             @delay_ms1
+ Inline         3   760  4.5  lcd_read_byte
+0     49   4    2   262  3.7  lcd_read_nibble
+0     48   4    1   399  2.4  lcd_send_nibble
+0     94   8    3   415  3.7  lcd_send_byte
+0     70   6    6   852  6.2  lcd_init
+0     18   1    4   208  6.3  lcd_gotoxy
+0     44   4    1   354  4.7  lcd_putc
+0     77   6    2   187  2.5  READ_ADC2
+0     29   2    2             @ITOF
+0    202  16   14             @DIVFF
+0     31   2    4             @SFTOI
+0     99   8    9             @PRINTF_LU_644
+0     78   6    2   187  2.5  READ_ADC4
+0    262  21    0  1294  5.3  MAIN
+0      4   0    0             @const675
+0     86   7    4   954  5.3  @PSTRINGC7_644
+0      4   0    0  1113  4.8  @const677
+0      4   0    0             @const678
+0      4   0    0             @const679
+0      4   0    0             @const680
+0      4   0    0             @const681
+0      4   0    0             @const682
+0      4   0    0             @const683
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               12
+    Statements              156
+    Comments                234
+    Volume (V)              10953
+    Difficulty (D)          50.1
+    Effort to implement (E) 549008
+    Time to implement (T)   8 hours, 28 minutes
+    Est Delivered Bugs (B)  2
+    Cyclomatic Complexity   20
+    Maintainability (MI)    120
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF  1239  805  
+00800-00FFF     0  2048  
+01000-017FF     0  2048  
+01800-01FFF     0  2048  
+
+
+

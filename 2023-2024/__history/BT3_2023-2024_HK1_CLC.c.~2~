@@ -1,0 +1,115 @@
+#INCLUDE<16F887.H>
+#FUSES INTRC
+#USE DELAY(CLOCK=8M)
+
+#DEFINE NUT_1  PIN_B0
+#DEFINE NUT_2  PIN_B1
+
+#DEFINE RUN    PIN_B2
+#DEFINE STOP   PIN_B3
+#DEFINE FW     PIN_B4
+#DEFINE RV     PIN_B5
+UNSIGNED INT8 LEVEL=0;
+UNSIGNED INT1 STATUS=0
+               //0 QUAY THUAN
+               //1 QUAY NGHICH
+
+//PWM 1ms ->  PR2=124 -> MAXDUTY=500
+
+   IF(INPUT(NUT_1)==0)
+   {
+      DELAY_MS(10)
+      IF(INPUT(NUT_1)==0)
+      {
+         LEVEL+=5;
+         WHILE(INPUT(NUT_1)==0)
+      }
+   }
+   IF(LEVEL>10)    LEVEL=0;   
+
+VOID MAIN()
+{
+   SET_TRIS_B(0XFF);
+   SET_TRIS_C(0X00);
+   //SETUP_PWM
+   SETUP_TIMER_2(T2_DIV_BY_16,124,1);  //PR2=124 => MAXDUTY=(124+1)X4=500                                     
+   SETUP_CCP1(CCP_PWM); //RC2
+   SET_TIMER2(0);
+   SET_PWM1_DUTY(0); //BAN DAU DUNG DONG CO
+   
+   WHILE(TRUE)
+   {
+      //KIEM TRA NUT NHAN NUT_1 THAY DOI TOC DO DONG CO
+      IF(INPUT(NUT_1)==0)
+      {
+         DELAY_MS(10)
+         IF(INPUT(NUT_1)==0)
+         {
+            LEVEL+=5;
+            WHILE(INPUT(NUT_1)==0)
+         }
+      }
+      IF(LEVEL>10)    LEVEL=0;
+      //KIEM TRA NUT NHAN NUT_2 DAO CHIEU DONG CO
+      IF(INPUT(NUT_2)==0)
+      {
+         DELAY_MS(10)
+         IF(INPUT(NUT_1)==0)
+         {
+            STATUS=~STATUS;
+            WHILE(INPUT(NUT_1)==0)
+         }
+      }
+      IF(STATUS==0)
+      {
+         //QUAY THUAN
+         OUTPUT_HIGH(FW);
+         OUTPUT_LOW(RV);
+         OUTPUT_LOW(PIN_C1)
+         IF(LEVEL==0)//DUNG
+         {
+            SET_PWM1_DUTY((UNSIGNED INT16)LEVEL);
+            OUTPUT_HIGH(STOP);
+            OUTPUT_LOW(RUN);
+         }
+         ELSE IF(LEVEL==5)
+         {
+            SET_PWM1_DUTY((UNSIGNED INT16)LEVEL*50);
+            OUTPUT_LOW(STOP);
+            OUTPUT_HIGH(RUN);
+         }
+         ELSE
+         {
+            SET_PWM1_DUTY((UNSIGNED INT16)LEVEL*50);
+            OUTPUT_LOW(STOP);
+            OUTPUT_HIGH(RUN);
+         }
+      }
+      ELSE
+      {
+         //QUAY NGHICH
+         OUTPUT_LOW(FW);
+         OUTPUT_HIGH(RV);
+         OUTPUT_HIGH(PIN_C1)
+         IF(LEVEL==0)//DUNG
+         {
+            SET_PWM1_DUTY((UNSIGNED INT16)LEVEL);
+            OUTPUT_HIGH(STOP);
+            OUTPUT_LOW(RUN);
+         }
+         ELSE IF(LEVEL==5)
+         {
+            SET_PWM1_DUTY((UNSIGNED INT16)LEVEL*50);
+            OUTPUT_LOW(STOP);
+            OUTPUT_HIGH(RUN);
+         }
+         ELSE
+         {
+            SET_PWM1_DUTY((UNSIGNED INT16)LEVEL*50);
+            OUTPUT_LOW(STOP);
+            OUTPUT_HIGH(RUN);
+         }
+      }
+      
+   }
+}

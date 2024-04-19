@@ -1,0 +1,56 @@
+#INCLUDE<16F887.H>
+#DEVICE ADC=10
+#FUSES INTRC
+#USE DELAY(CLOCK=8M)
+
+#DEFINE ADJ PIN_E0
+
+#INCLUDE<LCD.C>
+
+#define LCD_ENABLE_PIN  PIN_E0                                  
+#define LCD_RS_PIN      PIN_E1                                    
+#define LCD_RW_PIN      PIN_E2                                    
+#define LCD_DATA4       PIN_D4                                    
+#define LCD_DATA5       PIN_D5                                    
+#define LCD_DATA6       PIN_D6                                    
+#define LCD_DATA7       PIN_D7 
+
+INT1 STATUS=0; //0 STOP
+               //1 RUN               
+UNSIGNED INT16 TEMP;
+UNSIGNED INT8 PRODUCT;
+
+VOID MAIN()
+{
+   SET_TRIS_C(0X00);
+   SET_TRIS_D(0X00);
+   SET_TRIS_D(0XFF);
+   //SETUP ADC
+   SETUP_ADC(ADC_CLOCK_INTERNAL);
+   SETUP_ADC_PORTS(SAN5|VSS_VDD)
+   SETUP_TIMER_2(T2_DIV_BY_16,249,1);
+   //PR2=249 => MAXDUTY=1000 
+   //10 CAP DO 0-1-2-3-4-5-6-7-8-9 =>1000/10=1000
+   SETUP_CCP1(CCP_PWM); //RC2
+   SET_TIMER2(0);
+   OUTPUT_D(MA7DOAN[0]);
+   
+   WHILE(TRUE)
+   {
+      //KIEM TRA NUT NHAN
+      IF(INPUT(ADJ)==0)
+      {
+         DELAY_MS(10);
+         IF(INPUT(ADJ)==0)
+         {  
+            LEVEL++;
+            WHILE(INPUT(ADJ)==0);
+         }
+      }
+      IF(LEVEL>9) LEVEL=0;
+      SET_PWM1_DUTY((UNSIGNED INT16)LEVEL*100);
+      OUTPUT_D(MA7DOAN[LEVEL]);
+   }
+}
+
+

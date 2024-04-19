@@ -1,0 +1,20 @@
+[PROJECT]
+Target=BT2_2023-2024_HK1_DAITRA.hex
+Processor_Text=PIC16F887
+CCSVersion=5.015
+Compiler=PCM
+[Target Data]
+FileList=BT2_2023-2024_HK1_DAITRA.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[BT2_2023-2024_HK1_DAITRA.c]
+Type=4
+[mru-list]
+1=BT2_2023-2024_HK1_DAITRA.c
+[Opened Files]
+1=..\2020-2021\BT1_2020-2021_HK1.c
+2=BT2_2023-2024_HK1_DAITRA.c
+3=
+[Units]
+Count=1
+1=BT2_2023-2024_HK1_DAITRA (main)

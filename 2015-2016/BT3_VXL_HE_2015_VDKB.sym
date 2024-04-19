@@ -1,0 +1,57 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020     RXDATA
+021     @TRIS_C
+022     MAIN.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+107.6   C1OUT
+108.6   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  MAIN
+000004  @cinit1
+000026  @cinit2
+
+Project Directory:
+    E:\BAI TAP VXL\DETHI-GIAIDETHI\2015-2016\
+
+Project Files:
+    BT3_VXL_HE_2015_VDKB.c                                  [17-Dec-23 16:22  CRC=E3313F8A]
+    C:\Program Files (x86)\PICC\Devices\16F887.H            [12-Nov-13 14:35  CRC=6CB1A611]
+
+Source signature=BC948BAC
+
+Units:
+    BT3_VXL_HE_2015_VDKB (main)
+
+Compiler Settings:
+    Processor:      PIC16F887
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   BT3_VXL_HE_2015_VDKB.xsym
+    Errors:      BT3_VXL_HE_2015_VDKB.err
+    Ext Symbols: BT3_VXL_HE_2015_VDKB.esym
+    INHX8:       BT3_VXL_HE_2015_VDKB.hex
+    Symbols:     BT3_VXL_HE_2015_VDKB.sym
+    List:        BT3_VXL_HE_2015_VDKB.lst
+    Debug/COFF:  BT3_VXL_HE_2015_VDKB.cof
+    Project:     BT3_VXL_HE_2015_VDKB.ccspjt
+    Call Tree:   BT3_VXL_HE_2015_VDKB.tre
+    Statistics:  BT3_VXL_HE_2015_VDKB.STA

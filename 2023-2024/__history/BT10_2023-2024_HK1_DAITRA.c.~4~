@@ -1,0 +1,30 @@
+#INCLUDE<16F887.H>
+#FUSES HS
+#USE DELAY(CLOCK=20M)
+#USE RS232(BAUD=2400,BITS=8,STOP=1,PARITY=N, XMIT=PIN_C6,RCV=PIN_C7)
+
+#DEFINE SEND PIN_E0
+
+CONST UNSIGNED CHAR KT[10] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
+UNSIGNED INT8 I;
+
+VOID MAIN()
+{
+   SET_TRIS_E(0XFF);
+   WHILE(TRUE)
+   {
+      //KIEM TRA NUT NHAN SEND
+      IF(INPUT(SEND)==0)
+      {
+         DELAY_MS(20);
+         IF(INPUT(SEND)==0)
+         {
+            FOR(I=0;I<10;I++)
+            {
+               PUTC(KT[I]);
+            }
+            WHILE(INPUT(SEND)==0);
+         }
+      }
+   }
+}

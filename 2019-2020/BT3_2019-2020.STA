@@ -1,0 +1,47 @@
+
+ROM used:   97/8192 (1%)
+            97/8192 (1%) including unused fragments
+
+            0.1 Average locations per line
+            6.1 Average locations per statement
+
+RAM used:   8/368 (2%) at main() level
+            8/368 (2%) worst case
+
+Stack used: 0 worst case (0 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   31    16 100  BT3_2019-2020.c
+  768     0   0  C:\Program Files (x86)\PICC\Devices\16F887.H
+----- -----
+  799    16 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     93  96    1   367  3.3  MAIN
+ Inline         0   262  3.7  @cinit1
+
+Program metrics:
+    Functions               2
+    Statements              16
+    Comments                130
+    Volume (V)              749
+    Difficulty (D)          7.0
+    Effort to implement (E) 5230
+    Time to implement (T)   5 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   5
+    Maintainability (MI)    102
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF    93  1951  
+00800-00FFF     0  2048  
+01000-017FF     0  2048  
+01800-01FFF     0  2048  
+
+
+

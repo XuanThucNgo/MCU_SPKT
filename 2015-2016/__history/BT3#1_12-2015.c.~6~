@@ -1,0 +1,45 @@
+#INCLUDE<16F887.H>
+#FUSES HS
+#USE DELAY(CLOCK=20M)
+
+#DEFINE SP PIN_B0
+
+#USE RS232 (BAUD=9600,XMIT=PIN_C6,RCV=PIN_C7)
+
+CONST UNSIGNED INT8 MA7DOAN[10] = {0XC0, 0XF9, 0XA4, 0XB0, 0X99, 0X92, 0X82, 0XF8, 0X80, 0X90};
+
+UNSIGNED CHAR RXDATA;
+UNSIGNED INT8 DEM=0;
+
+VOID MAIN()
+{
+   SET_TRIS_D(0X00);
+   SET_TRIS_C(0X00);
+   SET_TRIS_B(0XFF);
+   
+   WHILE(TRUE)
+   {
+      //KIEM TRA NUT NHAN
+      IF(INPUT(SP)==0)
+      {
+         DELAY_MS(10);
+         IF(INPUT(SP)==0)
+         {
+            DEM++;
+            IF(DEM==100)   DEM=1;
+            //TRUYEN SO SAN PHAM
+            PUTC(DEM);
+            WHILE(INPUT(SP)==0);
+         }
+      }
+      //NHAN DU LIEU
+      IF(KBHIT()==1)
+      {
+         RXDATA=GETC();      
+      }
+      IF(RXDATA=='0')   DEM=0;
+      //HIEN THI LED 7 DOAN
+      OUTPUT_D(MA7DOAN[DEM/10]);
+      OUTPUT_C(MA7DOAN[DEM%10]);
+   }
+}

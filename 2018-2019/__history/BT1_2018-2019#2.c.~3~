@@ -1,0 +1,63 @@
+#INCLUDE<16F887.H>
+#FUSES INTRC
+#USE DELAY(CLOCK=8M)
+
+#DEFINE RUN    PIN_C1
+#DEFINE STOP    PIN_C2
+#DEFINE PULSE  PIN_C0
+#DEFINE ADJ    PIN_A0
+
+CONST UNSIGNED INT8 MA7DOAN[10] = {0XC0, 0XF9, 0XA4, 0XB0, 0X99, 0X92, 0X82, 0XF8, 0X80, 0X90};
+UNSIGNED INT8 LEVEL=5; //MOI CAP DIEN 7 DOAN HIEN THI SO 5
+INT1 MODE=0; //1 RUN
+             //0 STOP
+
+VOID DELAY_MSX(UNSIGNED INT16 T)
+{
+   FOR(INT8 I=0;I<T;I++)
+   {
+      DELAY_MS(1);
+      IF(INPUT(STOP)==0)
+      {
+         MODE=0;
+         BREAK;
+      }
+   }
+}
+
+VOID MAIN()
+{
+   SET_TRIS_A(0XFF);
+   SET_TRIS_C(0B00000110);
+   SET_TRIS_D(0X00);
+   OUTPUT_LOW(PULSE);
+   
+   WHILE(TRUE)
+   {
+      IF(INPUT(RUN)==0)    MODE=1;
+      IF(INPUT(STOP)==0)   MODE=0;
+      
+      IF(MODE==0)
+      {
+         //TAT XUNG
+         IF(INPUT(ADJ)==0)
+         {
+            DELAY_MS(10);
+            IF(INPUT(ADJ)==0)
+            {
+               LEVEL++;
+               WHILE(INPUT(ADJ)==0);
+            }
+         }
+         IF(LEVEL>9)    LEVEL=0;
+         OUTPUT_LOW(PULSE);
+      }
+      ELSE //PHAT XUNG CHU KY 50%
+      {
+         OUTPUT_TOGGLE(PULSE);
+         DELAY_MSX(LEVEL*1000)
+      }
+      //HIEN THI LED 7 DOAN
+      OUTPUT_D(MA7DOAN[LEVEL]);
+   }
+}

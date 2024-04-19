@@ -1,0 +1,46 @@
+#INCLUDE<16F887.H>
+#FUSES HS
+#USE DELAY(CLOCK=10M)
+#BIT TMR1IF = 0X0C.0
+
+#DEFINE PULSE PIN_E0
+UNSIGNED INT8 I;
+
+VOID DELAY(UNSIGNED INT16 T)
+{
+   //SET T = 1
+   //WAIT 1MS
+   WHILE(T--)
+   {
+      WHILE(TMR1IF!=1);
+      SET_TIMER1(64911);
+      TMR1IF=0;
+   }
+}
+VOID MAIN()
+{
+   SET_TRIS_E(0X00);
+   //SETUP TIMER
+   SETUP_TIMER_1(T1_INTERNAL|T1_DIV_BY_4);
+   SET_TIMER1(64911);
+   //T HIGH 1MS
+   //T LOW  3MS
+   WHILE(TRUE)
+   {
+      FOR(I=0;I<4;I++)
+      {
+         IF(I<1)
+         {
+            OUTPUT_HIGH(PULSE);
+            DELAY(1);
+         }
+         ELSE IF(I<4)
+         {
+            OUTPUT_LOW(PULSE);
+            DELAY(1);
+         }
+      }
+   }  
+}
+
+

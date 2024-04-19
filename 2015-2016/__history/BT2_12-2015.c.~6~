@@ -1,0 +1,152 @@
+#INCLUDE<16F887.H>
+#FUSES HS
+#USE DELAY(CLOCK=10M)
+
+#DEFINE SW PIN_C0
+#DEFINE STOP PIN_B0
+#DEFINE BTN_STOP PIN_B0
+#DEFINE BTN_1_6 PIN_B1
+#DEFINE BTN_2_7 PIN_B2
+#DEFINE BTN_3_8 PIN_B3
+#DEFINE BTN_4_9 PIN_B4
+#DEFINE BTN_5_10 PIN_B5
+
+UNSIGNED INT8 MAXSPEED=500;
+INT1 STATUS=0; //0 CHAY CAP DO BEN TRAI
+               //1 CHAY CAP DO BEN PHAI
+
+VOID MAIN()
+{
+   SET_TRIS_B(0XFF);
+   SET_TRIS_C(0X00);
+   SET_TRIS_D(0X00);
+   
+   SETUP_TIMER_2(T2_DIV_BY_16,124,1);  //PR2=124 => MAXDUTY=(124+1)X4=500  
+                                       //10 CAP DO 1-2-3-4-5-6-7-8-9-10      500/10=50
+                                       //MOI CAP DO TUONG UNG VOI 50 DUTY
+   SETUP_CCP1(CCP_PWM); //RC2
+   SET_TIMER2(0);
+   SET_PWM1_DUTY(0); //BAN DAU DUNG DONG CO
+   
+   WHILE(TRUE)
+   {   
+      IF(INPUT(STOP)==0)
+      {
+         DELAY_MS(10);
+         IF(INPUT(STOP)==0)
+         {  
+            //DUNG DONG CO
+            SETUP_CCP1(CCP_OFF);
+            WHILE(INPUT(STOP)==0);
+         }
+      }
+      //KIEM TRA NUT NHAN CHON CAP DONG CO
+      IF(INPUT(SW)==0)
+      {   
+         STATUS=1;
+      }     
+      //KIEM TRA RUN/STOP
+      IF(STATUS==0)
+      {
+         //CHAY CAP DONG CO BEN TRAI
+         SETUP_CCP1(CCP_PWM);
+         IF(INPUT(BTN_1_6)==0)
+         {
+            DELAY_MS(10);
+            IF(INPUT(BTN_1_6)==0)
+            {  
+               SET_PWM1_DUTY((UNSIGNED INT16)MAXSPEED*1/10);
+               WHILE(INPUT(BTN_1_6)==0);
+            }
+         }
+         IF(INPUT(BTN_2_7)==0)
+         {
+            DELAY_MS(10);
+            IF(INPUT(BTN_2_7)==0)
+            {  
+               SET_PWM1_DUTY((UNSIGNED INT16)MAXSPEED*2/10);
+               WHILE(INPUT(BTN_2_7)==0);
+            }
+         }
+         IF(INPUT(BTN_3_8)==0)
+         {
+            DELAY_MS(10);
+            IF(INPUT(BTN_3_8)==0)
+            {  
+               SET_PWM1_DUTY((UNSIGNED INT16)MAXSPEED*3/10);
+               WHILE(INPUT(BTN_3_8)==0);
+            }
+         }
+         IF(INPUT(BTN_4_9)==0)
+         {
+            DELAY_MS(10);
+            IF(INPUT(BTN_4_9)==0)
+            {  
+               SET_PWM1_DUTY((UNSIGNED INT16)MAXSPEED*4/10);
+               WHILE(INPUT(BTN_4_9)==0);
+            }
+         }
+         IF(INPUT(BTN_5_10)==0)
+         {
+            DELAY_MS(10);
+            IF(INPUT(BTN_5_10)==0)
+            {  
+               SET_PWM1_DUTY((UNSIGNED INT16)MAXSPEED*5/10);
+               WHILE(INPUT(BTN_5_10)==0);
+            }
+         }
+      }
+      ELSE
+      {
+         //CHAY CAP DONG CO BEN PHAI
+         SETUP_CCP1(CCP_PWM); //SETUP LAI
+         IF(INPUT(BTN_1_6)==0)
+         {
+            DELAY_MS(10);
+            IF(INPUT(BTN_1_6)==0)
+            {  
+               SET_PWM1_DUTY((UNSIGNED INT16)MAXSPEED*6/10);
+               WHILE(INPUT(BTN_1_6)==0);
+            }
+         }
+         IF(INPUT(BTN_2_7)==0)
+         {
+            DELAY_MS(10);
+            IF(INPUT(BTN_2_7)==0)
+            {  
+               SET_PWM1_DUTY((UNSIGNED INT16)MAXSPEED*7/10);
+               WHILE(INPUT(BTN_2_7)==0);
+            }
+         }
+         IF(INPUT(BTN_3_8)==0)
+         {
+            DELAY_MS(10);
+            IF(INPUT(BTN_3_8)==0)
+            {  
+               SET_PWM1_DUTY((UNSIGNED INT16)MAXSPEED*8/10);
+               WHILE(INPUT(BTN_3_8)==0);
+            }
+         }
+         IF(INPUT(BTN_4_9)==0)
+         {
+            DELAY_MS(10);
+            IF(INPUT(BTN_4_9)==0)
+            {  
+               SET_PWM1_DUTY((UNSIGNED INT16)MAXSPEED*9/10);
+               WHILE(INPUT(BTN_4_9)==0);
+            }
+         }
+         IF(INPUT(BTN_5_10)==0)
+         {
+            DELAY_MS(10);
+            IF(INPUT(BTN_5_10)==0)
+            {  
+               SET_PWM1_DUTY((UNSIGNED INT16)MAXSPEED);
+               WHILE(INPUT(BTN_5_10)==0);
+            }
+         }
+      }
+   }
+   
+}
+

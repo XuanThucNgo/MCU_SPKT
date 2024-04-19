@@ -1,0 +1,25 @@
+[PROJECT]
+Target=BT8-9_2023-2024_HK1_DAITRA.hex
+Processor_Text=PIC16F887
+CCSVersion=5.015
+Compiler=PCM
+[Target Data]
+FileList=BT8-9_2023-2024_HK1_DAITRA.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[BT8-9_2023-2024_HK1_DAITRA.c]
+Type=4
+[mru-list]
+1=BT8-9_2023-2024_HK1_DAITRA.c
+[Opened Files]
+1=BT2_2023-2024_HK1_DAITRA.c
+2=BT3-4_2023-2024_HK1_DAITRA.c
+3=BT5_2023-2024_HK1_DAITRA.c
+4=BT6-7_2023-2024_HK1_DAITRA.c
+5=C:\Program Files (x86)\PICC\Drivers\LCD.C
+6=BT8-9_2023-2024_HK1_DAITRA.c
+7=..\..\PWM\BAITAP_ANHPHUC.c
+8=
+[Units]
+Count=1
+1=BT8-9_2023-2024_HK1_DAITRA (main)

@@ -1,0 +1,56 @@
+#INCLUDE<16F887.H>
+#FUSES HS
+#USE DELAY(CLOCK=20M)
+#USE RS232(BAUD=2400,BITS=8,STOP=1,PARITY=N, XMIT=PIN_C6,RCV=PIN_C7)
+
+UNSIGNED INT8 PRODUCT=0,OLDPRODUCT=0;
+UNSIGNED INT16 BOX=0,OLDBOX=0;
+UNSIGNED CHAR RXDATA;
+INT1 STATUS=0;    //0 STOP
+                  //1 RUN
+    
+
+VOID MAIN()
+{
+   SET_TRIS_C(0X01);
+   SET_TRIS_A(0B00010001);
+   SETUP_TIMER_0(T0_EXT_L_TO_H|T0_DIV_1);
+   SET_TIMER0(0);
+   PRINTF("P=%02U,B=%05LU",PRODUCT,BOX);
+   WHILE(TRUE)
+   {
+      IF(KBHIT()==1)
+      {
+         RXDATA=GETC();
+         IF(RXDATA=='1')
+         {
+            STATUS=1;
+            //SETUP LAI COUNTER
+            SETUP_TIMER_0(T0_EXT_L_TO_H|T0_DIV_1);
+         }
+         ELSE IF(RXDATA=='0')
+         {
+            STATUS=0;
+            //NGUNG DEM
+            SET_TIMER0(PRODUCT);
+         }
+      }
+      IF(STATUS==1)
+      {
+         PRODUCT=GET_TIMER0();
+         IF(PRODUCT>24)
+         {
+            PRODUCT=1;
+            SET_TIMER0(1);
+            BOX++;
+         }
+      }
+      IF(OLDPRODUCT!=PRODUCT||OLDBOX!=BOX)
+      {
+         OLDPRODUCT=PRODUCT;
+         OLDBOX=BOX;
+         PRINTF("P=%02U,B=%05LU",PRODUCT,BOX);
+      }
+   }
+}
+

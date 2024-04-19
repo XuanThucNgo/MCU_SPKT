@@ -1,0 +1,23 @@
+[PROJECT]
+Target=BAI1_2015-2016.hex
+Processor_Text=PIC16F887
+CCSVersion=5.015
+Compiler=PCM
+[Target Data]
+FileList=BAI1_2015-2016.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[BAI1_2015-2016.c]
+Type=4
+[mru-list]
+1=BAI1_2015-2016.c
+[Opened Files]
+1=BAI1_2015-2016.c
+2=..\..\Bai Tap 12 Thay Hiep\TRUYEN.c
+3=..\..\Bai Tap 12 Thay Hiep\TRUYEN_NGATTIMER.c
+4=..\..\Bai Tap 12 Thay Hiep\NHAN.c
+5=..\..\TIMER AND COUNTER\TAOXUNG100MS_DUTY=30%\TAOXUNG100MS_DUTY=30%_CACH2.c
+6=
+[Units]
+Count=1
+1=BAI1_2015-2016 (main)

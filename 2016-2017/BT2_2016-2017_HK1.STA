@@ -1,0 +1,72 @@
+
+ROM used:   1335/8192 (16%)
+            1335/8192 (16%) including unused fragments
+
+            1.0 Average locations per line
+            8.8 Average locations per statement
+
+RAM used:   17/368 (5%) at main() level
+            35/368 (10%) worst case
+
+Stack used: 5 worst case (5 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  112    51  34  BT2_2016-2017_HK1.c
+  768     0   0  C:\Program Files (x86)\PICC\Devices\16F887.H
+  456   100  66  C:\Program Files (x86)\PICC\Drivers\LCD.C
+----- -----
+ 1336   151 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     20   1    1             @delay_ms1
+ Inline         3   760  4.5  lcd_read_byte
+0     49   4    2   262  3.7  lcd_read_nibble
+0     48   4    1   399  2.4  lcd_send_nibble
+0     94   7    3   415  3.7  lcd_send_byte
+0     70   5    6   852  6.2  lcd_init
+0     18   1    4   208  6.3  lcd_gotoxy
+0     44   3    1   354  4.7  lcd_putc
+0    395  30    2  1720  6.8  MAIN
+0      3   0    0             @const665
+0     86   6    4             @PSTRINGC7_644
+0      4   0    0             @const667
+0     31   2    2             @ITOF
+0    204  15   14             @DIVFF
+0     33   2    4             @SFTOI
+0      6   0    0             @const675
+0     99   7    9             @PRINTF_LU_644
+0     87   7    5             @PSTRINGCN7_644
+0      6   0    0             @const680
+0      6   0    0             @const681
+0      5   0    0             @const682
+0      6   0    0             @const683
+0      6   0    0             @const684
+0      6   0    0             @const685
+0      5   0    0             @const686
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               8
+    Statements              151
+    Comments                260
+    Volume (V)              7278
+    Difficulty (D)          35.8
+    Effort to implement (E) 260906
+    Time to implement (T)   4 hours, 2 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   13
+    Maintainability (MI)    116
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF  1331  713  
+00800-00FFF     0  2048  
+01000-017FF     0  2048  
+01800-01FFF     0  2048  
+
+
+

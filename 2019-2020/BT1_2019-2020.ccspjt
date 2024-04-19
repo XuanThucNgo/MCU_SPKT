@@ -1,0 +1,21 @@
+[PROJECT]
+Target=BT1_2019-2020.hex
+Processor_Text=PIC16F887
+CCSVersion=5.015
+Compiler=PCM
+[Target Data]
+FileList=BT1_2019-2020.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[BT1_2019-2020.c]
+Type=4
+[mru-list]
+1=BT1_2019-2020.c
+[Opened Files]
+1=..\..\PWM\BAITAP_ANHPHUC.c
+2=..\..\PWM\BAITAP10_THAYHIEP.c
+3=BT1_2019-2020.c
+4=
+[Units]
+Count=1
+1=BT1_2019-2020 (main)

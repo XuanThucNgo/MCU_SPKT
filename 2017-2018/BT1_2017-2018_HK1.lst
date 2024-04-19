@@ -1,0 +1,152 @@
+CCS PCM C Compiler, Version 5.015, 5967               14-Dec-23 11:46
+
+               Filename:   E:\BAI TAP VXL\DETHI-GIAIDETHI\2017-2018\BT1_2017-2018_HK1.lst
+
+               ROM used:   95 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   7 (2%) at main() level
+                           8 (2%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   017
+0003:  NOP
+.................... #INCLUDE<16F887.H> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+....................  
+.................... #list 
+....................  
+.................... #FUSES INTRC 
+.................... #USE DELAY(CLOCK=8M) 
+0004:  MOVLW  08
+0005:  SUBWF  22,F
+0006:  BTFSS  03.0
+0007:  GOTO   014
+0008:  MOVLW  22
+0009:  MOVWF  04
+000A:  BCF    03.7
+000B:  BCF    03.0
+000C:  RRF    00,F
+000D:  MOVF   00,W
+000E:  BTFSC  03.2
+000F:  GOTO   014
+0010:  GOTO   012
+0011:  NOP
+0012:  DECFSZ 00,F
+0013:  GOTO   011
+0014:  BCF    0A.3
+0015:  BCF    0A.4
+0016:  GOTO   049 (RETURN)
+....................  
+.................... #DEFINE SW        PIN_B0 
+.................... #DEFINE PULSE     PIN_C1 
+....................  
+.................... VOID MAIN() 
+0017:  MOVF   03,W
+0018:  ANDLW  1F
+0019:  MOVWF  03
+001A:  MOVLW  71
+001B:  BSF    03.5
+001C:  MOVWF  0F
+001D:  MOVF   0F,W
+001E:  MOVLW  FF
+001F:  BCF    03.5
+0020:  MOVWF  20
+0021:  BSF    03.5
+0022:  BSF    03.6
+0023:  MOVF   09,W
+0024:  ANDLW  C0
+0025:  MOVWF  09
+0026:  BCF    03.6
+0027:  BCF    1F.4
+0028:  BCF    1F.5
+0029:  MOVLW  00
+002A:  BSF    03.6
+002B:  MOVWF  08
+002C:  BCF    03.5
+002D:  CLRF   07
+002E:  CLRF   08
+002F:  CLRF   09
+0030:  BCF    03.7
+.................... { 
+....................    SET_TRIS_B(0XFF); 
+0031:  MOVLW  FF
+0032:  BSF    03.5
+0033:  BCF    03.6
+0034:  MOVWF  06
+....................    SET_TRIS_C(0X00); 
+0035:  MOVLW  00
+0036:  MOVWF  07
+0037:  BCF    03.5
+0038:  MOVWF  20
+....................    WHILE(TRUE) 
+....................    { 
+....................       IF(INPUT(SW)==0) 
+0039:  BSF    03.5
+003A:  BSF    06.0
+003B:  BCF    03.5
+003C:  BTFSC  06.0
+003D:  GOTO   057
+....................       { 
+....................          OUTPUT_HIGH(PULSE); 
+003E:  BCF    20.1
+003F:  MOVF   20,W
+0040:  BSF    03.5
+0041:  MOVWF  07
+0042:  BCF    03.5
+0043:  BSF    07.1
+....................          DELAY_US(700); 
+0044:  MOVLW  04
+0045:  MOVWF  21
+0046:  MOVLW  AD
+0047:  MOVWF  22
+0048:  GOTO   004
+0049:  DECFSZ 21,F
+004A:  GOTO   046
+....................          OUTPUT_LOW(PULSE); 
+004B:  BCF    20.1
+004C:  MOVF   20,W
+004D:  BSF    03.5
+004E:  MOVWF  07
+004F:  BCF    03.5
+0050:  BCF    07.1
+....................          DELAY_US(300); 
+0051:  MOVLW  C7
+0052:  MOVWF  77
+0053:  DECFSZ 77,F
+0054:  GOTO   053
+0055:  GOTO   056
+....................       } 
+0056:  GOTO   05D
+....................       ELSE 
+....................       { 
+....................          OUTPUT_LOW(PULSE); 
+0057:  BCF    20.1
+0058:  MOVF   20,W
+0059:  BSF    03.5
+005A:  MOVWF  07
+005B:  BCF    03.5
+005C:  BCF    07.1
+....................       } 
+005D:  GOTO   039
+....................    } 
+.................... } 
+....................  
+005E:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE5   INTRC NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

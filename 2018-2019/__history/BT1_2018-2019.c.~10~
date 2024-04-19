@@ -1,0 +1,99 @@
+#INCLUDE<16F887.H>
+#FUSES INTRC
+#USE DELAY(CLOCK=8M)
+
+#BIT TMR1IF = 0X0C.0
+#DEFINE P1 PIN_B1
+#DEFINE P2 PIN_B2
+#DEFINE P3 PIN_B3
+#DEFINE PULSE1 PIN_C0
+#DEFINE PULSE2 PIN_C1
+
+CONST UNSIGNED INT8 MA7DOAN[10] = {0XC0, 0XF9, 0XA4, 0XB0, 0X99, 0X92, 0X82, 0XF8, 0X80, 0X90};
+UNSIGNED INT8 MODE=0;
+INT1 STATUS=0; //0-H 1-L
+//DINH THOI 2MS TIMER 1 DUTY=75%
+/*75%    SET TIMER   65161
+         BO CHIA     8*/
+/*25%    SET TIMER   65411
+         BO CHIA     8*/
+//TAN SO             8MHZ
+//SO LAN TRAN        1
+
+VOID MAIN()
+{
+   SET_TRIS_B(0XFF);
+   SET_TRIS_C(0X00);
+   SET_TRIS_C(0X00);
+   
+   //SETUP_PWM
+   //PR2=[T(s).f]/4.CT - 1 = 249
+   SETUP_TIMER_2(T2_DIV_BY_16,249,1);     
+   //=> MaxDuty=1000 =>75% = 750
+   SETUP_CCP1(CCP_PWM); //RC2
+   SET_TIMER2(0);
+   SETUP_CCP1(CCP_OFF);
+   //SETUP TIMER1
+   SETUP_TIMER_1(T1_INTERNAL|T1_DIV_BY_8);
+   
+   WHILE(TRUE)
+   {
+      /*IF(INPUT(P1)==0)
+      {
+         DELAY_MS(10);
+         IF(INPUT(BTN_1_6)==0)
+         { 
+            SETUP_CCP1(CCP_PWM);
+            SET_PWM1_DUTY((UNSIGNED INT16)50);
+            WHILE(INPUT(BTN_1_6)==0);
+         }
+      }*/
+      IF(INPUT(P1)==0)  MODE=1;
+      IF(INPUT(P2)==0)  MODE=2;
+      IF(INPUT(P3)==0)  MODE=3;
+      OUTPUT_D(MA7DOAN[MODE]);
+      
+      IF(MODE==1)
+      {
+         SETUP_CCP1(CCP_OFF);
+         OUTPUT_HIGH(PULSE1);
+         DELAY_US(1500);
+         OUTPUT_LOW(PULSE1);
+         DELAY_US(500);
+      }
+      ELSE IF(MODE==2)
+      {
+         SETUP_CCP1(CCP_OFF);
+         //SETUP TIMER1 CHE DO DINH THOI
+         SETUP_TIMER_1(T1_INTERNAL|T1_DIV_BY_8);
+         SET_TIMER1(65161); //DINHTHOI1.5MS
+         OUTPUT_HIGH(PULSE2);
+            IF(TMR1IF==1) //TIMER1 DA TRAN
+            {
+               //DU 30MS TRONG TH SET_TIMER1(46786);
+               TMR1IF=0;
+               IF(STATUS==0)
+               {
+                  //DU 30MS
+                  //CHUYEN SANG DINH THOI 70MS
+                  SET_TIMER1(21786); //DINHTHOI70MS
+                  OUTPUT_LOW(PULSE2);
+               }
+            ELSE
+               {
+                  //DU 70MS
+                  //CHUYEN SANG DINH THOI 30MS
+                  SET_TIMER1(46786);
+                  OUTPUT_HIGH(PULSE2);
+               }
+               STATUS = ~STATUS; 
+            }
+         }
+      ELSE IF(MODE==3)
+      {
+         SETUP_CCP1(CCP_PWM); //SETUP LAI
+         SET_PWM1_DUTY((UNSIGNED INT16)750);
+      }
+      ELSE  OUTPUT_LOW(PULSE);    
+   }
+}

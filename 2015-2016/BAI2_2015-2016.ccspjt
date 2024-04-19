@@ -1,0 +1,27 @@
+[PROJECT]
+Target=BAI2_2015-2016.hex
+Processor_Text=PIC16F887
+CCSVersion=5.015
+Compiler=PCM
+[Target Data]
+FileList=BAI2_2015-2016.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[BAI2_2015-2016.c]
+Type=4
+[mru-list]
+1=BAI2_2015-2016.c
+[Opened Files]
+1=BAI2_2015-2016.c
+2=C:\Program Files (x86)\PICC\Drivers\LCD.C
+3=..\..\Bai Tap 9 Thay Hiep\BAITAP9_THAYHIEP.c
+4=..\..\PWM\BAITAP10_THAYHIEP.c
+5=
+6=BAI2_2015-2016.c
+7=C:\Program Files (x86)\PICC\Devices\16F887.H
+8=C:\Program Files (x86)\PICC\Drivers\LCD.C
+9=..\..\Bai Tap 10 Thay Hiep\BAITAP10_THAYHIEP.c
+10=
+[Units]
+Count=1
+1=BAI2_2015-2016 (main)

@@ -1,0 +1,120 @@
+004-005 @WRITE_PROGRAM_MEMORY8.P1
+004-005 @READ_PROGRAM_MEMORY8.P2
+015     CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01B     CCP_2
+01B     CCP_2_LOW
+01C     CCP_2_HIGH
+020     data
+021     PRODUCT
+022     OLDPRODUCT
+023.0   STATUS
+024     @TRIS_C
+025     lcd_init.i
+025     @PSTRINGCN7_2400_62_63.P1
+025     @PSTRINGCN7_647.P2
+025     @PRINTF_U_2400_62_63.P3
+025     @PRINTF_U_647.P4
+025     MAIN.@SCRATCH1
+025     @PSTRINGC7_647.@SCRATCH1
+026-029 lcd_init.LCD_INIT_STRING
+026     @PRINTF_U_647.P1
+026     @PRINTF_U_2400_62_63.P2
+026     @PSTRINGCN7_2400_62_63.@SCRATCH1
+026     @PSTRINGC7_647.@SCRATCH2
+026     @PSTRINGCN7_647.@SCRATCH1
+027     @DIV88.P1
+027     @PSTRINGCN7_2400_62_63.@SCRATCH2
+027     @PSTRINGC7_647.@SCRATCH3
+027     @PSTRINGCN7_647.@SCRATCH2
+028     @DIV88.P1
+028     @PSTRINGCN7_2400_62_63.@SCRATCH3
+028     @PSTRINGC7_647.@SCRATCH4
+028     @PSTRINGCN7_647.@SCRATCH3
+029     lcd_putc.c
+029     @PSTRINGCN7_2400_62_63.@SCRATCH4
+029     @DIV88.@SCRATCH1
+029     @PSTRINGCN7_647.@SCRATCH4
+02A     @delay_ms1.P1
+02A     lcd_gotoxy.x
+02A     lcd_init.@SCRATCH1
+02B     lcd_gotoxy.y
+02C     lcd_gotoxy.address
+02D     lcd_gotoxy.@SCRATCH1
+02E     lcd_send_byte.address
+02F     lcd_send_byte.n
+030     lcd_read_byte.low
+030     lcd_send_byte.@SCRATCH1
+031     lcd_read_byte.high
+031     lcd_send_nibble.n
+032     lcd_read_nibble.n
+032     lcd_read_byte.@SCRATCH1
+033     lcd_read_nibble.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+107.6   C1OUT
+108.6   C2OUT
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  @const667.call
+00000B  @const676.call
+00000E  @const678.call
+000016  @const684.call
+000019  @const685.call
+000021  @const686.call
+000028  @delay_ms1
+00003C  lcd_send_nibble
+00006C  lcd_read_nibble
+00009D  lcd_send_byte
+0000A5  lcd_read_byte
+0000FB  lcd_init
+000141  @PSTRINGCN7_2400_62_63
+00019A  @DIV88
+0001AF  @PRINTF_U_2400_62_63
+0001E7  lcd_gotoxy
+0001F9  lcd_putc
+000225  @PSTRINGC7_647
+00027B  @PSTRINGCN7_647
+0002D2  @PRINTF_U_647
+000307  @cinit1
+000307  MAIN
+00032B  @cinit2
+
+Project Directory:
+    E:\BAI TAP VXL\DETHI-GIAIDETHI\2023-2024\
+
+Project Files:
+    BT2_2023-2024_HK1_CLC.c                                 [18-Dec-23 17:27  CRC=B789AD72]
+    C:\Program Files (x86)\PICC\Devices\16F887.H            [12-Nov-13 14:35  CRC=6CB1A611]
+    C:\Program Files (x86)\PICC\Drivers\LCD.C               [19-Sep-13 15:38  CRC=D1A6378A]
+
+Source signature=C787C297
+
+Units:
+    BT2_2023-2024_HK1_CLC (main)
+
+Compiler Settings:
+    Processor:      PIC16F887
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   BT2_2023-2024_HK1_CLC.xsym
+    Errors:      BT2_2023-2024_HK1_CLC.err
+    Ext Symbols: BT2_2023-2024_HK1_CLC.esym
+    INHX8:       BT2_2023-2024_HK1_CLC.hex
+    Symbols:     BT2_2023-2024_HK1_CLC.sym
+    List:        BT2_2023-2024_HK1_CLC.lst
+    Debug/COFF:  BT2_2023-2024_HK1_CLC.cof
+    Project:     BT2_2023-2024_HK1_CLC.ccspjt
+    Call Tree:   BT2_2023-2024_HK1_CLC.tre
+    Statistics:  BT2_2023-2024_HK1_CLC.STA

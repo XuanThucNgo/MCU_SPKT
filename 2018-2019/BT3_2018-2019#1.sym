@@ -1,0 +1,78 @@
+004-005 @WRITE_PROGRAM_MEMORY8.P1
+004-005 @READ_PROGRAM_MEMORY8.P2
+015     CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020     PRODUCT
+021     OLDPRODUCT
+022-023 BOX
+024-025 OLDBOX
+026     RXDATA
+027.0   STATUS
+028     @TRIS_C
+029     @PRINTF_U_4800_62_63.P1
+029-02A @PRINTF_LU_4800_62_63.P2
+029     MAIN.@SCRATCH1
+02A     @PRINTF_U_4800_62_63.P1
+02B     @DIV88.P1
+02B     @PRINTF_LU_4800_62_63.@SCRATCH1
+02C     @DIV88.P1
+02C     @PRINTF_LU_4800_62_63.@SCRATCH2
+02D     @DIV88.@SCRATCH1
+02D     @PRINTF_LU_4800_62_63.@SCRATCH3
+02E     @PRINTF_LU_4800_62_63.@SCRATCH4
+02F     @PRINTF_LU_4800_62_63.@SCRATCH5
+030     @PRINTF_LU_4800_62_63.@SCRATCH6
+031     @PRINTF_LU_4800_62_63.@SCRATCH7
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+107.6   C1OUT
+108.6   C2OUT
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  @DIV88
+000019  @PRINTF_U_4800_62_63
+000051  @PRINTF_LU_4800_62_63
+0000AA  MAIN
+0000AA  @cinit1
+0000D2  @cinit2
+
+Project Directory:
+    E:\BAI TAP VXL\DETHI-GIAIDETHI\2018-2019\
+
+Project Files:
+    BT3_2018-2019#1.c                                       [13-Dec-23 18:43  CRC=3EA633C3]
+    C:\Program Files (x86)\PICC\Devices\16F887.H            [12-Nov-13 14:35  CRC=6CB1A611]
+
+Source signature=18097FE5
+
+Units:
+    BT3_2018-2019#1 (main)
+
+Compiler Settings:
+    Processor:      PIC16F887
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   BT3_2018-2019#1.xsym
+    Errors:      BT3_2018-2019#1.err
+    Ext Symbols: BT3_2018-2019#1.esym
+    INHX8:       BT3_2018-2019#1.hex
+    Symbols:     BT3_2018-2019#1.sym
+    List:        BT3_2018-2019#1.lst
+    Debug/COFF:  BT3_2018-2019#1.cof
+    Project:     BT3_2018-2019#1.ccspjt
+    Call Tree:   BT3_2018-2019#1.tre
+    Statistics:  BT3_2018-2019#1.STA

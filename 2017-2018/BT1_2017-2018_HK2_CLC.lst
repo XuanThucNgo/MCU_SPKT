@@ -1,0 +1,1064 @@
+CCS PCM C Compiler, Version 5.015, 5967               16-Dec-23 02:03
+
+               Filename:   E:\BAI TAP VXL\DETHI-GIAIDETHI\2017-2018\BT1_2017-2018_HK2_CLC.lst
+
+               ROM used:   878 words (11%)
+                           Largest free fragment is 2048
+               RAM used:   18 (5%) at main() level
+                           31 (8%) worst case
+               Stack used: 2 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  01
+0001:  MOVWF  0A
+0002:  GOTO   1C5
+0003:  NOP
+.................... #INCLUDE<16F887.H> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+0004:  BCF    0A.0
+0005:  BCF    0A.1
+0006:  BCF    0A.2
+0007:  ADDWF  02,F
+0008:  RETLW  C0
+0009:  RETLW  F9
+000A:  RETLW  A4
+000B:  RETLW  B0
+000C:  RETLW  99
+000D:  RETLW  92
+000E:  RETLW  82
+000F:  RETLW  F8
+0010:  RETLW  80
+0011:  RETLW  90
+*
+0026:  MOVLW  8E
+0027:  MOVWF  77
+0028:  MOVF   2D,W
+0029:  MOVWF  78
+002A:  MOVF   2C,W
+002B:  MOVWF  79
+002C:  CLRF   7A
+002D:  MOVF   78,F
+002E:  BTFSS  03.2
+002F:  GOTO   03A
+0030:  MOVF   79,W
+0031:  MOVWF  78
+0032:  CLRF   79
+0033:  MOVLW  08
+0034:  SUBWF  77,F
+0035:  MOVF   78,F
+0036:  BTFSS  03.2
+0037:  GOTO   03A
+0038:  CLRF   77
+0039:  GOTO   042
+003A:  BCF    03.0
+003B:  BTFSC  78.7
+003C:  GOTO   041
+003D:  RLF    79,F
+003E:  RLF    78,F
+003F:  DECF   77,F
+0040:  GOTO   03A
+0041:  BCF    78.7
+0042:  RETURN
+0043:  MOVF   2C,W
+0044:  BTFSC  03.2
+0045:  GOTO   108
+0046:  MOVWF  38
+0047:  MOVF   30,W
+0048:  BTFSC  03.2
+0049:  GOTO   108
+004A:  SUBWF  38,F
+004B:  BTFSS  03.0
+004C:  GOTO   052
+004D:  MOVLW  7F
+004E:  ADDWF  38,F
+004F:  BTFSC  03.0
+0050:  GOTO   108
+0051:  GOTO   058
+0052:  MOVLW  81
+0053:  SUBWF  38,F
+0054:  BTFSS  03.0
+0055:  GOTO   108
+0056:  BTFSC  03.2
+0057:  GOTO   108
+0058:  MOVF   38,W
+0059:  MOVWF  77
+005A:  CLRF   78
+005B:  CLRF   79
+005C:  CLRF   7A
+005D:  CLRF   37
+005E:  MOVF   2D,W
+005F:  MOVWF  36
+0060:  BSF    36.7
+0061:  MOVF   2E,W
+0062:  MOVWF  35
+0063:  MOVF   2F,W
+0064:  MOVWF  34
+0065:  MOVLW  19
+0066:  MOVWF  38
+0067:  MOVF   33,W
+0068:  SUBWF  34,F
+0069:  BTFSC  03.0
+006A:  GOTO   07B
+006B:  MOVLW  01
+006C:  SUBWF  35,F
+006D:  BTFSC  03.0
+006E:  GOTO   07B
+006F:  SUBWF  36,F
+0070:  BTFSC  03.0
+0071:  GOTO   07B
+0072:  SUBWF  37,F
+0073:  BTFSC  03.0
+0074:  GOTO   07B
+0075:  INCF   37,F
+0076:  INCF   36,F
+0077:  INCF   35,F
+0078:  MOVF   33,W
+0079:  ADDWF  34,F
+007A:  GOTO   0AD
+007B:  MOVF   32,W
+007C:  SUBWF  35,F
+007D:  BTFSC  03.0
+007E:  GOTO   096
+007F:  MOVLW  01
+0080:  SUBWF  36,F
+0081:  BTFSC  03.0
+0082:  GOTO   096
+0083:  SUBWF  37,F
+0084:  BTFSC  03.0
+0085:  GOTO   096
+0086:  INCF   37,F
+0087:  INCF   36,F
+0088:  MOVF   32,W
+0089:  ADDWF  35,F
+008A:  MOVF   33,W
+008B:  ADDWF  34,F
+008C:  BTFSS  03.0
+008D:  GOTO   0AD
+008E:  INCF   35,F
+008F:  BTFSS  03.2
+0090:  GOTO   0AD
+0091:  INCF   36,F
+0092:  BTFSS  03.2
+0093:  GOTO   0AD
+0094:  INCF   37,F
+0095:  GOTO   0AD
+0096:  MOVF   31,W
+0097:  IORLW  80
+0098:  SUBWF  36,F
+0099:  BTFSC  03.0
+009A:  GOTO   0AC
+009B:  MOVLW  01
+009C:  SUBWF  37,F
+009D:  BTFSC  03.0
+009E:  GOTO   0AC
+009F:  INCF   37,F
+00A0:  MOVF   31,W
+00A1:  IORLW  80
+00A2:  ADDWF  36,F
+00A3:  MOVF   32,W
+00A4:  ADDWF  35,F
+00A5:  BTFSS  03.0
+00A6:  GOTO   08A
+00A7:  INCF   36,F
+00A8:  BTFSS  03.2
+00A9:  GOTO   08A
+00AA:  INCF   37,F
+00AB:  GOTO   08A
+00AC:  BSF    7A.0
+00AD:  DECFSZ 38,F
+00AE:  GOTO   0B0
+00AF:  GOTO   0BB
+00B0:  BCF    03.0
+00B1:  RLF    34,F
+00B2:  RLF    35,F
+00B3:  RLF    36,F
+00B4:  RLF    37,F
+00B5:  BCF    03.0
+00B6:  RLF    7A,F
+00B7:  RLF    79,F
+00B8:  RLF    78,F
+00B9:  RLF    39,F
+00BA:  GOTO   067
+00BB:  BTFSS  39.0
+00BC:  GOTO   0C3
+00BD:  BCF    03.0
+00BE:  RRF    78,F
+00BF:  RRF    79,F
+00C0:  RRF    7A,F
+00C1:  RRF    39,F
+00C2:  GOTO   0C6
+00C3:  DECF   77,F
+00C4:  BTFSC  03.2
+00C5:  GOTO   108
+00C6:  BTFSC  39.7
+00C7:  GOTO   0EF
+00C8:  BCF    03.0
+00C9:  RLF    34,F
+00CA:  RLF    35,F
+00CB:  RLF    36,F
+00CC:  RLF    37,F
+00CD:  MOVF   33,W
+00CE:  SUBWF  34,F
+00CF:  BTFSC  03.0
+00D0:  GOTO   0DB
+00D1:  MOVLW  01
+00D2:  SUBWF  35,F
+00D3:  BTFSC  03.0
+00D4:  GOTO   0DB
+00D5:  SUBWF  36,F
+00D6:  BTFSC  03.0
+00D7:  GOTO   0DB
+00D8:  SUBWF  37,F
+00D9:  BTFSS  03.0
+00DA:  GOTO   0FE
+00DB:  MOVF   32,W
+00DC:  SUBWF  35,F
+00DD:  BTFSC  03.0
+00DE:  GOTO   0E6
+00DF:  MOVLW  01
+00E0:  SUBWF  36,F
+00E1:  BTFSC  03.0
+00E2:  GOTO   0E6
+00E3:  SUBWF  37,F
+00E4:  BTFSS  03.0
+00E5:  GOTO   0FE
+00E6:  MOVF   31,W
+00E7:  IORLW  80
+00E8:  SUBWF  36,F
+00E9:  BTFSC  03.0
+00EA:  GOTO   0EF
+00EB:  MOVLW  01
+00EC:  SUBWF  37,F
+00ED:  BTFSS  03.0
+00EE:  GOTO   0FE
+00EF:  INCF   7A,F
+00F0:  BTFSS  03.2
+00F1:  GOTO   0FE
+00F2:  INCF   79,F
+00F3:  BTFSS  03.2
+00F4:  GOTO   0FE
+00F5:  INCF   78,F
+00F6:  BTFSS  03.2
+00F7:  GOTO   0FE
+00F8:  INCF   77,F
+00F9:  BTFSC  03.2
+00FA:  GOTO   108
+00FB:  RRF    78,F
+00FC:  RRF    79,F
+00FD:  RRF    7A,F
+00FE:  MOVF   2D,W
+00FF:  MOVWF  38
+0100:  MOVF   31,W
+0101:  XORWF  38,F
+0102:  BTFSS  38.7
+0103:  GOTO   106
+0104:  BSF    78.7
+0105:  GOTO   10C
+0106:  BCF    78.7
+0107:  GOTO   10C
+0108:  CLRF   77
+0109:  CLRF   78
+010A:  CLRF   79
+010B:  CLRF   7A
+010C:  RETURN
+010D:  MOVLW  8E
+010E:  MOVWF  77
+010F:  MOVF   2A,W
+0110:  SUBWF  77,F
+0111:  MOVF   2B,W
+0112:  MOVWF  79
+0113:  MOVF   2C,W
+0114:  MOVWF  78
+0115:  BSF    79.7
+0116:  MOVF   77,F
+0117:  BTFSC  03.2
+0118:  GOTO   124
+0119:  BCF    03.0
+011A:  MOVF   79,F
+011B:  BTFSS  03.2
+011C:  GOTO   120
+011D:  MOVF   78,F
+011E:  BTFSC  03.2
+011F:  GOTO   124
+0120:  RRF    79,F
+0121:  RRF    78,F
+0122:  DECFSZ 77,F
+0123:  GOTO   119
+0124:  BTFSS  2B.7
+0125:  GOTO   12B
+0126:  COMF   78,F
+0127:  COMF   79,F
+0128:  INCF   78,F
+0129:  BTFSC  03.2
+012A:  INCF   79,F
+012B:  RETURN
+*
+0166:  CLRF   78
+0167:  CLRF   79
+0168:  CLRF   77
+0169:  CLRF   7A
+016A:  MOVF   2D,W
+016B:  BTFSS  03.2
+016C:  GOTO   170
+016D:  MOVF   2C,W
+016E:  BTFSC  03.2
+016F:  GOTO   18A
+0170:  MOVLW  10
+0171:  MOVWF  2E
+0172:  BCF    03.0
+0173:  RLF    2A,F
+0174:  RLF    2B,F
+0175:  RLF    77,F
+0176:  RLF    7A,F
+0177:  MOVF   2D,W
+0178:  SUBWF  7A,W
+0179:  BTFSS  03.2
+017A:  GOTO   17D
+017B:  MOVF   2C,W
+017C:  SUBWF  77,W
+017D:  BTFSS  03.0
+017E:  GOTO   186
+017F:  MOVF   2C,W
+0180:  SUBWF  77,F
+0181:  BTFSS  03.0
+0182:  DECF   7A,F
+0183:  MOVF   2D,W
+0184:  SUBWF  7A,F
+0185:  BSF    03.0
+0186:  RLF    78,F
+0187:  RLF    79,F
+0188:  DECFSZ 2E,F
+0189:  GOTO   172
+018A:  RETURN
+....................  
+.................... #list 
+....................  
+.................... #DEVICE ADC=10 
+.................... #FUSES HS 
+.................... #USE DELAY(CLOCK=20M) 
+*
+0012:  MOVLW  2B
+0013:  MOVWF  04
+0014:  BCF    03.7
+0015:  MOVF   00,W
+0016:  BTFSC  03.2
+0017:  GOTO   025
+0018:  MOVLW  06
+0019:  MOVWF  78
+001A:  CLRF   77
+001B:  DECFSZ 77,F
+001C:  GOTO   01B
+001D:  DECFSZ 78,F
+001E:  GOTO   01A
+001F:  MOVLW  7B
+0020:  MOVWF  77
+0021:  DECFSZ 77,F
+0022:  GOTO   021
+0023:  DECFSZ 00,F
+0024:  GOTO   018
+0025:  RETURN
+....................  
+.................... #DEFINE BUTTON_STATUS    PIN_E0 
+.................... #DEFINE BUZZER           PIN_E1 
+....................  
+.................... CONST UNSIGNED INT8 MA7DOAN[10] = {0XC0, 0XF9, 0XA4, 0XB0, 0X99, 0X92, 0X82, 0XF8, 0X80, 0X90}; 
+....................  
+.................... UNSIGNED INT16 TEMP1=0, TEMP2=0, OLDTEMP1=0, OLDTEMP2=0; 
+.................... UNSIGNED INT8 STATUS=2; 
+....................  
+.................... VOID READ_ADC2() 
+.................... { 
+....................    SET_ADC_CHANNEL(2); 
+*
+012C:  MOVLW  08
+012D:  MOVWF  78
+012E:  MOVF   1F,W
+012F:  ANDLW  C3
+0130:  IORWF  78,W
+0131:  MOVWF  1F
+....................    DELAY_US(20); 
+0132:  MOVLW  20
+0133:  MOVWF  77
+0134:  DECFSZ 77,F
+0135:  GOTO   134
+0136:  GOTO   137
+0137:  NOP
+....................    TEMP1=READ_ADC()/2.046; 
+0138:  BSF    1F.1
+0139:  BTFSC  1F.1
+013A:  GOTO   139
+013B:  MOVF   1E,W
+013C:  MOVWF  7A
+013D:  BSF    03.5
+013E:  MOVF   1E,W
+013F:  BCF    03.5
+0140:  MOVWF  2A
+0141:  MOVF   1E,W
+0142:  MOVWF  2B
+0143:  MOVWF  2D
+0144:  MOVF   2A,W
+0145:  MOVWF  2C
+0146:  CALL   026
+0147:  MOVF   7A,W
+0148:  MOVWF  2F
+0149:  MOVF   79,W
+014A:  MOVWF  2E
+014B:  MOVF   78,W
+014C:  MOVWF  2D
+014D:  MOVF   77,W
+014E:  MOVWF  2C
+014F:  MOVLW  AA
+0150:  MOVWF  33
+0151:  MOVLW  F1
+0152:  MOVWF  32
+0153:  MOVLW  02
+0154:  MOVWF  31
+0155:  MOVLW  80
+0156:  MOVWF  30
+0157:  CALL   043
+0158:  MOVF   7A,W
+0159:  MOVWF  2D
+015A:  MOVF   79,W
+015B:  MOVWF  2C
+015C:  MOVF   78,W
+015D:  MOVWF  2B
+015E:  MOVF   77,W
+015F:  MOVWF  2A
+0160:  CALL   10D
+0161:  MOVF   79,W
+0162:  MOVWF  21
+0163:  MOVF   78,W
+0164:  MOVWF  20
+0165:  RETURN
+.................... } 
+....................  
+.................... VOID READ_ADC3() 
+.................... { 
+....................    SET_ADC_CHANNEL(3); 
+*
+018B:  MOVLW  0C
+018C:  MOVWF  78
+018D:  MOVF   1F,W
+018E:  ANDLW  C3
+018F:  IORWF  78,W
+0190:  MOVWF  1F
+....................    DELAY_US(20); 
+0191:  MOVLW  20
+0192:  MOVWF  77
+0193:  DECFSZ 77,F
+0194:  GOTO   193
+0195:  GOTO   196
+0196:  NOP
+....................    TEMP2=READ_ADC()/2.046; 
+0197:  BSF    1F.1
+0198:  BTFSC  1F.1
+0199:  GOTO   198
+019A:  MOVF   1E,W
+019B:  MOVWF  7A
+019C:  BSF    03.5
+019D:  MOVF   1E,W
+019E:  BCF    03.5
+019F:  MOVWF  2A
+01A0:  MOVF   1E,W
+01A1:  MOVWF  2B
+01A2:  MOVWF  2D
+01A3:  MOVF   2A,W
+01A4:  MOVWF  2C
+01A5:  CALL   026
+01A6:  MOVF   7A,W
+01A7:  MOVWF  2F
+01A8:  MOVF   79,W
+01A9:  MOVWF  2E
+01AA:  MOVF   78,W
+01AB:  MOVWF  2D
+01AC:  MOVF   77,W
+01AD:  MOVWF  2C
+01AE:  MOVLW  AA
+01AF:  MOVWF  33
+01B0:  MOVLW  F1
+01B1:  MOVWF  32
+01B2:  MOVLW  02
+01B3:  MOVWF  31
+01B4:  MOVLW  80
+01B5:  MOVWF  30
+01B6:  CALL   043
+01B7:  MOVF   7A,W
+01B8:  MOVWF  2D
+01B9:  MOVF   79,W
+01BA:  MOVWF  2C
+01BB:  MOVF   78,W
+01BC:  MOVWF  2B
+01BD:  MOVF   77,W
+01BE:  MOVWF  2A
+01BF:  CALL   10D
+01C0:  MOVF   79,W
+01C1:  MOVWF  23
+01C2:  MOVF   78,W
+01C3:  MOVWF  22
+01C4:  RETURN
+.................... } 
+....................  
+.................... VOID MAIN() 
+01C5:  MOVF   03,W
+01C6:  ANDLW  1F
+01C7:  MOVWF  03
+01C8:  CLRF   21
+01C9:  CLRF   20
+01CA:  CLRF   23
+01CB:  CLRF   22
+01CC:  CLRF   25
+01CD:  CLRF   24
+01CE:  CLRF   27
+01CF:  CLRF   26
+01D0:  MOVLW  02
+01D1:  MOVWF  28
+01D2:  MOVLW  FF
+01D3:  MOVWF  29
+01D4:  BSF    03.5
+01D5:  BSF    03.6
+01D6:  MOVF   09,W
+01D7:  ANDLW  C0
+01D8:  MOVWF  09
+01D9:  BCF    03.6
+01DA:  BCF    1F.4
+01DB:  BCF    1F.5
+01DC:  MOVLW  00
+01DD:  BSF    03.6
+01DE:  MOVWF  08
+01DF:  BCF    03.5
+01E0:  CLRF   07
+01E1:  CLRF   08
+01E2:  CLRF   09
+01E3:  BCF    03.7
+.................... { 
+....................    SET_TRIS_B(0X00); 
+01E4:  MOVLW  00
+01E5:  BSF    03.5
+01E6:  BCF    03.6
+01E7:  MOVWF  06
+....................    SET_TRIS_D(0X00); 
+01E8:  MOVWF  08
+....................    SET_TRIS_C(0X08); 
+01E9:  MOVLW  08
+01EA:  MOVWF  07
+01EB:  BCF    03.5
+01EC:  MOVWF  29
+....................    SET_TRIS_E(0X03); 
+01ED:  BSF    03.5
+01EE:  BSF    09.0
+01EF:  BSF    09.1
+01F0:  BCF    09.2
+01F1:  BCF    09.3
+....................    //SETUP ADC 
+....................    SETUP_ADC(ADC_CLOCK_INTERNAL); 
+01F2:  BCF    03.5
+01F3:  BSF    1F.6
+01F4:  BSF    1F.7
+01F5:  BSF    03.5
+01F6:  BSF    1F.7
+01F7:  BCF    03.5
+01F8:  BSF    1F.0
+....................    SETUP_ADC_PORTS(SAN2|SAN3|VSS_VDD); 
+01F9:  BSF    03.5
+01FA:  BSF    03.6
+01FB:  MOVF   09,W
+01FC:  ANDLW  C0
+01FD:  MOVWF  09
+01FE:  BCF    03.6
+01FF:  BCF    1F.4
+0200:  BCF    1F.5
+0201:  MOVLW  0C
+0202:  BSF    03.6
+0203:  MOVWF  08
+....................     
+....................    WHILE(TRUE) 
+....................    { 
+....................       //KIEM TRA NUT NHAN CHON CHE DO 
+....................       IF(INPUT(BUTTON_STATUS)==0) 
+0204:  BCF    03.6
+0205:  BSF    09.0
+0206:  BCF    03.5
+0207:  BTFSC  09.0
+0208:  GOTO   21B
+....................       { 
+....................          DELAY_MS(10); 
+0209:  MOVLW  0A
+020A:  MOVWF  2B
+020B:  CALL   012
+....................          IF(INPUT(BUTTON_STATUS)==0) 
+020C:  BSF    03.5
+020D:  BSF    09.0
+020E:  BCF    03.5
+020F:  BTFSC  09.0
+0210:  GOTO   21B
+....................          { 
+....................             STATUS++; 
+0211:  INCF   28,F
+....................             IF(STATUS>2)    STATUS=0; 
+0212:  MOVF   28,W
+0213:  SUBLW  02
+0214:  BTFSS  03.0
+0215:  CLRF   28
+....................             WHILE(INPUT(BUTTON_STATUS)==0);            
+0216:  BSF    03.5
+0217:  BSF    09.0
+0218:  BCF    03.5
+0219:  BTFSS  09.0
+021A:  GOTO   216
+....................          } 
+....................       } 
+....................       //THUC HIEN CAC CHE DO 
+....................       IF(STATUS==1) 
+021B:  DECFSZ 28,W
+021C:  GOTO   251
+....................       { 
+....................          //DO KENH AN2 
+....................          READ_ADC2(); 
+021D:  CALL   12C
+....................          //HIEN THI HANG CHUC NHIET DO 
+....................          OUTPUT_D(MA7DOAN[TEMP1/10]); 
+021E:  MOVF   21,W
+021F:  MOVWF  2B
+0220:  MOVF   20,W
+0221:  MOVWF  2A
+0222:  CLRF   2D
+0223:  MOVLW  0A
+0224:  MOVWF  2C
+0225:  CALL   166
+0226:  MOVF   79,W
+0227:  MOVWF  2B
+0228:  MOVF   78,W
+0229:  MOVWF  2A
+022A:  MOVF   79,W
+022B:  MOVWF  7A
+022C:  MOVF   78,W
+022D:  CALL   004
+022E:  MOVWF  2C
+022F:  BSF    03.5
+0230:  CLRF   08
+0231:  BCF    03.5
+0232:  MOVF   2C,W
+0233:  MOVWF  08
+....................          //HIEN THI HANG DON VI NHIET DO 
+....................          OUTPUT_C(MA7DOAN[TEMP1%10]); 
+0234:  MOVF   21,W
+0235:  MOVWF  2B
+0236:  MOVF   20,W
+0237:  MOVWF  2A
+0238:  CLRF   2D
+0239:  MOVLW  0A
+023A:  MOVWF  2C
+023B:  CALL   166
+023C:  MOVF   77,W
+023D:  MOVWF  2A
+023E:  MOVF   7A,W
+023F:  MOVWF  2B
+0240:  MOVWF  7A
+0241:  MOVF   77,W
+0242:  CALL   004
+0243:  MOVWF  2C
+0244:  MOVLW  00
+0245:  MOVWF  29
+0246:  BSF    03.5
+0247:  CLRF   07
+0248:  BCF    03.5
+0249:  MOVF   2C,W
+024A:  MOVWF  07
+....................          //HIEN THI KI TU DO 
+....................          OUTPUT_B(0X9C);         
+024B:  BSF    03.5
+024C:  CLRF   06
+024D:  MOVLW  9C
+024E:  BCF    03.5
+024F:  MOVWF  06
+....................       } 
+0250:  GOTO   300
+....................       ELSE IF(STATUS==2) 
+0251:  MOVF   28,W
+0252:  SUBLW  02
+0253:  BTFSS  03.2
+0254:  GOTO   289
+....................       { 
+....................          //DO KENH AN3 
+....................          READ_ADC3(); 
+0255:  CALL   18B
+....................          //HIEN THI HANG CHUC NHIET DO 
+....................          OUTPUT_D(MA7DOAN[TEMP2/10]); 
+0256:  MOVF   23,W
+0257:  MOVWF  2B
+0258:  MOVF   22,W
+0259:  MOVWF  2A
+025A:  CLRF   2D
+025B:  MOVLW  0A
+025C:  MOVWF  2C
+025D:  CALL   166
+025E:  MOVF   79,W
+025F:  MOVWF  2B
+0260:  MOVF   78,W
+0261:  MOVWF  2A
+0262:  MOVF   79,W
+0263:  MOVWF  7A
+0264:  MOVF   78,W
+0265:  CALL   004
+0266:  MOVWF  2C
+0267:  BSF    03.5
+0268:  CLRF   08
+0269:  BCF    03.5
+026A:  MOVF   2C,W
+026B:  MOVWF  08
+....................          //HIEN THI HANG DON VI NHIET DO 
+....................          OUTPUT_C(MA7DOAN[TEMP2%10]); 
+026C:  MOVF   23,W
+026D:  MOVWF  2B
+026E:  MOVF   22,W
+026F:  MOVWF  2A
+0270:  CLRF   2D
+0271:  MOVLW  0A
+0272:  MOVWF  2C
+0273:  CALL   166
+0274:  MOVF   77,W
+0275:  MOVWF  2A
+0276:  MOVF   7A,W
+0277:  MOVWF  2B
+0278:  MOVWF  7A
+0279:  MOVF   77,W
+027A:  CALL   004
+027B:  MOVWF  2C
+027C:  MOVLW  00
+027D:  MOVWF  29
+027E:  BSF    03.5
+027F:  CLRF   07
+0280:  BCF    03.5
+0281:  MOVF   2C,W
+0282:  MOVWF  07
+....................          //HIEN THI KI TU DO 
+....................          OUTPUT_B(0X9C);         
+0283:  BSF    03.5
+0284:  CLRF   06
+0285:  MOVLW  9C
+0286:  BCF    03.5
+0287:  MOVWF  06
+....................       } 
+0288:  GOTO   300
+....................       ELSE IF(STATUS==0) 
+0289:  MOVF   28,F
+028A:  BTFSS  03.2
+028B:  GOTO   300
+....................       { 
+....................        
+....................          //DO LAN LUOT 2 KENH CACH NHAU 3S 
+....................           
+....................          //DO KENH AN2 
+....................          READ_ADC2(); 
+028C:  CALL   12C
+....................          //HIEN THI HANG CHUC NHIET DO 
+....................          OUTPUT_D(MA7DOAN[TEMP1/10]); 
+028D:  MOVF   21,W
+028E:  MOVWF  2B
+028F:  MOVF   20,W
+0290:  MOVWF  2A
+0291:  CLRF   2D
+0292:  MOVLW  0A
+0293:  MOVWF  2C
+0294:  CALL   166
+0295:  MOVF   79,W
+0296:  MOVWF  2B
+0297:  MOVF   78,W
+0298:  MOVWF  2A
+0299:  MOVF   79,W
+029A:  MOVWF  7A
+029B:  MOVF   78,W
+029C:  CALL   004
+029D:  MOVWF  2C
+029E:  BSF    03.5
+029F:  CLRF   08
+02A0:  BCF    03.5
+02A1:  MOVF   2C,W
+02A2:  MOVWF  08
+....................          //HIEN THI HANG DON VI NHIET DO 
+....................          OUTPUT_C(MA7DOAN[TEMP1%10]); 
+02A3:  MOVF   21,W
+02A4:  MOVWF  2B
+02A5:  MOVF   20,W
+02A6:  MOVWF  2A
+02A7:  CLRF   2D
+02A8:  MOVLW  0A
+02A9:  MOVWF  2C
+02AA:  CALL   166
+02AB:  MOVF   77,W
+02AC:  MOVWF  2A
+02AD:  MOVF   7A,W
+02AE:  MOVWF  2B
+02AF:  MOVWF  7A
+02B0:  MOVF   77,W
+02B1:  CALL   004
+02B2:  MOVWF  2C
+02B3:  MOVLW  00
+02B4:  MOVWF  29
+02B5:  BSF    03.5
+02B6:  CLRF   07
+02B7:  BCF    03.5
+02B8:  MOVF   2C,W
+02B9:  MOVWF  07
+....................          //HIEN THI KI TU DO 
+....................          OUTPUT_B(0X9C); 
+02BA:  BSF    03.5
+02BB:  CLRF   06
+02BC:  MOVLW  9C
+02BD:  BCF    03.5
+02BE:  MOVWF  06
+....................           
+....................          DELAY_MS(3000); 
+02BF:  MOVLW  0C
+02C0:  MOVWF  2A
+02C1:  MOVLW  FA
+02C2:  MOVWF  2B
+02C3:  CALL   012
+02C4:  DECFSZ 2A,F
+02C5:  GOTO   2C1
+....................           
+....................          //DO KENH AN3 
+....................          READ_ADC3(); 
+02C6:  CALL   18B
+....................          //HIEN THI HANG CHUC NHIET DO 
+....................          OUTPUT_D(MA7DOAN[TEMP2/10]); 
+02C7:  MOVF   23,W
+02C8:  MOVWF  2B
+02C9:  MOVF   22,W
+02CA:  MOVWF  2A
+02CB:  CLRF   2D
+02CC:  MOVLW  0A
+02CD:  MOVWF  2C
+02CE:  CALL   166
+02CF:  MOVF   79,W
+02D0:  MOVWF  2B
+02D1:  MOVF   78,W
+02D2:  MOVWF  2A
+02D3:  MOVF   79,W
+02D4:  MOVWF  7A
+02D5:  MOVF   78,W
+02D6:  CALL   004
+02D7:  MOVWF  2C
+02D8:  BSF    03.5
+02D9:  CLRF   08
+02DA:  BCF    03.5
+02DB:  MOVF   2C,W
+02DC:  MOVWF  08
+....................          //HIEN THI HANG DON VI NHIET DO 
+....................          OUTPUT_C(MA7DOAN[TEMP2%10]); 
+02DD:  MOVF   23,W
+02DE:  MOVWF  2B
+02DF:  MOVF   22,W
+02E0:  MOVWF  2A
+02E1:  CLRF   2D
+02E2:  MOVLW  0A
+02E3:  MOVWF  2C
+02E4:  CALL   166
+02E5:  MOVF   77,W
+02E6:  MOVWF  2A
+02E7:  MOVF   7A,W
+02E8:  MOVWF  2B
+02E9:  MOVWF  7A
+02EA:  MOVF   77,W
+02EB:  CALL   004
+02EC:  MOVWF  2C
+02ED:  MOVLW  00
+02EE:  MOVWF  29
+02EF:  BSF    03.5
+02F0:  CLRF   07
+02F1:  BCF    03.5
+02F2:  MOVF   2C,W
+02F3:  MOVWF  07
+....................          //HIEN THI KI TU DO 
+....................          OUTPUT_B(0X9C); 
+02F4:  BSF    03.5
+02F5:  CLRF   06
+02F6:  MOVLW  9C
+02F7:  BCF    03.5
+02F8:  MOVWF  06
+....................           
+....................          DELAY_MS(3000); 
+02F9:  MOVLW  0C
+02FA:  MOVWF  2A
+02FB:  MOVLW  FA
+02FC:  MOVWF  2B
+02FD:  CALL   012
+02FE:  DECFSZ 2A,F
+02FF:  GOTO   2FB
+....................       } 
+....................        
+....................       //KIEM TRA SU THAY DOI NHIET DO 
+....................       IF(OLDTEMP1!=TEMP1||OLDTEMP2!=TEMP2) 
+0300:  MOVF   20,W
+0301:  SUBWF  24,W
+0302:  BTFSS  03.2
+0303:  GOTO   310
+0304:  MOVF   21,W
+0305:  SUBWF  25,W
+0306:  BTFSS  03.2
+0307:  GOTO   310
+0308:  MOVF   22,W
+0309:  SUBWF  26,W
+030A:  BTFSS  03.2
+030B:  GOTO   310
+030C:  MOVF   23,W
+030D:  SUBWF  27,W
+030E:  BTFSC  03.2
+030F:  GOTO   36A
+....................       { 
+....................          OLDTEMP1=TEMP1; 
+0310:  MOVF   21,W
+0311:  MOVWF  25
+0312:  MOVF   20,W
+0313:  MOVWF  24
+....................          OLDTEMP2=TEMP2; 
+0314:  MOVF   23,W
+0315:  MOVWF  27
+0316:  MOVF   22,W
+0317:  MOVWF  26
+....................          IF(TEMP1>35) 
+0318:  MOVF   21,F
+0319:  BTFSS  03.2
+031A:  GOTO   31F
+031B:  MOVF   20,W
+031C:  SUBLW  23
+031D:  BTFSC  03.0
+031E:  GOTO   341
+....................          { 
+....................             //CHO LOA KEU 
+....................             OUTPUT_LOW(BUZZER); 
+031F:  BSF    03.5
+0320:  BCF    09.1
+0321:  BCF    03.5
+0322:  BCF    09.1
+....................             //NHAP NHAY GIA TRI NHIET DO 
+....................              
+....................             /*//HIEN THI HANG CHUC NHIET DO 
+....................             OUTPUT_D(MA7DOAN[TEMP1/10]); 
+....................             //HIEN THI HANG DON VI NHIET DO 
+....................             OUTPUT_C(MA7DOAN[TEMP1%10]); 
+....................             //HIEN THI KI TU DO 
+....................             OUTPUT_B(0X9C);*/ 
+....................             DELAY_MS(500); 
+0323:  MOVLW  02
+0324:  MOVWF  2A
+0325:  MOVLW  FA
+0326:  MOVWF  2B
+0327:  CALL   012
+0328:  DECFSZ 2A,F
+0329:  GOTO   325
+....................             //HIEN THI HANG CHUC NHIET DO 
+....................             OUTPUT_D(0XFF); 
+032A:  BSF    03.5
+032B:  CLRF   08
+032C:  MOVLW  FF
+032D:  BCF    03.5
+032E:  MOVWF  08
+....................             //HIEN THI HANG DON VI NHIET DO 
+....................             OUTPUT_C(0XFF); 
+032F:  MOVLW  00
+0330:  MOVWF  29
+0331:  BSF    03.5
+0332:  CLRF   07
+0333:  MOVLW  FF
+0334:  BCF    03.5
+0335:  MOVWF  07
+....................             //HIEN THI KI TU DO 
+....................             OUTPUT_B(0XFF); 
+0336:  BSF    03.5
+0337:  CLRF   06
+0338:  BCF    03.5
+0339:  MOVWF  06
+....................             DELAY_MS(500); 
+033A:  MOVLW  02
+033B:  MOVWF  2A
+033C:  MOVLW  FA
+033D:  MOVWF  2B
+033E:  CALL   012
+033F:  DECFSZ 2A,F
+0340:  GOTO   33C
+....................          } 
+....................          IF(TEMP2>35) 
+0341:  MOVF   23,F
+0342:  BTFSS  03.2
+0343:  GOTO   348
+0344:  MOVF   22,W
+0345:  SUBLW  23
+0346:  BTFSC  03.0
+0347:  GOTO   36A
+....................          { 
+....................             //CHO LOA KEU 
+....................             OUTPUT_LOW(BUZZER); 
+0348:  BSF    03.5
+0349:  BCF    09.1
+034A:  BCF    03.5
+034B:  BCF    09.1
+....................             //NHAP NHAY GIA TRI NHIET DO 
+....................              
+....................             /*//HIEN THI HANG CHUC NHIET DO 
+....................             OUTPUT_D(MA7DOAN[TEMP2/10]); 
+....................             //HIEN THI HANG DON VI NHIET DO 
+....................             OUTPUT_C(MA7DOAN[TEMP2%10]); 
+....................             //HIEN THI KI TU DO 
+....................             OUTPUT_B(0X9C);*/ 
+....................             DELAY_MS(500); 
+034C:  MOVLW  02
+034D:  MOVWF  2A
+034E:  MOVLW  FA
+034F:  MOVWF  2B
+0350:  CALL   012
+0351:  DECFSZ 2A,F
+0352:  GOTO   34E
+....................             //HIEN THI HANG CHUC NHIET DO 
+....................             OUTPUT_D(0XFF); 
+0353:  BSF    03.5
+0354:  CLRF   08
+0355:  MOVLW  FF
+0356:  BCF    03.5
+0357:  MOVWF  08
+....................             //HIEN THI HANG DON VI NHIET DO 
+....................             OUTPUT_C(0XFF); 
+0358:  MOVLW  00
+0359:  MOVWF  29
+035A:  BSF    03.5
+035B:  CLRF   07
+035C:  MOVLW  FF
+035D:  BCF    03.5
+035E:  MOVWF  07
+....................             //HIEN THI KI TU DO 
+....................             OUTPUT_B(0XFF); 
+035F:  BSF    03.5
+0360:  CLRF   06
+0361:  BCF    03.5
+0362:  MOVWF  06
+....................             DELAY_MS(500); 
+0363:  MOVLW  02
+0364:  MOVWF  2A
+0365:  MOVLW  FA
+0366:  MOVWF  2B
+0367:  CALL   012
+0368:  DECFSZ 2A,F
+0369:  GOTO   365
+....................          } 
+....................       } 
+036A:  BSF    03.5
+036B:  BSF    03.6
+036C:  GOTO   204
+....................    }   
+.................... } 
+036D:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE2   HS NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

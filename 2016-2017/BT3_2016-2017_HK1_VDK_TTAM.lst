@@ -1,0 +1,203 @@
+CCS PCM C Compiler, Version 5.015, 5967               16-Dec-23 21:39
+
+               Filename:   E:\BAI TAP VXL\DETHI-GIAIDETHI\2016-2017\BT3_2016-2017_HK1_VDK_TTAM.lst
+
+               ROM used:   127 words (2%)
+                           Largest free fragment is 2048
+               RAM used:   9 (2%) at main() level
+                           10 (3%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   018
+0003:  NOP
+.................... #INCLUDE<16F887.H> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+....................  
+.................... #list 
+....................  
+.................... #FUSES HS 
+.................... #USE DELAY(CLOCK=20M) 
+0004:  MOVLW  24
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   017
+000A:  MOVLW  06
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  7B
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  DECFSZ 00,F
+0016:  GOTO   00A
+0017:  RETURN
+....................  
+.................... #USE RS232(BAUD=4800, XMIT=PIN_C6,RCV=PIN_C7) 
+....................  
+.................... #DEFINE BUTTON_MODE PIN_B0 
+....................  
+.................... UNSIGNED INT8 I,MODE=1; 
+....................  
+.................... VOID MAIN() 
+0018:  MOVF   03,W
+0019:  ANDLW  1F
+001A:  MOVWF  03
+001B:  BSF    03.5
+001C:  BSF    03.6
+001D:  BSF    07.3
+001E:  MOVLW  11
+001F:  BCF    03.6
+0020:  MOVWF  19
+0021:  MOVLW  04
+0022:  MOVWF  1A
+0023:  MOVLW  A6
+0024:  MOVWF  18
+0025:  MOVLW  90
+0026:  BCF    03.5
+0027:  MOVWF  18
+0028:  MOVLW  01
+0029:  MOVWF  21
+002A:  MOVLW  FF
+002B:  MOVWF  22
+002C:  BSF    03.5
+002D:  BSF    03.6
+002E:  MOVF   09,W
+002F:  ANDLW  C0
+0030:  MOVWF  09
+0031:  BCF    03.6
+0032:  BCF    1F.4
+0033:  BCF    1F.5
+0034:  MOVLW  00
+0035:  BSF    03.6
+0036:  MOVWF  08
+0037:  BCF    03.5
+0038:  CLRF   07
+0039:  CLRF   08
+003A:  CLRF   09
+003B:  BCF    03.7
+.................... { 
+....................    SET_TRIS_B(0XFF); 
+003C:  MOVLW  FF
+003D:  BSF    03.5
+003E:  BCF    03.6
+003F:  MOVWF  06
+....................    SET_TRIS_C(0X80); 
+0040:  MOVLW  80
+0041:  MOVWF  07
+0042:  BCF    03.5
+0043:  MOVWF  22
+....................    WHILE(TRUE) 
+....................    { 
+....................       //KIEM TRA NUT NHAN CHON CHE DO 
+....................       IF(INPUT(BUTTON_MODE)==0) 
+0044:  BSF    03.5
+0045:  BSF    06.0
+0046:  BCF    03.5
+0047:  BTFSC  06.0
+0048:  GOTO   057
+....................       { 
+....................          DELAY_MS(10); 
+0049:  MOVLW  0A
+004A:  MOVWF  24
+004B:  CALL   004
+....................          IF(INPUT(BUTTON_MODE)==0) 
+004C:  BSF    03.5
+004D:  BSF    06.0
+004E:  BCF    03.5
+004F:  BTFSC  06.0
+0050:  GOTO   057
+....................          { 
+....................             MODE++; 
+0051:  INCF   21,F
+....................             WHILE(INPUT(BUTTON_MODE)==0); 
+0052:  BSF    03.5
+0053:  BSF    06.0
+0054:  BCF    03.5
+0055:  BTFSS  06.0
+0056:  GOTO   052
+....................          } 
+....................       } 
+....................       IF(MODE>3)  MODE=1; 
+0057:  MOVF   21,W
+0058:  SUBLW  03
+0059:  BTFSC  03.0
+005A:  GOTO   05D
+005B:  MOVLW  01
+005C:  MOVWF  21
+....................       IF(MODE==1) 
+005D:  DECFSZ 21,W
+005E:  GOTO   05F
+....................       { 
+....................          //KHONG LAM GI 
+....................       } 
+....................       IF(MODE==2) 
+005F:  MOVF   21,W
+0060:  SUBLW  02
+0061:  BTFSS  03.2
+0062:  GOTO   075
+....................       { 
+....................          FOR(I=0;I<4;I++) 
+0063:  CLRF   20
+0064:  MOVF   20,W
+0065:  SUBLW  03
+0066:  BTFSS  03.0
+0067:  GOTO   075
+....................          { 
+....................             PUTC('I'); 
+0068:  MOVLW  49
+0069:  BTFSS  0C.4
+006A:  GOTO   069
+006B:  MOVWF  19
+....................             DELAY_MS(2000); 
+006C:  MOVLW  08
+006D:  MOVWF  23
+006E:  MOVLW  FA
+006F:  MOVWF  24
+0070:  CALL   004
+0071:  DECFSZ 23,F
+0072:  GOTO   06E
+0073:  INCF   20,F
+0074:  GOTO   064
+....................          }        
+....................       } 
+....................       IF(MODE==3) 
+0075:  MOVF   21,W
+0076:  SUBLW  03
+0077:  BTFSS  03.2
+0078:  GOTO   07D
+....................       { 
+....................          PUTC('T'); 
+0079:  MOVLW  54
+007A:  BTFSS  0C.4
+007B:  GOTO   07A
+007C:  MOVWF  19
+....................       } 
+007D:  GOTO   044
+....................    } 
+.................... } 
+....................  
+007E:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE2   HS NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

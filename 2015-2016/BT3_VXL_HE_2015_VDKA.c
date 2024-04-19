@@ -1,0 +1,30 @@
+#INCLUDE<16F887.H>
+#FUSES HS
+#USE DELAY(CLOCK=20M)
+#USE RS232(BAUD=9600,BITS=8,STOP=1,PARITY=N, XMIT=PIN_C6,RCV=PIN_C7)
+
+#DEFINE ON  PIN_B0
+#DEFINE OFF PIN_B1
+#DEFINE D1  PIN_B2
+
+VOID MAIN()
+{
+   SET_TRIS_B(0B00000011);
+   SET_TRIS_C(0x80);
+   OUTPUT_LOW(D1);
+   //VDKA GUI 'R' -> VDKB PHAT XUNG
+   //VDKA GUI 'S' -> VDKB TAT XUNG
+   WHILE(TRUE)
+   {
+      IF(INPUT(ON)==0) 
+      {
+         OUTPUT_HIGH(D1);
+         PUTC('R');
+      }
+      IF(INPUT(OFF)==0) 
+      {
+         OUTPUT_LOW(D1);
+         PUTC('S');
+      }
+   }
+}

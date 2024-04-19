@@ -1,0 +1,63 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020     data
+021     DEM1
+022     DEM2
+023     DEM3
+024     DEM4
+025     @TRIS_C
+026     @delay_ms1.P1
+026     MAIN.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+107.6   C1OUT
+108.6   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  @delay_ms1
+000018  @cinit1
+000018  MAIN
+000042  @cinit2
+
+Project Directory:
+    E:\BAI TAP VXL\DETHI-GIAIDETHI\2017-2018\
+
+Project Files:
+    BT3_2017-2018_HK2_CLC.c                                 [16-Dec-23 15:39  CRC=1858321D]
+    C:\Program Files (x86)\PICC\Devices\16F887.H            [12-Nov-13 14:35  CRC=6CB1A611]
+
+Source signature=F1BB7E3F
+
+Units:
+    BT3_2017-2018_HK2_CLC (main)
+
+Compiler Settings:
+    Processor:      PIC16F887
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   BT3_2017-2018_HK2_CLC.xsym
+    Errors:      BT3_2017-2018_HK2_CLC.err
+    Ext Symbols: BT3_2017-2018_HK2_CLC.esym
+    INHX8:       BT3_2017-2018_HK2_CLC.hex
+    Symbols:     BT3_2017-2018_HK2_CLC.sym
+    List:        BT3_2017-2018_HK2_CLC.lst
+    Debug/COFF:  BT3_2017-2018_HK2_CLC.cof
+    Project:     BT3_2017-2018_HK2_CLC.ccspjt
+    Call Tree:   BT3_2017-2018_HK2_CLC.tre
+    Statistics:  BT3_2017-2018_HK2_CLC.STA

@@ -1,0 +1,53 @@
+#INCLUDE<16F887.H>
+#FUSES HS
+#USE DELAY(CLOCK=20M)
+#USE RS232(BAUD=4800,BITS=8,STOP=1,PARITY=N, XMIT=PIN_C6,RCV=PIN_C7)
+
+UNSIGNED INT8 PRODUCT=0,OLDPRODUCT=0;
+UNSIGNED INT16 BOX=0,OLDBOX=0;
+UNSIGNED CHAR RXDATA;
+INT1 STATUS=0;    //0 STOP
+                  //1 RUN
+    
+
+VOID MAIN()
+{
+   SET_TRIS_C(0X81);
+   SETUP_TIMER_1(T1_EXTERNAL|T1_DIV_BY_1);
+   SET_TIMER1(0);
+   PRINTF("P=%02U,B=%05LU",PRODUCT,BOX);
+   WHILE(TRUE)
+   {
+      IF(KBHIT()==1)
+      {
+         RXDATA=GETC();
+         IF(RXDATA=='1')
+         {
+            STATUS=1;
+            SETUP_TIMER_1(T1_EXTERNAL|T1_DIV_BY_1);
+         }
+         ELSE IF(RXDATA=='0')
+         {
+            STATUS=0;
+            SETUP_TIMER_1(T1_DISABLED );
+         }
+      }
+      IF(STATUS==1)
+      {
+         PRODUCT=GET_TIMER1();
+         IF(PRODUCT>50)
+         {
+            PRODUCT=0;
+            SET_TIMER1(0);
+            BOX++;
+         }
+      }
+      IF(OLDPRODUCT!=PRODUCT||OLDBOX!=BOX)
+      {
+         OLDPRODUCT=PRODUCT;
+         OLDBOX=BOX;
+         PRINTF("P=%02U,B=%05LU",PRODUCT,BOX);
+      }
+   }
+}
+

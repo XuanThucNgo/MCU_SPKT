@@ -1,0 +1,138 @@
+CCS PCM C Compiler, Version 5.015, 5967               18-Dec-23 00:41
+
+               Filename:   E:\BAI TAP VXL\DETHI-GIAIDETHI\2015-2016\BT3_VXL_HE_2015_VDKA.lst
+
+               ROM used:   78 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   7 (2%) at main() level
+                           7 (2%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+.................... #INCLUDE<16F887.H> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+....................  
+.................... #list 
+....................  
+.................... #FUSES HS 
+.................... #USE DELAY(CLOCK=20M) 
+.................... #USE RS232(BAUD=9600,BITS=8,STOP=1,PARITY=N, XMIT=PIN_C6,RCV=PIN_C7) 
+....................  
+.................... #DEFINE ON  PIN_B0 
+.................... #DEFINE OFF PIN_B1 
+.................... #DEFINE D1  PIN_B2 
+....................  
+.................... VOID MAIN() 
+0004:  MOVF   03,W
+0005:  ANDLW  1F
+0006:  MOVWF  03
+0007:  BSF    03.5
+0008:  BSF    03.6
+0009:  BSF    07.3
+000A:  MOVLW  08
+000B:  BCF    03.6
+000C:  MOVWF  19
+000D:  MOVLW  02
+000E:  MOVWF  1A
+000F:  MOVLW  A6
+0010:  MOVWF  18
+0011:  MOVLW  90
+0012:  BCF    03.5
+0013:  MOVWF  18
+0014:  MOVLW  FF
+0015:  MOVWF  20
+0016:  BSF    03.5
+0017:  BSF    03.6
+0018:  MOVF   09,W
+0019:  ANDLW  C0
+001A:  MOVWF  09
+001B:  BCF    03.6
+001C:  BCF    1F.4
+001D:  BCF    1F.5
+001E:  MOVLW  00
+001F:  BSF    03.6
+0020:  MOVWF  08
+0021:  BCF    03.5
+0022:  CLRF   07
+0023:  CLRF   08
+0024:  CLRF   09
+0025:  BCF    03.7
+.................... { 
+....................    SET_TRIS_B(0B00000011); 
+0026:  MOVLW  03
+0027:  BSF    03.5
+0028:  BCF    03.6
+0029:  MOVWF  06
+....................    SET_TRIS_C(0x80); 
+002A:  MOVLW  80
+002B:  MOVWF  07
+002C:  BCF    03.5
+002D:  MOVWF  20
+....................    OUTPUT_LOW(D1); 
+002E:  BSF    03.5
+002F:  BCF    06.2
+0030:  BCF    03.5
+0031:  BCF    06.2
+....................    //VDKA GUI 'R' -> VDKB PHAT XUNG 
+....................    //VDKA GUI 'S' -> VDKB TAT XUNG 
+....................    WHILE(TRUE) 
+....................    { 
+....................       IF(INPUT(ON)==0)  
+0032:  BSF    03.5
+0033:  BSF    06.0
+0034:  BCF    03.5
+0035:  BTFSC  06.0
+0036:  GOTO   03F
+....................       { 
+....................          OUTPUT_HIGH(D1); 
+0037:  BSF    03.5
+0038:  BCF    06.2
+0039:  BCF    03.5
+003A:  BSF    06.2
+....................          PUTC('R'); 
+003B:  MOVLW  52
+003C:  BTFSS  0C.4
+003D:  GOTO   03C
+003E:  MOVWF  19
+....................       } 
+....................       IF(INPUT(OFF)==0)  
+003F:  BSF    03.5
+0040:  BSF    06.1
+0041:  BCF    03.5
+0042:  BTFSC  06.1
+0043:  GOTO   04C
+....................       { 
+....................          OUTPUT_LOW(D1); 
+0044:  BSF    03.5
+0045:  BCF    06.2
+0046:  BCF    03.5
+0047:  BCF    06.2
+....................          PUTC('S'); 
+0048:  MOVLW  53
+0049:  BTFSS  0C.4
+004A:  GOTO   049
+004B:  MOVWF  19
+....................       } 
+004C:  GOTO   032
+....................    } 
+.................... } 
+004D:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE2   HS NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT
